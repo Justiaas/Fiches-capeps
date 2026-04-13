@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiches CAPEPS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f6f3ee;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      border: 1px solid #cbd5e1;
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #475569;
+      max-width: 850px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .nav button {
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      padding: 10px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav button:hover {
+      border-color: #64748b;
+    }
+
+    .nav button.active {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+    }
+
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .left-big {
+      background: #e0f2fe;
+      border: 1px solid #cbd5e1;
+      border-radius: 36px;
+      padding: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .left-big h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .left-big p {
+      margin-bottom: 18px;
+    }
+
+    .card-col {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+
+    .card ul {
+      padding-left: 20px;
+    }
+
+    .card li {
+      margin-bottom: 10px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .step {
+      border: 1px solid #cbd5e1;
+      border-radius: 36px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .step.short {
+      background: #e2e8f0;
+    }
+
+    .step.medium, .step.long {
+      background: white;
+    }
+
+    .step h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .step ul {
+      padding-left: 20px;
+    }
+
+    .step li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-main,
+      .grid-two,
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="badge">Présentation type fiche CAPEPS</div>
+      <h1 id="hero-title">Discrimination</h1>
+      <p>
+        Structure inspirée d'une fiche visuelle : définition, cadre institutionnel,
+        notions, partenaires et réponses à court, moyen et long terme.
+      </p>
+    </section>
+
+    <div class="nav" id="nav"></div>
+
+    <section class="grid-main">
+      <div class="left-big">
+        <h2>1 — Définitions précises et liens avec l'EPS</h2>
+        <p id="definition"></p>
+
+        <h3 style="margin-bottom:12px;">👉 En EPS :</h3>
+        <ul id="eps-list" style="padding-left:20px;"></ul>
+      </div>
+
+      <div class="card-col">
+        <div class="card">
+          <h3>2 — Références aux textes et au cadre institutionnel</h3>
+          <ul id="references"></ul>
+        </div>
+
+        <div class="card">
+          <h3>3 — Notions incontournables</h3>
+          <ul id="notions"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-two">
+      <div class="card">
+        <h3>4 & 5 — Partenaires et associations agréées</h3>
+        <ul id="partenaires"></ul>
+      </div>
+
+      <div class="card">
+        <h3>7 — Exemples de sujets possibles</h3>
+        <ul id="sujets"></ul>
+      </div>
+    </section>
+
+    <section class="step-grid">
+      <div class="step short">
+        <h3>À court terme</h3>
+        <ul id="court-terme"></ul>
+      </div>
+
+      <div class="step medium">
+        <h3>Moyen terme</h3>
+        <ul id="moyen-terme"></ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="step long">
+        <h3>9 — Axes de réponses : long terme</h3>
+        <ul id="long-terme"></ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const fiches = [
+      {
+        titre: "Discrimination",
+        definition: "La discrimination est une différence de traitement fondée sur un critère prohibé par la loi. En EPS, elle peut apparaître dans les groupes, l'accès aux rôles, les attentes différentes selon les élèves, ou certaines remarques sur le corps, la performance ou l'identité.",
+        eps: [
+          "Vigilance sur les groupements, les rôles sociaux et l'occupation de l'espace.",
+          "Prévention des moqueries, exclusions et inégalités de traitement.",
+          "L'EPS peut être un lieu d'éducation à l'égalité réelle."
+        ],
+        references: [
+          "Code pénal : discrimination directe ou indirecte interdite.",
+          "Code de l'éducation : l'École forme au respect des droits de la personne.",
+          "Référentiel des compétences des enseignants : lutter contre les discriminations."
+        ],
+        notions: [
+          "Stéréotype ≠ préjugé ≠ discrimination.",
+          "La diversité de présence ne garantit pas l'égalité réelle.",
+          "L'égalité en EPS suppose des dispositifs pédagogiques intentionnels."
+        ],
+        partenaires: [
+          "Chef d'établissement",
+          "CPE",
+          "PsyEN",
+          "Infirmier scolaire",
+          "Familles",
+          "Référents égalité"
+        ],
+        sujets: [
+          "Des moqueries répétées visent une élève sur son apparence corporelle en natation.",
+          "En sport collectif, certains élèves refusent un camarade dans leur équipe.",
+          "Des rôles d'arbitrage sont toujours donnés aux mêmes profils d'élèves."
+        ],
+        courtTerme: [
+          "Faire cesser immédiatement les faits.",
+          "Protéger l'élève et recueillir la parole sans banaliser.",
+          "Alerter si nécessaire la hiérarchie et les personnels ressources."
+        ],
+        moyenTerme: [
+          "Repenser les groupes, les rôles et les critères d'évaluation.",
+          "Travailler le climat de classe et les stéréotypes.",
+          "Associer l'équipe éducative et les familles si besoin."
+        ],
+        longTerme: [
+          "Inscrire la lutte contre les discriminations dans le projet EPS et le projet d'établissement.",
+          "Former durablement les élèves au respect, à l'égalité et à l'inclusion.",
+          "Stabiliser des pratiques pédagogiques plus équitables."
+        ]
+      },
+      {
+        titre: "Radicalité",
+        definition: "Dans le cadre scolaire, la prévention de la radicalité vise à repérer des processus de rupture avec le cadre commun, d'adhésion à des discours violents ou de rejet des valeurs communes.",
+        eps: [
+          "Un signe isolé ne suffit jamais à conclure.",
+          "L'enseignant observe, trace et transmet.",
+          "L'EPS est un espace d'apprentissage du cadre commun."
+        ],
+        references: [
+          "Valeurs de la République, laïcité et protection des élèves.",
+          "Signalement par la voie hiérarchique en cas de faits préoccupants.",
+          "Mobilisation des équipes ressources de l'institution."
+        ],
+        notions: [
+          "Repérer ≠ accuser.",
+          "Conviction personnelle ≠ prosélytisme ≠ radicalisation.",
+          "La réponse est éducative, institutionnelle et collective."
+        ],
+        partenaires: [
+          "Chef d'établissement",
+          "CPE",
+          "PsyEN",
+          "Infirmier",
+          "Équipe académique",
+          "Familles"
+        ],
+        sujets: [
+          "Un élève refuse plusieurs situations mixtes et conteste les règles communes.",
+          "Un groupe diffuse des discours complotistes et glorifie la violence.",
+          "Des propos de rupture avec le cadre scolaire apparaissent en séance."
+        ],
+        courtTerme: [
+          "Sécuriser la séance et éviter l'escalade verbale improvisée.",
+          "Noter précisément les faits observables.",
+          "Alerter rapidement la hiérarchie."
+        ],
+        moyenTerme: [
+          "Analyser collectivement la situation.",
+          "Mettre en place un suivi éducatif adapté.",
+          "Travailler l'esprit critique et le respect du cadre commun."
+        ],
+        longTerme: [
+          "Former les personnels aux procédures et conduites à tenir.",
+          "Inscrire la prévention dans le projet d'établissement.",
+          "Faire vivre les valeurs communes dans les pratiques quotidiennes."
+        ]
+      },
+      {
+        titre: "Santé · Sédentarité",
+        definition: "La sédentarité désigne les temps d'éveil passés assis ou allongé avec une faible dépense énergétique. Elle se distingue de l'inactivité physique.",
+        eps: [
+          "L'EPS agit sur la santé, le bien-être et les habitudes de vie.",
+          "Un élève peut faire un peu de sport et rester très sédentaire.",
+          "Il faut éviter toute stigmatisation des élèves les plus éloignés de la pratique."
+        ],
+        references: [
+          "Parcours éducatif de santé.",
+          "École promotrice de santé.",
+          "Temps d'activité physique quotidienne."
+        ],
+        notions: [
+          "Sédentarité ≠ inactivité physique.",
+          "Activité physique ≠ sport ≠ EPS.",
+          "L'enjeu n'est pas seulement la performance."
+        ],
+        partenaires: [
+          "Équipe EPS",
+          "Infirmier scolaire",
+          "Médecin scolaire",
+          "CPE",
+          "Familles",
+          "Collectivités"
+        ],
+        sujets: [
+          "Une classe de 6e présente une très faible endurance.",
+          "L'établissement veut articuler EPS et temps d'activité physique quotidienne.",
+          "Des élèves dispensés restent systématiquement inactifs."
+        ],
+        courtTerme: [
+          "Remettre progressivement en activité.",
+          "Limiter les temps morts.",
+          "Valoriser les progrès et le plaisir d'agir."
+        ],
+        moyenTerme: [
+          "Articuler EPS, AS, récréations actives et parcours santé.",
+          "Associer l'équipe éducative et les familles.",
+          "Construire des repères simples sur l'activité physique."
+        ],
+        longTerme: [
+          "Inscrire la lutte contre la sédentarité dans le projet d'établissement.",
+          "Créer un environnement scolaire favorable au mouvement.",
+          "Renforcer les habitudes actives tout au long de la scolarité."
+        ]
+      },
+      {
+        titre: "Développement durable",
+        definition: "Le développement durable articule les dimensions environnementales, sociales et économiques. En EPS, cela touche les sports de nature, les déplacements, l'usage du matériel et le respect des lieux de pratique.",
+        eps: [
+          "Former des pratiquants responsables et attentifs aux milieux.",
+          "Réduire le gaspillage et penser les mobilités.",
+          "Faire de l'AS et de l'EPS des lieux d'engagement concret."
+        ],
+        references: [
+          "EDD 2030 et transition écologique à l'École.",
+          "Projet d'établissement et label E3D.",
+          "Approche interdisciplinaire et partenariale."
+        ],
+        notions: [
+          "Le développement durable ne se réduit pas au tri des déchets.",
+          "Les pratiques sportives ont une empreinte écologique et sociale.",
+          "L'éducation passe par des choix concrets."
+        ],
+        partenaires: [
+          "Éco-délégués",
+          "Équipe de direction",
+          "AS / UNSS",
+          "Collectivités",
+          "Associations d'éducation à l'environnement"
+        ],
+        sujets: [
+          "Une journée du sport écoresponsable doit être organisée.",
+          "En course d'orientation, des dégradations du milieu naturel sont constatées.",
+          "L'équipe EPS veut réduire l'empreinte des déplacements."
+        ],
+        courtTerme: [
+          "Rappeler les règles d'usage des espaces et du matériel.",
+          "Réduire les déchets et le gaspillage.",
+          "Transformer l'incident en situation éducative."
+        ],
+        moyenTerme: [
+          "Monter des projets interdisciplinaires.",
+          "Intégrer l'EDD aux APSA et aux événements sportifs.",
+          "Faire réfléchir les élèves à l'impact des pratiques."
+        ],
+        longTerme: [
+          "Inscrire l'EDD dans le projet EPS et le projet d'établissement.",
+          "Viser une démarche globale de type E3D.",
+          "Former une culture sportive compatible avec la transition écologique."
+        ]
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function renderList(id, items) {
+      const ul = document.getElementById(id);
+      ul.innerHTML = "";
+      items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+    }
+
+    function renderFiche(index) {
+      const fiche = fiches[index];
+      document.getElementById("hero-title").textContent = fiche.titre;
+      document.getElementById("definition").textContent = fiche.definition;
+
+      renderList("eps-list", fiche.eps);
+      renderList("references", fiche.references);
+      renderList("notions", fiche.notions);
+      renderList("partenaires", fiche.partenaires);
+      renderList("sujets", fiche.sujets);
+      renderList("court-terme", fiche.courtTerme);
+      renderList("moyen-terme", fiche.moyenTerme);
+      renderList("long-terme", fiche.longTerme);
+
+      document.querySelectorAll(".nav button").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
+    }
+
+    function initNav() {
+      const nav = document.getElementById("nav");
+      fiches.forEach((fiche, index) => {
+        const button = document.createElement("button");
+        button.textContent = fiche.titre;
+        button.addEventListener("click", () => {
+          currentIndex = index;
+          renderFiche(currentIndex);
+        });
+        nav.appendChild(button);
+      });
+    }
+
+    initNav();
+    renderFiche(currentIndex);
+  </script>
+</body>
+</html>
