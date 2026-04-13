@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fiches CAPEPS - Révision institutionnelle v3</title>
+  <title>Fiches CAPEPS - Révision institutionnelle</title>
   <style>
     :root {
       --bg: #f6f3ee;
@@ -16,7 +16,9 @@
       --accent-soft: #dbeafe;
       --accent-hero: linear-gradient(135deg, #dbeafe, #eff6ff);
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
@@ -24,11 +26,13 @@
       color: var(--text);
       line-height: 1.55;
     }
+
     .container {
       max-width: 1320px;
       margin: 0 auto;
       padding: 28px 18px 56px;
     }
+
     .hero {
       border-radius: 36px;
       padding: 34px;
@@ -40,6 +44,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::after {
       content: "";
       position: absolute;
@@ -51,6 +56,7 @@
       background: color-mix(in srgb, var(--accent) 14%, white);
       opacity: 0.8;
     }
+
     .badge {
       display: inline-block;
       padding: 7px 12px;
@@ -62,6 +68,7 @@
       position: relative;
       z-index: 1;
     }
+
     .hero-top {
       display: flex;
       justify-content: space-between;
@@ -71,22 +78,26 @@
       position: relative;
       z-index: 1;
     }
+
     h1 {
       font-size: clamp(30px, 5vw, 54px);
       margin: 0 0 8px;
       line-height: 1.03;
     }
+
     .subtitle {
       margin: 0;
       max-width: 930px;
       color: #334155;
       font-size: 15px;
     }
+
     .hero-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
+
     button {
       border: 1px solid color-mix(in srgb, var(--accent) 20%, #cbd5e1);
       border-radius: 16px;
@@ -98,58 +109,70 @@
       transition: 0.18s ease;
       box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
     }
+
     button:hover { transform: translateY(-1px); }
+
     .btn-solid {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
+
     .nav {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 22px;
     }
+
     .nav-btn.active {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
+
     .layout-main {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 18px;
       margin-bottom: 18px;
     }
+
     .left-panel, .card, .step-box {
       border: 1px solid color-mix(in srgb, var(--accent) 16%, #d6d3d1);
       box-shadow: var(--shadow);
     }
+
     .left-panel {
       border-radius: 38px;
       padding: 26px;
       background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
     }
+
     .left-panel h2, .card h2, .step-box h2 {
       margin: 0 0 14px;
       font-size: 26px;
       line-height: 1.15;
       color: #0f172a;
     }
+
     .left-panel p.intro {
       font-size: 15px;
       margin: 0 0 18px;
       color: #334155;
     }
+
     .side-note {
       margin-top: 18px;
       padding-top: 18px;
       border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
     }
+
     .card-grid {
       display: grid;
       gap: 18px;
     }
+
     .card {
       background: var(--card);
       border-radius: 28px;
@@ -157,6 +180,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .card::before, .step-box::before {
       content: "";
       position: absolute;
@@ -165,13 +189,16 @@
       height: 5px;
       background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
     }
+
     .double-grid, .steps-grid {
       display: grid;
       gap: 18px;
       margin-bottom: 18px;
     }
+
     .double-grid { grid-template-columns: 1fr 1fr; }
     .steps-grid { grid-template-columns: 0.9fr 1.1fr; }
+
     ul.clean {
       margin: 0;
       padding-left: 0;
@@ -179,12 +206,14 @@
       display: grid;
       gap: 12px;
     }
+
     ul.clean li {
       position: relative;
       padding: 0 0 0 18px;
       color: #334155;
       font-size: 15px;
     }
+
     ul.clean li::before {
       content: "";
       width: 8px;
@@ -196,43 +225,58 @@
       top: 10px;
       opacity: 0.7;
     }
+
     .value-list li {
       padding: 10px 12px 10px 18px;
       border-radius: 14px;
       background: #fafafa;
       border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
     }
+
     .value-list li.major {
       background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 22%, white), #fff);
       border-color: color-mix(in srgb, var(--accent) 32%, #cbd5e1);
-      font-weight: 700;
+      font-weight: 800;
       color: #0f172a;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, white);
     }
+
     .value-list li.secondary {
       background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, white), #fff);
+      font-weight: 600;
     }
+
+    .value-list li strong {
+      font-weight: 800;
+      color: #0f172a;
+    }
+
     .ref-list, .proto-list {
       display: grid;
       gap: 12px;
     }
+
     .ref-item, .proto-item {
       border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
       border-radius: 16px;
       padding: 12px 14px;
       background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
     }
+
     .ref-item strong, .proto-item strong {
       display: block;
       margin-bottom: 6px;
       font-size: 14px;
       color: #0f172a;
     }
+
     .ref-item .apport, .proto-item .apport,
     .ref-item .details, .proto-item .details {
       font-size: 14px;
       color: #334155;
       margin-bottom: 8px;
     }
+
     .ref-item a {
       color: var(--accent);
       text-decoration: none;
@@ -240,7 +284,9 @@
       word-break: break-word;
       font-weight: 600;
     }
+
     .ref-item a:hover { text-decoration: underline; }
+
     .pill-row {
       display: flex;
       flex-wrap: wrap;
@@ -249,6 +295,7 @@
       position: relative;
       z-index: 1;
     }
+
     .pill {
       padding: 7px 10px;
       border-radius: 999px;
@@ -257,6 +304,7 @@
       font-size: 12px;
       color: #334155;
     }
+
     .step-box {
       border-radius: 34px;
       padding: 24px;
@@ -264,12 +312,14 @@
       position: relative;
       overflow: hidden;
     }
+
     .footer-note {
       margin-top: 20px;
       font-size: 13px;
       color: #64748b;
       text-align: center;
     }
+
     @media (max-width: 980px) {
       .layout-main, .double-grid, .steps-grid { grid-template-columns: 1fr; }
       .hero { padding: 24px; }
@@ -319,7 +369,9 @@
       <article id="longCard" class="step-box"></article>
     </section>
 
-    <p class="footer-note">Règle de construction : 5 textes maximum par fiche, uniquement Code / BO / circulaire / note de service / charte officielle, avec date et document d'origine.</p>
+    <p class="footer-note">
+      Règle de construction : 5 textes maximum par fiche, uniquement Code / BO / circulaire / note de service / charte officielle, avec date et document d'origine.
+    </p>
   </div>
 
   <script>
@@ -337,7 +389,7 @@
         valeurs: [
           { text: "ÉGALITÉ : valeur la plus centrale du sujet. Aucune différence de traitement fondée sur un critère prohibé ne peut être tolérée.", level: "major" },
           { text: "FRATERNITÉ : protéger la dignité d'autrui, refuser l'humiliation et l'exclusion.", level: "secondary" },
-          { text: "LIBERTÉ : permettre à chaque élève d'apprendre sans intimidation ni assignation identitaire.", level: "normal" },
+          { text: "LIBERTÉ : garantir à chaque élève d'apprendre sans intimidation ni assignation identitaire.", level: "normal" },
           { text: "LAÏCITÉ : cadre commun qui protège chacun sans hiérarchiser les appartenances.", level: "normal" }
         ],
         definition: "La discrimination est une différence de traitement fondée sur un critère interdit par la loi. En EPS, elle peut apparaître dans les groupements, les rôles sociaux, l'évaluation, les remarques sur le corps, le sexe, l'origine, le handicap, la religion supposée, l'orientation sexuelle ou l'identité de genre.",
@@ -427,6 +479,7 @@
           "Former les élèves à distinguer conflit, violence, harcèlement et discrimination."
         ]
       },
+
       {
         id: "radicalite",
         titre: "Radicalité / atteintes aux valeurs de la République",
@@ -530,6 +583,7 @@
           "Préserver une réponse d'équipe cohérente pour éviter les contradictions éducatives."
         ]
       },
+
       {
         id: "laicite",
         titre: "Laïcité",
@@ -633,6 +687,7 @@
           "Éviter deux écueils : négocier le principe ou surinterpréter chaque incident comme une attaque grave."
         ]
       },
+
       {
         id: "sedentarite",
         titre: "Santé / sédentarité",
@@ -667,18 +722,18 @@
             url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm"
           },
           {
-            label: "Note de service du 27-7-2022 (NOR : MENE2220806N), BO n°30 du 28-7-2022 — Généralisation des 30 minutes d'activité physique quotidienne (APQ) à l'école primaire",
+            label: "Note de service du 27-7-2022 (NOR : MENE2220806N), BO n°30 du 28-7-2022 — Généralisation des 30 minutes d'activité physique quotidienne à l'école primaire",
             apport: "Texte à citer explicitement si tu parles des 30 minutes d'activité physique quotidienne. Il montre que la lutte contre la sédentarité dépasse le seul cours d'EPS et concerne l'ensemble des temps scolaires dans le premier degré.",
             url: "https://www.education.gouv.fr/bo/22/Hebdo30/MENE2220806N.htm"
           },
           {
-            label: "Bulletin officiel n°39 du 20-10-2022 — Pilotage et mise en œuvre au niveau territorial pour l'année scolaire 2022-2023",
+            label: "BO n°39 du 20-10-2022 — Pilotage et mise en œuvre au niveau territorial pour l'année scolaire 2022-2023",
             apport: "Texte utile pour montrer que l'APQ fait l'objet d'un pilotage territorial et d'une mise en œuvre organisée. Il confirme que chaque élève doit bénéficier d'au moins 30 minutes d'activité physique quotidienne à l'école élémentaire.",
             url: "https://www.education.gouv.fr/bo/22/Hebdo39/MENG2228933X.htm"
           },
           {
-            label: "Bulletin officiel spécial n°5 du 11-4-2019 — Programmes d'enseignement commun et optionnel de la classe de seconde générale et technologique et des classes de première et terminale",
-            apport: "Texte intéressant pour rattacher le sujet au lycée : les programmes abordent explicitement les questions de santé, d'activité physique, de sédentarité et de bien-être dans une approche éducative interdisciplinaire.",
+            label: "BO spécial n°5 du 11-4-2019 — Programmes d'enseignement de la voie générale et technologique du lycée",
+            apport: "Texte intéressant pour rattacher le sujet au lycée : les programmes abordent explicitement les questions de santé, d'activité physique, de sédentarité et de bien-être dans une approche éducative.",
             url: "https://www.education.gouv.fr/sites/default/files/document/BOSPE5_MENJ_1108488.pdf-233334.pdf"
           }
         ],
@@ -736,6 +791,7 @@
           "Repérer durablement les élèves les plus éloignés de la pratique pour éviter la spirale évitement-déconditionnement."
         ]
       },
+
       {
         id: "developpement-durable",
         titre: "Développement durable",
@@ -839,6 +895,7 @@
           "Former les élèves à arbitrer des choix concrets : se déplacer, acheter, pratiquer, organiser sans dégrader."
         ]
       },
+
       {
         id: "mixite",
         titre: "Mixité filles-garçons / égalité femmes-hommes",
@@ -874,7 +931,7 @@
           },
           {
             label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
-            apport: "Texte professionnel clé : il demande explicitement de promouvoir l'égalité entre les filles et les garçons, les femmes et les hommes. Il légitime l'action quotidienne du professeur d'EPS.",
+            apport: "Texte professionnel clé : il demande explicitement de promouvoir l'égalité entre les filles et les garçons. Il légitime l'action quotidienne du professeur d'EPS.",
             url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
           },
           {
@@ -883,7 +940,7 @@
             url: "https://www.education.gouv.fr/bo/15/Hebdo4/MENE1500237C.htm"
           },
           {
-            label: "Bulletin officiel spécial n°1 du 22-1-2019 — Programmes du lycée général et technologique, enseignement commun d'EPS",
+            label: "BO spécial n°1 du 22-1-2019 — Programmes du lycée général et technologique, enseignement commun d'EPS",
             apport: "Texte spécifiquement utile en EPS : il rappelle que l'EPS lutte contre les stéréotypes sociaux ou sexués et s'inscrit résolument dans une école inclusive.",
             url: "https://www.education.gouv.fr/sites/default/files/document/SP1_MEN_22_1_2019_10H40_1064060.pdf-232533.pdf"
           }
@@ -941,113 +998,11 @@
           "Rendre visibles des parcours de réussite non stéréotypés via AS, instances élèves et actions d'établissement.",
           "Faire de l'EPS un lieu d'émancipation corporelle et non de reconduction des hiérarchies de genre."
         ]
-      },
-      {
-        id: "rapport-corps",
-        titre: "Troubles alimentaires / rapport au corps",
-        subtitle: "Repérer sans diagnostiquer, protéger l'élève et ajuster l'EPS avec tact en s'appuyant sur les textes de santé scolaire et de professionnalité enseignante.",
-        colors: {
-          accent: "#db2777",
-          accentSoft: "#fce7f3",
-          hero: "linear-gradient(135deg, #fbcfe8, #fff1f7)"
-        },
-        pills: ["L541-1", "Circulaire 2016", "BO 2013", "santé scolaire", "parcours éducatif de santé"],
-        valeurs: [
-          { text: "FRATERNITÉ : protection d'un élève fragilisé et refus des jugements humiliants.", level: "major" },
-          { text: "ÉGALITÉ : adapter l'EPS pour que la fragilité ne devienne pas une exclusion.", level: "secondary" },
-          { text: "LIBERTÉ : aider l'élève à reconstruire un rapport plus serein à son corps.", level: "normal" },
-          { text: "LAÏCITÉ : prise en charge dans un cadre professionnel commun, centré sur la personne.", level: "normal" }
-        ],
-        definition: "En EPS, les troubles alimentaires ou les fragilités liées au rapport au corps peuvent se révéler par la fatigue, l'évitement, l'obsession de la performance ou de l'apparence, les variations corporelles, les malaises ou la peur du regard des autres. Le professeur d'EPS ne diagnostique pas : il repère, protège, transmet et adapte.",
-        epsPoints: [
-          "Le sujet demande beaucoup de prudence : il faut observer des signes, pas coller une étiquette clinique à l'élève.",
-          "L'EPS peut être à la fois une zone de souffrance et un lieu de reconstruction du rapport au corps si l'on ajuste les dispositifs.",
-          "Les vestiaires, les évaluations, les prises de poids/performance ou les remarques sur le corps sont des zones très sensibles."
-        ],
-        textes: [
-          {
-            label: "Code de l'éducation, article L541-1 — Légifrance — version en vigueur",
-            apport: "Rappelle que les élèves bénéficient d'actions de prévention, d'information et de promotion de la santé. Ce texte fonde le repérage et la protection par l'institution scolaire.",
-            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042656190"
-          },
-          {
-            label: "Circulaire n°2016-008 du 28-1-2016, BO n°5 du 4-2-2016 — Parcours éducatif de santé pour tous les élèves",
-            apport: "Permet de penser la situation dans une logique de prévention, de protection et de coordination autour de l'élève.",
-            url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm"
-          },
-          {
-            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
-            apport: "Confirme l'obligation d'agir avec éthique, de coopérer avec les partenaires et de protéger les élèves dans leur développement.",
-            url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
-          },
-          {
-            label: "Code de l'éducation, titre IV : santé scolaire — Légifrance",
-            apport: "Cadre général utile pour rappeler que la santé scolaire relève d'une organisation institutionnelle comprenant prévention, dépistage, promotion de la santé et suivi.",
-            url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071191/LEGISCTA000006151362/"
-          },
-          {
-            label: "Bulletin officiel spécial n°5 du 11-4-2019 — Programmes du lycée général et technologique",
-            apport: "Texte intéressant pour rattacher la question du rapport au corps, du bien-être et de la santé à une approche éducative, notamment au lycée.",
-            url: "https://www.education.gouv.fr/sites/default/files/document/BOSPE5_MENJ_1108488.pdf-233334.pdf"
-          }
-        ],
-        notions: [
-          "Repérer ≠ diagnostiquer : le professeur d'EPS observe des signes et transmet aux professionnels compétents.",
-          "Il faut distinguer fatigue ponctuelle, rapport difficile au corps, conduite d'évitement, fragilité psychique et trouble déjà connu.",
-          "La confidentialité, la prudence du langage et le respect de la personne sont essentiels."
-        ],
-        partenaires: [
-          "Infirmier scolaire : premier interlocuteur pour évaluer l'urgence, écouter l'élève et organiser le relais.",
-          "Médecin scolaire : pertinent si les manifestations physiques, dispenses ou malaises se répètent.",
-          "PsyEN : utile si la situation touche l'image de soi, l'anxiété, le rapport au regard des autres ou un mal-être global.",
-          "Assistant de service social : important si le contexte familial, social ou matériel fragilise l'élève.",
-          "Professeur principal et CPE : pour relier les constats EPS au fonctionnement général de la scolarité.",
-          "Famille : à associer avec tact et dans le cadre institutionnel approprié."
-        ],
-        protocoles: [
-          {
-            label: "Parcours éducatif de santé",
-            apport: "Cadre de coordination le plus pertinent pour penser la réponse dans la durée.",
-            details: "Il permet d'articuler personnels de santé, famille, équipe éducative et adaptations pédagogiques."
-          },
-          {
-            label: "CESCE",
-            apport: "À mobiliser pour des actions plus larges sur image du corps, bien-être, santé et prévention des conduites à risque.",
-            details: "L'instance permet de sortir d'une réponse purement individuelle et de travailler la prévention."
-          },
-          {
-            label: "PAI ou aménagements connus de l'équipe si besoin",
-            apport: "À évoquer quand des indications médicales existent déjà et doivent être respectées dans plusieurs espaces scolaires.",
-            details: "Ces outils sécurisent les adaptations dans le respect du secret médical."
-          },
-          {
-            label: "Traçabilité interne",
-            apport: "Utile pour objectiver l'évolution des signes observés sans se substituer au diagnostic médical.",
-            details: "On note des faits : malaise, fatigue, évitement, absence, propos, variations d'engagement."
-          }
-        ],
-        court: [
-          "Sécuriser immédiatement la séance si l'élève est en difficulté physique ou psychique manifeste.",
-          "Recevoir sa parole sans jugement, sans l'interroger brutalement sur le poids ou l'alimentation devant les pairs.",
-          "Alerter l'infirmier ou le médecin scolaire selon l'urgence et informer la direction si nécessaire.",
-          "Adapter la pratique pour éviter la surexposition corporelle ou l'échec public."
-        ],
-        moyen: [
-          "Associer personnels de santé, professeur principal, CPE et famille pour éviter l'isolement de l'élève.",
-          "Ajuster l'EPS : éviter certaines focalisations sur l'apparence, sécuriser les vestiaires, valoriser le bien-être et la progression.",
-          "Surveiller l'évolution : absences, dispenses, repli, fatigue, malaise, retrait social.",
-          "Travailler avec tact sur l'estime de soi et le rapport au corps sans psychologiser la séance."
-        ],
-        long: [
-          "Inscrire la prévention dans le parcours éducatif de santé et le CESCE.",
-          "Former les équipes à repérer sans stigmatiser et à utiliser un langage professionnel prudent.",
-          "Stabiliser des règles d'équipe sur vestiaires, remarques corporelles, sécurité des élèves fragiles.",
-          "Faire de l'EPS un espace de santé positive, de confiance et d'émancipation corporelle."
-        ]
       }
     ];
 
     let index = 0;
+
     const $ = (id) => document.getElementById(id);
 
     function renderBulletList(items) {
@@ -1055,7 +1010,12 @@
     }
 
     function renderValueList(items) {
-      return `<ul class="clean value-list">${items.map(item => `<li class="${item.level || "normal"}">${item.text}</li>`).join("")}</ul>`;
+      return `<ul class="clean value-list">${items.map(item => {
+        const parts = item.text.split(" : ");
+        const head = parts.shift() || "";
+        const tail = parts.join(" : ");
+        return `<li class="${item.level || "normal"}"><strong>${head}${tail ? " :" : ""}</strong>${tail ? ` ${tail}` : ""}</li>`;
+      }).join("")}</ul>`;
     }
 
     function renderRefList(items) {
@@ -1089,16 +1049,20 @@
     function render() {
       const fiche = fiches[index];
       applyTheme(fiche);
+
       $("heroTitle").textContent = fiche.titre;
       $("heroSubtitle").textContent = fiche.subtitle;
       $("heroPills").innerHTML = renderPills(fiche.pills);
+
       $("leftPanel").innerHTML = `
         <h2>1 — Définitions précises et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
         <div class="side-note">
           <h3>👉 En EPS</h3>
           ${renderBulletList(fiche.epsPoints)}
-        </div>`;
+        </div>
+      `;
+
       $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>${renderRefList(fiche.textes)}`;
       $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
       $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
@@ -1107,11 +1071,17 @@
       $("courtCard").innerHTML = `<h2>7 — À court terme</h2>${renderBulletList(fiche.court)}`;
       $("moyenCard").innerHTML = `<h2>8 — À moyen terme</h2>${renderBulletList(fiche.moyen)}`;
       $("longCard").innerHTML = `<h2>9 — À long terme</h2>${renderBulletList(fiche.long)}`;
-      document.querySelectorAll(".nav-btn").forEach((btn, i) => btn.classList.toggle("active", i === index));
+
+      document.querySelectorAll(".nav-btn").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
     }
 
     function initNav() {
-      $("nav").innerHTML = fiches.map((fiche, i) => `<button class="nav-btn ${i === 0 ? "active" : ""}" data-index="${i}">${fiche.titre}</button>`).join("");
+      $("nav").innerHTML = fiches.map((fiche, i) =>
+        `<button class="nav-btn ${i === 0 ? "active" : ""}" data-index="${i}">${fiche.titre}</button>`
+      ).join("");
+
       document.querySelectorAll(".nav-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           index = Number(btn.dataset.index);
