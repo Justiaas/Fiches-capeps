@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fiches CAPEPS - Révision institutionnelle v2</title>
+  <title>Fiches CAPEPS - Révision institutionnelle v3</title>
   <style>
     :root {
       --bg: #f6f3ee;
@@ -12,36 +12,55 @@
       --muted: #475569;
       --border: #d6d3d1;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --accent: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --accent-hero: linear-gradient(135deg, #dbeafe, #eff6ff);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      background: linear-gradient(180deg, #f8f5f0 0%, #f3efe8 100%);
       color: var(--text);
       line-height: 1.55;
     }
     .container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 28px 18px 56px;
     }
     .hero {
-      border-radius: 34px;
+      border-radius: 36px;
       padding: 34px;
-      border: 1px solid var(--border);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, white);
       box-shadow: var(--shadow);
       margin-bottom: 18px;
       transition: background 0.25s ease;
+      background: var(--accent-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent) 14%, white);
+      opacity: 0.8;
     }
     .badge {
       display: inline-block;
       padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.84);
+      background: rgba(255,255,255,0.86);
       border: 1px solid rgba(15,23,42,0.12);
       font-size: 12px;
       margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
     }
     .hero-top {
       display: flex;
@@ -49,16 +68,18 @@
       gap: 18px;
       align-items: flex-end;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
     h1 {
-      font-size: clamp(30px, 5vw, 52px);
+      font-size: clamp(30px, 5vw, 54px);
       margin: 0 0 8px;
-      line-height: 1.05;
+      line-height: 1.03;
     }
     .subtitle {
       margin: 0;
-      max-width: 920px;
-      color: var(--muted);
+      max-width: 930px;
+      color: #334155;
       font-size: 15px;
     }
     .hero-actions {
@@ -67,7 +88,7 @@
       flex-wrap: wrap;
     }
     button {
-      border: 1px solid #cbd5e1;
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, #cbd5e1);
       border-radius: 16px;
       background: white;
       color: #0f172a;
@@ -75,9 +96,14 @@
       cursor: pointer;
       font-size: 14px;
       transition: 0.18s ease;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
     }
     button:hover { transform: translateY(-1px); }
-    .btn-solid { background: #0f172a; color: white; border-color: #0f172a; }
+    .btn-solid {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
     .nav {
       display: flex;
       flex-wrap: wrap;
@@ -85,28 +111,30 @@
       margin-bottom: 22px;
     }
     .nav-btn.active {
-      background: #0f172a;
+      background: var(--accent);
       color: white;
-      border-color: #0f172a;
+      border-color: var(--accent);
     }
     .layout-main {
       display: grid;
-      grid-template-columns: 1.02fr 1.18fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 18px;
       margin-bottom: 18px;
     }
     .left-panel, .card, .step-box {
-      border: 1px solid var(--border);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, #d6d3d1);
       box-shadow: var(--shadow);
     }
     .left-panel {
       border-radius: 38px;
       padding: 26px;
+      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
     }
     .left-panel h2, .card h2, .step-box h2 {
       margin: 0 0 14px;
       font-size: 26px;
       line-height: 1.15;
+      color: #0f172a;
     }
     .left-panel p.intro {
       font-size: 15px;
@@ -116,7 +144,7 @@
     .side-note {
       margin-top: 18px;
       padding-top: 18px;
-      border-top: 1px solid rgba(15,23,42,0.12);
+      border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
     }
     .card-grid {
       display: grid;
@@ -126,6 +154,16 @@
       background: var(--card);
       border-radius: 28px;
       padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before, .step-box::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
     }
     .double-grid, .steps-grid {
       display: grid;
@@ -143,7 +181,7 @@
     }
     ul.clean li {
       position: relative;
-      padding-left: 18px;
+      padding: 0 0 0 18px;
       color: #334155;
       font-size: 15px;
     }
@@ -152,25 +190,42 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(15,23,42,0.55);
+      background: var(--accent);
       position: absolute;
       left: 0;
       top: 10px;
+      opacity: 0.7;
+    }
+    .value-list li {
+      padding: 10px 12px 10px 18px;
+      border-radius: 14px;
+      background: #fafafa;
+      border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
+    }
+    .value-list li.major {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 22%, white), #fff);
+      border-color: color-mix(in srgb, var(--accent) 32%, #cbd5e1);
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .value-list li.secondary {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, white), #fff);
     }
     .ref-list, .proto-list {
       display: grid;
       gap: 12px;
     }
     .ref-item, .proto-item {
-      border: 1px solid #e2e8f0;
+      border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
       border-radius: 16px;
       padding: 12px 14px;
-      background: #fafafa;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
     }
     .ref-item strong, .proto-item strong {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       font-size: 14px;
+      color: #0f172a;
     }
     .ref-item .apport, .proto-item .apport,
     .ref-item .details, .proto-item .details {
@@ -179,10 +234,11 @@
       margin-bottom: 8px;
     }
     .ref-item a {
-      color: #0f4c81;
+      color: var(--accent);
       text-decoration: none;
       font-size: 13px;
       word-break: break-word;
+      font-weight: 600;
     }
     .ref-item a:hover { text-decoration: underline; }
     .pill-row {
@@ -190,12 +246,14 @@
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 14px;
+      position: relative;
+      z-index: 1;
     }
     .pill {
       padding: 7px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(15,23,42,0.12);
+      background: rgba(255,255,255,0.8);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, rgba(15,23,42,0.12));
       font-size: 12px;
       color: #334155;
     }
@@ -203,6 +261,8 @@
       border-radius: 34px;
       padding: 24px;
       background: white;
+      position: relative;
+      overflow: hidden;
     }
     .footer-note {
       margin-top: 20px;
@@ -220,7 +280,7 @@
 <body>
   <div class="container">
     <section id="hero" class="hero">
-      <div class="badge">Fiches de révision CAPEPS - version institutionnelle</div>
+      <div class="badge">Fiches de révision CAPEPS — sources institutionnelles primaires</div>
       <div class="hero-top">
         <div>
           <h1 id="heroTitle">Discrimination</h1>
@@ -259,7 +319,7 @@
       <article id="longCard" class="step-box"></article>
     </section>
 
-    <p class="footer-note">Version resserrée : 5 textes maximum par fiche, apports précisément formulés, et valeurs de la République associées au thème.</p>
+    <p class="footer-note">Règle de construction : 5 textes maximum par fiche, uniquement Code / BO / circulaire / note de service / charte officielle, avec date et document d'origine.</p>
   </div>
 
   <script>
@@ -267,27 +327,51 @@
       {
         id: "discrimination",
         titre: "Discrimination",
-        subtitle: "Qualifier les faits, protéger l'élève et montrer qu'il s'agit à la fois d'un enjeu juridique, éducatif et pédagogique.",
-        colors: { hero: "linear-gradient(135deg, #dbeafe, #eff6ff)", left: "#dff2ff" },
-        pills: ["Code pénal", "L121-1", "pHARe", "3018", "référent égalité", "référent numérique"],
+        subtitle: "Qualifier juridiquement les faits, rappeler le risque pénal et montrer pourquoi la lutte contre les discriminations relève aussi des missions de l'École.",
+        colors: {
+          accent: "#1d4ed8",
+          accentSoft: "#dbeafe",
+          hero: "linear-gradient(135deg, #dbeafe, #eff6ff)"
+        },
+        pills: ["Code pénal", "Code de l'éducation", "BO 2013", "BO 2015", "pHARe"],
         valeurs: [
-          "Égalité : refus des différences de traitement fondées sur un critère prohibé.",
-          "Fraternité : protection de la dignité d'autrui et refus de l'exclusion.",
-          "Liberté : garantir à chaque élève d'apprendre sans intimidation ni assignation identitaire.",
-          "Laïcité : cadre commun qui protège chacun sans hiérarchiser les appartenances."
+          { text: "ÉGALITÉ : valeur la plus centrale du sujet. Aucune différence de traitement fondée sur un critère prohibé ne peut être tolérée.", level: "major" },
+          { text: "FRATERNITÉ : protéger la dignité d'autrui, refuser l'humiliation et l'exclusion.", level: "secondary" },
+          { text: "LIBERTÉ : permettre à chaque élève d'apprendre sans intimidation ni assignation identitaire.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun qui protège chacun sans hiérarchiser les appartenances.", level: "normal" }
         ],
         definition: "La discrimination est une différence de traitement fondée sur un critère interdit par la loi. En EPS, elle peut apparaître dans les groupements, les rôles sociaux, l'évaluation, les remarques sur le corps, le sexe, l'origine, le handicap, la religion supposée, l'orientation sexuelle ou l'identité de genre.",
         epsPoints: [
           "Une situation d'EPS peut être discriminatoire même sans intention explicite : groupes libres, rôles laissés aux habitudes, attentes différentes selon les élèves.",
           "Le professeur d'EPS doit passer d'une lecture morale du problème à une lecture professionnelle : qualifier, protéger, tracer, transmettre, ajuster.",
-          "La réponse ne se limite pas à sanctionner ; elle vise aussi à restaurer une égalité réelle d'accès aux apprentissages."
+          "La réponse vise à la fois la protection immédiate de l'élève et le rétablissement d'une égalité réelle d'accès aux apprentissages."
         ],
         textes: [
-          { label: "Code pénal, art. 225-1", apport: "Base juridique centrale : il définit précisément les critères prohibés de discrimination. À citer : origine, sexe, situation de famille, grossesse, apparence physique, particulière vulnérabilité résultant de la situation économique, patronyme, lieu de résidence, état de santé, perte d'autonomie, handicap, caractéristiques génétiques, mœurs, orientation sexuelle, identité de genre, âge, opinions politiques, activités syndicales, qualité de lanceur d'alerte, de facilitateur ou de personne en lien avec un lanceur d'alerte, capacité à s'exprimer dans une langue autre que le français, appartenance ou non-appartenance, vraie ou supposée, à une ethnie, une Nation, une prétendue race ou une religion déterminée. C'est le texte à citer pour qualifier juridiquement les faits.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831" },
-          { label: "Code pénal, art. 225-2", apport: "Précise la sanction pénale de certaines discriminations : 3 ans d'emprisonnement et 45 000 € d'amende. Il permet de montrer que l'enjeu dépasse la simple faute scolaire.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033975382" },
-          { label: "Code de l'éducation, art. L121-1", apport: "Ancrage scolaire du sujet : l'École forme au respect des droits de la personne. La lutte contre les discriminations est donc une mission éducative, pas seulement disciplinaire.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405" },
-          { label: "Référentiel de compétences des enseignants, BO du 25 juillet 2013", apport: "Fixe une obligation professionnelle : se mobiliser contre les stéréotypes et discriminations de tout ordre. Il légitime l'intervention active du professeur d'EPS.", url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm" },
-          { label: "Programme du cycle 4 - domaine 3", apport: "Rappelle que la formation de la personne et du citoyen comprend le refus des discriminations. Cela relie directement le sujet au socle commun et donc à toutes les disciplines, dont l'EPS.", url: "https://www.education.gouv.fr/bo/15/Special11/MENE1526483Aannexe3.htm" }
+          {
+            label: "Code pénal, article 225-1 — Légifrance — version en vigueur",
+            apport: "Base juridique centrale : il définit les critères prohibés de discrimination. À citer si besoin : origine, sexe, situation de famille, grossesse, apparence physique, particulière vulnérabilité résultant de la situation économique, patronyme, lieu de résidence, état de santé, perte d'autonomie, handicap, caractéristiques génétiques, mœurs, orientation sexuelle, identité de genre, âge, opinions politiques, activités syndicales, qualité de lanceur d'alerte / facilitateur / personne en lien avec un lanceur d'alerte, capacité à s'exprimer dans une langue autre que le français, appartenance ou non-appartenance, vraie ou supposée, à une ethnie, une Nation, une prétendue race ou une religion déterminée.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
+          },
+          {
+            label: "Code pénal, article 225-2 — Légifrance — version en vigueur",
+            apport: "Texte pénal à citer pour le risque encouru : certaines discriminations sont punies de 3 ans d'emprisonnement et de 45 000 € d'amende. Cela montre que l'enjeu dépasse la simple faute scolaire.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033975382"
+          },
+          {
+            label: "Code de l'éducation, article L121-1 — Légifrance — version en vigueur",
+            apport: "Ancrage scolaire du sujet : l'École assure une formation à la connaissance et au respect des droits de la personne et à la lutte contre les discriminations. Cela fonde la légitimité de l'action éducative de l'enseignant.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405"
+          },
+          {
+            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
+            apport: "Texte professionnel de référence : il impose de se mobiliser contre les stéréotypes et les discriminations de tout ordre. Il justifie une intervention active du professeur d'EPS.",
+            url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
+          },
+          {
+            label: "Arrêté du 9-11-2015, JO du 24-11-2015, BO spécial n°11 du 26-11-2015 — Programme d'enseignement du cycle 4, annexe 3",
+            apport: "Texte de programme utile pour l'oral : le domaine 3, « formation de la personne et du citoyen », ancre le refus des discriminations dans la culture commune de tous les élèves.",
+            url: "https://www.education.gouv.fr/bo/15/Special11/MENE1526483Aannexe3.htm"
+          }
         ],
         notions: [
           "Stéréotype ≠ préjugé ≠ discrimination : le stéréotype nourrit souvent le problème, mais la discrimination correspond à un traitement défavorable objectivable.",
@@ -303,10 +387,26 @@
           "Infirmier, médecin scolaire, PsyEN et famille : à mobiliser si la situation touche la santé, l'estime de soi ou l'assiduité."
         ],
         protocoles: [
-          { label: "Programme pHARe", apport: "À utiliser quand les faits sont répétés, qu'il existe un déséquilibre de pouvoir ou qu'un élève se trouve durablement ciblé.", details: "Le programme est obligatoire dans chaque école, collège et lycée. Il repose sur des équipes ressources d'au moins cinq personnels et sur un protocole national de détection et de prise en charge." },
-          { label: "3018", apport: "À mobiliser si la situation se prolonge en ligne ou si un contenu doit être signalé ou retiré rapidement.", details: "C'est le numéro national gratuit et confidentiel de lutte contre le harcèlement et le cyberharcèlement." },
-          { label: "CESCE", apport: "À utiliser pour porter une prévention d'établissement sur les discriminations, le respect, les violences et le climat scolaire.", details: "Le CESCE est présidé par le chef d'établissement et peut réunir personnels, élèves, parents, santé-social et partenaires institutionnels ou associatifs." },
-          { label: "Voie hiérarchique / suites pénales si faits graves", apport: "À évoquer pour les faits susceptibles de constituer une infraction pénale.", details: "Le professeur alerte immédiatement la direction et transmet des faits datés, contextualisés, objectivés. Il ne se substitue pas à l'autorité judiciaire." }
+          {
+            label: "Programme pHARe",
+            apport: "À utiliser quand les faits sont répétés, qu'il existe un déséquilibre de pouvoir ou qu'un élève se trouve durablement ciblé.",
+            details: "Le programme est obligatoire dans chaque école, collège et lycée. Il repose sur des équipes ressources d'au moins cinq personnels et sur un protocole national de détection et de prise en charge."
+          },
+          {
+            label: "3018",
+            apport: "À mobiliser si la situation se prolonge en ligne ou si un contenu doit être signalé ou retiré rapidement.",
+            details: "Numéro national gratuit et confidentiel de lutte contre le harcèlement et le cyberharcèlement."
+          },
+          {
+            label: "CESCE",
+            apport: "À utiliser pour porter une prévention d'établissement sur les discriminations, le respect, les violences et le climat scolaire.",
+            details: "Le CESCE est présidé par le chef d'établissement et peut réunir personnels, élèves, parents, santé-social et partenaires institutionnels ou associatifs."
+          },
+          {
+            label: "Voie hiérarchique / suites pénales si faits graves",
+            apport: "À évoquer pour les faits susceptibles de constituer une infraction pénale.",
+            details: "Le professeur alerte immédiatement la direction et transmet des faits datés, contextualisés, objectivés."
+          }
         ],
         court: [
           "Faire cesser immédiatement les propos ou actes et ne jamais banaliser sous couvert d'humour.",
@@ -330,14 +430,18 @@
       {
         id: "radicalite",
         titre: "Radicalité / atteintes aux valeurs de la République",
-        subtitle: "Décrire des faits, protéger le cadre scolaire et signaler par la voie hiérarchique sans jamais rester seul face à une situation sensible.",
-        colors: { hero: "linear-gradient(135deg, #fde68a, #fff7ed)", left: "#fff0c4" },
-        pills: ["L111-1", "voie hiérarchique", "EAVR", "Faits établissement"],
+        subtitle: "Décrire des faits, protéger le cadre scolaire et signaler immédiatement par la voie hiérarchique sans jamais rester seul face à une situation sensible.",
+        colors: {
+          accent: "#b45309",
+          accentSoft: "#fef3c7",
+          hero: "linear-gradient(135deg, #fde68a, #fff7ed)"
+        },
+        pills: ["L111-1", "BO 2023", "Charte 2013", "voie hiérarchique", "EAVR"],
         valeurs: [
-          "Liberté : protection de la liberté de conscience des élèves.",
-          "Égalité : même cadre scolaire pour tous, sans pression idéologique.",
-          "Fraternité : cohésion du collectif et refus des logiques de rupture.",
-          "Laïcité : garantie d'un cadre commun dans le service public d'éducation."
+          { text: "LAÏCITÉ : valeur la plus structurante ici, parce qu'elle garantit un cadre commun dans le service public d'éducation.", level: "major" },
+          { text: "LIBERTÉ : protection de la liberté de conscience des élèves.", level: "secondary" },
+          { text: "ÉGALITÉ : même cadre scolaire pour tous, sans pression idéologique.", level: "normal" },
+          { text: "FRATERNITÉ : cohésion du collectif et refus des logiques de rupture.", level: "normal" }
         ],
         definition: "Dans le cadre scolaire, le sujet renvoie à des comportements, refus, propos ou contestations pouvant heurter les valeurs de la République, la liberté de conscience ou le fonctionnement du service public d'éducation. En EPS, cela peut apparaître autour de la mixité, des tenues, du refus d'activité, du prosélytisme ou de discours de rupture avec la règle commune.",
         epsPoints: [
@@ -346,11 +450,31 @@
           "La bonne posture professionnelle est de ne ni banaliser ni improviser un débat idéologique seul."
         ],
         textes: [
-          { label: "Code de l'éducation, art. L111-1", apport: "Texte socle : l'École transmet les valeurs de la République, le respect de la liberté de conscience et de la laïcité. Il justifie pleinement l'intervention éducative.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043982767" },
-          { label: "BO du 31 août 2023 - Respect des valeurs de la République", apport: "Précise le rôle de la hiérarchie et la nécessité d'une réponse rapide, coordonnée et soutenue en cas d'atteinte aux valeurs de la République.", url: "https://www.education.gouv.fr/bo/2023/Hebdo32/MENG2323654N" },
-          { label: "La laïcité à l'école - ministère", apport: "Explique l'appui des équipes académiques valeurs de la République et leur rôle d'analyse, de formation et d'accompagnement des établissements.", url: "https://www.education.gouv.fr/la-laicite-l-ecole-12482" },
-          { label: "Éduscol - Laïcité", apport: "Rassemble les ressources officielles utiles pour analyser les cas et agir dans le cadre institutionnel.", url: "https://eduscol.education.gouv.fr/6096/laicite" },
-          { label: "Vadémécum La laïcité à l'école", apport: "Apporte une analyse juridique et pédagogique de cas concrets. C'est le support de référence pour passer du principe à la conduite à tenir.", url: "https://eduscol.education.gouv.fr/sites/default/files/document/vademecum-la-laicite-l-ecole-67884.pdf" }
+          {
+            label: "Code de l'éducation, article L111-1 — Légifrance — version en vigueur",
+            apport: "Texte socle : l'École transmet les valeurs de la République, le respect de la liberté de conscience et de la laïcité. C'est le premier texte à citer pour justifier l'intervention éducative.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043982767"
+          },
+          {
+            label: "Note de service du 31-8-2023 (NOR : MENG2323654N), BO n°32 du 31-8-2023 — Respect des valeurs de la République",
+            apport: "Texte central pour la conduite à tenir : il rappelle que les chefs d'établissement, IEN et directeurs d'école sont les premiers responsables de la mise en œuvre de ces principes et que chaque personnel doit contribuer à les faire vivre.",
+            url: "https://www.education.gouv.fr/bo/2023/Hebdo32/MENG2323654N"
+          },
+          {
+            label: "Circulaire n°2013-144 du 6-9-2013 (NOR : MENE1322761C), BO n°33 du 12-9-2013 — Valeurs et symboles de la République / Charte de la laïcité à l'École",
+            apport: "Texte utile pour montrer que la diffusion des valeurs de la République et de la charte relève d'une pédagogie explicite et d'un affichage visible dans l'établissement.",
+            url: "https://www.education.gouv.fr/bo/13/Hebdo33/MENE1322761C.htm"
+          },
+          {
+            label: "Charte de la laïcité à l'École — annexe officielle à la circulaire du 6-9-2013",
+            apport: "Support institutionnel à mobiliser avec les élèves et les familles. Elle articule directement la laïcité aux valeurs de liberté, d'égalité et de fraternité.",
+            url: "https://www.education.gouv.fr/sites/default/files/document/475513.pdf"
+          },
+          {
+            label: "Code de l'éducation, article L141-5-1 — Légifrance — version en vigueur",
+            apport: "À citer si la situation touche aux signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics ; il rappelle aussi qu'un dialogue avec l'élève précède toute procédure disciplinaire.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524456"
+          }
         ],
         notions: [
           "Repérer ≠ accuser : on reste sur les faits et leurs effets sur le cadre scolaire.",
@@ -366,10 +490,26 @@
           "PsyEN ou infirmier : utiles si la situation révèle emprise, rupture, mal-être ou isolement."
         ],
         protocoles: [
-          { label: "Voie hiérarchique immédiate", apport: "Réflexe central : l'enseignant ne reste jamais seul avec une situation sensible et ne traite pas seul un cas potentiellement grave.", details: "On alerte la direction avec des faits précis, datés, contextualisés et sans interprétation excessive." },
-          { label: "Équipe académique Valeurs de la République", apport: "Elle est mobilisée pour analyser juridiquement la situation, soutenir les personnels et proposer une stratégie de réponse.", details: "Dans chaque académie, elle associe des expertises juridiques, éducatives et pédagogiques autour du coordonnateur académique laïcité." },
-          { label: "Faits établissement", apport: "À utiliser par la direction pour les situations préoccupantes ou graves qui doivent être formalisées à l'échelle institutionnelle.", details: "À l'oral, il faut montrer que le professeur alerte sans se substituer à la hiérarchie." },
-          { label: "CESCE / parcours citoyen", apport: "À mobiliser pour prévenir en amont : esprit critique, débat argumenté, transmission des valeurs de la République.", details: "Ces cadres permettent de sortir du seul traitement d'incident pour installer une prévention d'établissement." }
+          {
+            label: "Voie hiérarchique immédiate",
+            apport: "Réflexe central : l'enseignant ne reste jamais seul avec une situation sensible et ne traite pas seul un cas potentiellement grave.",
+            details: "On alerte la direction avec des faits précis, datés, contextualisés et sans interprétation excessive."
+          },
+          {
+            label: "Équipe académique Valeurs de la République",
+            apport: "Elle est mobilisée pour analyser juridiquement la situation, soutenir les personnels et proposer une stratégie de réponse.",
+            details: "Dans chaque académie, elle associe des expertises juridiques, éducatives et pédagogiques autour du coordonnateur académique laïcité."
+          },
+          {
+            label: "Faits établissement",
+            apport: "À utiliser par la direction pour les situations préoccupantes ou graves qui doivent être formalisées à l'échelle institutionnelle.",
+            details: "À l'oral, il faut montrer que le professeur alerte sans se substituer à la hiérarchie."
+          },
+          {
+            label: "Parcours citoyen / CESCE",
+            apport: "À mobiliser pour prévenir en amont : esprit critique, débat argumenté, transmission des valeurs de la République.",
+            details: "Ces cadres permettent de sortir du seul traitement d'incident pour installer une prévention d'établissement."
+          }
         ],
         court: [
           "Maintenir le cadre : rappeler la règle scolaire, éviter le débat de conviction en pleine séance, protéger le groupe.",
@@ -394,13 +534,17 @@
         id: "laicite",
         titre: "Laïcité",
         subtitle: "Principe protecteur et émancipateur : garantir liberté de conscience, neutralité du service public et cadre commun pour tous les élèves.",
-        colors: { hero: "linear-gradient(135deg, #fef3c7, #fffbeb)", left: "#fff4cf" },
-        pills: ["L111-1", "L141-5-1", "Charte de la laïcité", "EAVR"],
+        colors: {
+          accent: "#7c3aed",
+          accentSoft: "#ede9fe",
+          hero: "linear-gradient(135deg, #ede9fe, #faf5ff)"
+        },
+        pills: ["L111-1", "L141-5-1", "Charte 2013", "BO 2023", "règlement intérieur"],
         valeurs: [
-          "Laïcité : principe central de la fiche.",
-          "Liberté : garantie de la liberté de conscience, croire ou ne pas croire.",
-          "Égalité : même règle commune pour tous les élèves dans le service public.",
-          "Fraternité : possibilité de vivre ensemble sans qu'une conviction s'impose aux autres."
+          { text: "LAÏCITÉ : valeur et principe central de la fiche.", level: "major" },
+          { text: "LIBERTÉ : garantie de la liberté de conscience, croire ou ne pas croire.", level: "secondary" },
+          { text: "ÉGALITÉ : même règle commune pour tous les élèves dans le service public.", level: "normal" },
+          { text: "FRATERNITÉ : possibilité de vivre ensemble sans qu'une conviction s'impose aux autres.", level: "normal" }
         ],
         definition: "La laïcité n'est pas l'effacement des convictions personnelles ; c'est le principe qui garantit la liberté de conscience, l'égalité de traitement et la neutralité du service public. En EPS, elle peut être interrogée à propos des tenues, de la mixité, des refus d'activité, des contestations d'enseignement ou du prosélytisme.",
         epsPoints: [
@@ -409,11 +553,31 @@
           "À l'oral, il faut montrer que l'on distingue principe de laïcité, liberté religieuse, neutralité du service public et règlement intérieur."
         ],
         textes: [
-          { label: "Code de l'éducation, art. L111-1", apport: "Texte fondateur : l'École fait acquérir le respect de la liberté de conscience et de la laïcité. Il place le sujet au cœur des missions scolaires.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043982767" },
-          { label: "Code de l'éducation, art. L141-5-1", apport: "Texte juridique central sur les signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics. Il précise aussi qu'avant toute procédure disciplinaire, un dialogue avec l'élève doit être engagé.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524456" },
-          { label: "Charte de la laïcité à l'École", apport: "Support très utile pour expliquer simplement le cadre aux élèves et aux familles. Elle relie explicitement la laïcité aux valeurs de liberté, d'égalité et de fraternité.", url: "https://www.education.gouv.fr/sites/default/files/document/charte-de-la-la-cit-a4-266199.pdf" },
-          { label: "Vadémécum La laïcité à l'école", apport: "Donne l'analyse des cas concrets : absences sélectives, refus d'activité, contestation d'enseignement, prosélytisme, signes et tenues. C'est la ressource la plus opérationnelle pour les équipes.", url: "https://eduscol.education.gouv.fr/sites/default/files/document/vademecum-la-laicite-l-ecole-67884.pdf" },
-          { label: "La laïcité à l'école - ministère", apport: "Précise l'existence des équipes académiques valeurs de la République et la logique d'accompagnement institutionnel. Utile pour montrer qu'il existe un appui expert.", url: "https://www.education.gouv.fr/la-laicite-l-ecole-12482" }
+          {
+            label: "Code de l'éducation, article L111-1 — Légifrance — version en vigueur",
+            apport: "Texte fondateur : l'École fait acquérir le respect de la liberté de conscience et de la laïcité. Il place la question au cœur des missions scolaires.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043982767"
+          },
+          {
+            label: "Code de l'éducation, article L141-5-1 — Légifrance — version en vigueur",
+            apport: "Texte juridique central sur les signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics. Il précise qu'avant toute procédure disciplinaire, un dialogue avec l'élève doit être engagé.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524456"
+          },
+          {
+            label: "Circulaire n°2013-144 du 6-9-2013 (NOR : MENE1322761C), BO n°33 du 12-9-2013 — Valeurs et symboles de la République",
+            apport: "Texte de référence pour la diffusion et l'usage pédagogique de la Charte de la laïcité à l'École. Il précise notamment l'obligation d'affichage visible.",
+            url: "https://www.education.gouv.fr/bo/13/Hebdo33/MENE1322761C.htm"
+          },
+          {
+            label: "Charte de la laïcité à l'École — annexe officielle à la circulaire du 6-9-2013",
+            apport: "Support institutionnel majeur pour les élèves et les familles. Elle explicite simplement le lien entre laïcité, liberté, égalité et fraternité.",
+            url: "https://www.education.gouv.fr/sites/default/files/document/475513.pdf"
+          },
+          {
+            label: "Note de service du 31-8-2023 (NOR : MENG2323654N), BO n°32 du 31-8-2023 — Respect des valeurs de la République",
+            apport: "Texte récent à citer pour montrer que la transmission de la laïcité et des valeurs de la République doit être intégrée dans chaque projet d'école ou d'établissement.",
+            url: "https://www.education.gouv.fr/bo/2023/Hebdo32/MENG2323654N"
+          }
         ],
         notions: [
           "Laïcité ≠ hostilité au religieux : elle garantit au contraire la liberté de conscience dans un cadre commun neutre.",
@@ -429,10 +593,26 @@
           "Famille : à associer dans un cadre institutionnel posé, piloté par la direction."
         ],
         protocoles: [
-          { label: "Dialogue préalable prévu par L141-5-1", apport: "À utiliser avant une éventuelle procédure disciplinaire en cas de signes ou tenues ostensibles.", details: "Le texte prévoit explicitement un dialogue avec l'élève ; c'est un point important à citer à l'oral." },
-          { label: "Vadémécum laïcité", apport: "Il sert à analyser correctement les cas avant d'agir : refus d'activité, absences pour motif religieux, prosélytisme, contestation d'enseignement.", details: "C'est le référentiel officiel le plus opérationnel pour les équipes." },
-          { label: "EAVR", apport: "À mobiliser quand la situation est sensible, complexe ou répétée, et que l'établissement a besoin d'un appui expert.", details: "L'équipe analyse, conseille, forme et peut accompagner l'établissement dans la durée." },
-          { label: "Règlement intérieur", apport: "À utiliser pour rappeler que les principes nationaux se déclinent dans des règles locales connues des familles et des élèves.", details: "La cohérence entre loi, charte et règlement intérieur renforce la solidité de la réponse éducative." }
+          {
+            label: "Dialogue préalable prévu par L141-5-1",
+            apport: "À utiliser avant une éventuelle procédure disciplinaire en cas de signes ou tenues ostensibles.",
+            details: "Le texte prévoit explicitement un dialogue avec l'élève ; c'est un point important à citer à l'oral."
+          },
+          {
+            label: "Règlement intérieur",
+            apport: "Il permet de relier les principes nationaux à des règles concrètes connues des élèves et des familles.",
+            details: "À l'oral, le bon réflexe est de montrer la cohérence entre loi, charte et règlement intérieur."
+          },
+          {
+            label: "EAVR",
+            apport: "À mobiliser quand la situation est sensible, complexe ou répétée, et que l'établissement a besoin d'un appui expert.",
+            details: "L'équipe analyse, conseille, forme et peut accompagner l'établissement dans la durée."
+          },
+          {
+            label: "Projet d'établissement / EMC / parcours citoyen",
+            apport: "Ces cadres servent à prévenir en amont, afin que la laïcité ne soit pas seulement évoquée au moment d'un incident.",
+            details: "Ils permettent une pédagogie explicite, régulière et partagée."
+          }
         ],
         court: [
           "Rappeler calmement la règle commune sans entrer dans un débat de conviction personnelle.",
@@ -442,7 +622,7 @@
         ],
         moyen: [
           "Organiser un échange institutionnel avec la famille sous l'autorité du chef d'établissement.",
-          "Solliciter l'EAVR ou le vadémécum pour analyser juridiquement et pédagogiquement le cas.",
+          "Solliciter l'EAVR si le cas est sensible, ambigu ou juridiquement délicat.",
           "Mettre en cohérence l'équipe EPS sur les tenues, la mixité, les vestiaires et les refus d'activité pour éviter les messages contradictoires.",
           "Articuler avec EMC et parcours citoyen pour retravailler liberté de conscience et cadre commun."
         ],
@@ -456,14 +636,18 @@
       {
         id: "sedentarite",
         titre: "Santé / sédentarité",
-        subtitle: "Agir sur les habitudes de vie, sans stigmatiser, avec des réponses graduées et partenariales.",
-        colors: { hero: "linear-gradient(135deg, #fecdd3, #fff1f2)", left: "#ffe0e5" },
-        pills: ["Parcours éducatif de santé", "École promotrice de santé", "CESCE", "PP", "infirmier"],
+        subtitle: "Agir sur les habitudes de vie, sans stigmatiser, avec des réponses graduées et des textes de santé scolaire explicitement cités.",
+        colors: {
+          accent: "#e11d48",
+          accentSoft: "#ffe4ea",
+          hero: "linear-gradient(135deg, #fecdd3, #fff1f2)"
+        },
+        pills: ["L541-1", "Circulaire 2016", "BO 2022 APQ", "santé scolaire", "CESCE"],
         valeurs: [
-          "Fraternité : attention portée aux élèves fragiles et solidarité éducative.",
-          "Égalité : permettre à chacun d'accéder à la pratique sans stigmatisation.",
-          "Liberté : construire l'autonomie et des habitudes de vie actives.",
-          "Laïcité : cadre commun de santé scolaire indépendant des croyances ou appartenances."
+          { text: "FRATERNITÉ : attention portée aux élèves fragiles, solidarité éducative et refus de la stigmatisation.", level: "major" },
+          { text: "ÉGALITÉ : permettre à chacun d'accéder à la pratique sans double peine ni exclusion.", level: "secondary" },
+          { text: "LIBERTÉ : construire l'autonomie et des habitudes de vie plus actives.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun de santé scolaire indépendant des croyances ou appartenances.", level: "normal" }
         ],
         definition: "La sédentarité correspond aux temps d'éveil passés assis ou allongé avec une faible dépense énergétique. Elle ne se confond pas avec l'inactivité physique. En EPS, le sujet touche la santé, le rapport au corps, l'engagement en pratique et les habitudes de vie.",
         epsPoints: [
@@ -472,11 +656,31 @@
           "Le professeur d'EPS adapte et alerte ; il ne médicalise pas seul la situation."
         ],
         textes: [
-          { label: "Circulaire n° 2016-008 - Parcours éducatif de santé", apport: "Texte socle : il structure l'action de l'École en santé, de la prévention à la protection. Il légitime une réponse coordonnée autour de l'élève.", url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm" },
-          { label: "Code de l'éducation, art. L541-1", apport: "Rappelle que la promotion de la santé des élèves fait partie des missions de l'Éducation nationale. Le sujet relève donc bien du scolaire.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524665" },
-          { label: "Éduscol - École promotrice de santé", apport: "Apporte une logique globale : agir sur les déterminants de santé, pas seulement sur les symptômes observés en EPS.", url: "https://eduscol.education.gouv.fr/5925/s-engager-dans-la-demarche-ecole-promotrice-de-sante" },
-          { label: "Éduscol - Promotion de la santé", apport: "Offre des ressources concrètes pour penser prévention, bien-être, climat scolaire et santé en établissement.", url: "https://eduscol.education.gouv.fr/4452/promotion-de-la-sante" },
-          { label: "30 minutes d'activité physique quotidienne", apport: "Montre que l'action contre la sédentarité dépasse le seul cours d'EPS et peut relever d'une culture d'établissement plus active.", url: "https://www.education.gouv.fr/bo/22/Hebdo30/MENE2220806N.htm" }
+          {
+            label: "Code de l'éducation, article L541-1 — Légifrance — version en vigueur",
+            apport: "Texte socle de santé scolaire : les élèves bénéficient d'actions de promotion de la santé constituant un parcours éducatif de santé. Il permet de montrer que le sujet relève pleinement des missions de l'École.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042656190"
+          },
+          {
+            label: "Circulaire n°2016-008 du 28-1-2016, BO n°5 du 4-2-2016 — Parcours éducatif de santé pour tous les élèves",
+            apport: "Texte de référence pour articuler prévention, protection et éducation à la santé. Il légitime une réponse coordonnée autour de l'élève, au-delà du seul cours d'EPS.",
+            url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm"
+          },
+          {
+            label: "Note de service du 27-7-2022 (NOR : MENE2220806N), BO n°30 du 28-7-2022 — Généralisation des 30 minutes d'activité physique quotidienne (APQ) à l'école primaire",
+            apport: "Texte à citer explicitement si tu parles des 30 minutes d'activité physique quotidienne. Il montre que la lutte contre la sédentarité dépasse le seul cours d'EPS et concerne l'ensemble des temps scolaires dans le premier degré.",
+            url: "https://www.education.gouv.fr/bo/22/Hebdo30/MENE2220806N.htm"
+          },
+          {
+            label: "Bulletin officiel n°39 du 20-10-2022 — Pilotage et mise en œuvre au niveau territorial pour l'année scolaire 2022-2023",
+            apport: "Texte utile pour montrer que l'APQ fait l'objet d'un pilotage territorial et d'une mise en œuvre organisée. Il confirme que chaque élève doit bénéficier d'au moins 30 minutes d'activité physique quotidienne à l'école élémentaire.",
+            url: "https://www.education.gouv.fr/bo/22/Hebdo39/MENG2228933X.htm"
+          },
+          {
+            label: "Bulletin officiel spécial n°5 du 11-4-2019 — Programmes d'enseignement commun et optionnel de la classe de seconde générale et technologique et des classes de première et terminale",
+            apport: "Texte intéressant pour rattacher le sujet au lycée : les programmes abordent explicitement les questions de santé, d'activité physique, de sédentarité et de bien-être dans une approche éducative interdisciplinaire.",
+            url: "https://www.education.gouv.fr/sites/default/files/document/BOSPE5_MENJ_1108488.pdf-233334.pdf"
+          }
         ],
         notions: [
           "Sédentarité ≠ inactivité physique ; activité physique ≠ sport ≠ EPS.",
@@ -492,10 +696,26 @@
           "Famille et AS : indispensables pour agir sur les routines de vie et proposer des passerelles de pratique."
         ],
         protocoles: [
-          { label: "Parcours éducatif de santé", apport: "Il est utilisé pour coordonner les actions de prévention, d'éducation et de protection autour de la santé de l'élève.", details: "Il permet d'articuler EPS, personnels de santé, vie scolaire, familles et partenaires extérieurs." },
-          { label: "CESCE", apport: "À mobiliser pour penser des actions collectives sur écrans, sommeil, activité physique, alimentation et bien-être.", details: "Le CESCE est présidé par le chef d'établissement et peut associer personnels, parents, élèves, santé-social et partenaires institutionnels." },
-          { label: "PAI si besoin", apport: "À évoquer quand une situation de santé durable nécessite des aménagements connus de tous les adultes concernés.", details: "Le PAI sécurise les adaptations dans le respect du secret médical ; il ne remplace pas l'analyse pédagogique quotidienne." },
-          { label: "École promotrice de santé", apport: "Cadre utile quand on veut sortir d'une réponse ponctuelle pour agir sur les déterminants de santé de l'établissement.", details: "Cette logique aide à inscrire l'action dans la durée et à mobiliser plusieurs adultes et espaces de vie scolaire." }
+          {
+            label: "Parcours éducatif de santé",
+            apport: "Il est utilisé pour coordonner les actions de prévention, d'éducation et de protection autour de la santé de l'élève.",
+            details: "Il permet d'articuler EPS, personnels de santé, vie scolaire, familles et partenaires extérieurs."
+          },
+          {
+            label: "CESCE",
+            apport: "À mobiliser pour penser des actions collectives sur écrans, sommeil, activité physique, alimentation et bien-être.",
+            details: "Le CESCE est présidé par le chef d'établissement et peut associer personnels, parents, élèves, santé-social et partenaires institutionnels."
+          },
+          {
+            label: "PAI si besoin",
+            apport: "À évoquer quand une situation de santé durable nécessite des aménagements connus de tous les adultes concernés.",
+            details: "Le PAI sécurise les adaptations dans le respect du secret médical ; il ne remplace pas l'analyse pédagogique quotidienne."
+          },
+          {
+            label: "École promotrice de santé",
+            apport: "Cadre utile quand on veut sortir d'une réponse ponctuelle pour agir sur les déterminants de santé de l'établissement.",
+            details: "Cette logique aide à inscrire l'action dans la durée et à mobiliser plusieurs adultes et espaces de vie scolaire."
+          }
         ],
         court: [
           "Adapter immédiatement la séance : effort progressif, temps morts réduits, objectifs atteignables, valorisation des progrès proches.",
@@ -519,14 +739,18 @@
       {
         id: "developpement-durable",
         titre: "Développement durable",
-        subtitle: "Passer de l'éco-geste à une vraie logique d'établissement : référent EDD, éco-délégués, E3D et choix d'organisation en EPS.",
-        colors: { hero: "linear-gradient(135deg, #bbf7d0, #ecfdf5)", left: "#ddf8e6" },
-        pills: ["EDD 2030", "E3D", "référent EDD", "éco-délégués", "CESCE"],
+        subtitle: "S'appuyer sur des textes de Code, de circulaire et de BO pour montrer que l'EDD est une politique d'établissement structurée, avec les éco-délégués et la démarche E3D.",
+        colors: {
+          accent: "#15803d",
+          accentSoft: "#dcfce7",
+          hero: "linear-gradient(135deg, #bbf7d0, #ecfdf5)"
+        },
+        pills: ["Code de l'environnement", "BO 2019", "BO 2020", "éco-délégués", "E3D"],
         valeurs: [
-          "Fraternité : solidarité intergénérationnelle et responsabilité envers les autres.",
-          "Liberté : former des citoyens capables de choix éclairés et responsables.",
-          "Égalité : accès partagé à des ressources communes et à un environnement préservé.",
-          "Laïcité : cadre commun de l'action publique et du bien commun."
+          { text: "FRATERNITÉ : solidarité intergénérationnelle et responsabilité envers les autres.", level: "major" },
+          { text: "LIBERTÉ : former des citoyens capables de choix éclairés et responsables.", level: "secondary" },
+          { text: "ÉGALITÉ : accès partagé à des ressources communes et à un environnement préservé.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun de l'action publique et du bien commun.", level: "normal" }
         ],
         definition: "Le développement durable articule des dimensions environnementales, sociales et économiques. En EPS, cela concerne les déplacements, l'usage du matériel, les événements sportifs, les pratiques de pleine nature et le respect des lieux de pratique.",
         epsPoints: [
@@ -535,11 +759,31 @@
           "L'intérêt à l'oral est de montrer des choix concrets d'organisation et pas seulement un discours de sensibilisation."
         ],
         textes: [
-          { label: "Code de l'environnement, art. L110-1", apport: "Base juridique générale : il affirme que les espaces, ressources et milieux naturels font partie du patrimoine commun de la Nation. Il donne du sens au respect des sites de pratique et à la protection des biens communs.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975398" },
-          { label: "Circulaire du 27 août 2019 - EDD 2030", apport: "Texte institutionnel majeur : il généralise une nouvelle phase de l'EDD et introduit explicitement les éco-délégués. À citer précisément : dès 2019-2020, chaque collège et lycée doit désigner au minimum un binôme paritaire d'éco-délégués d'établissement, et chaque établissement est incité à organiser l'élection d'un éco-délégué par classe.", url: "https://www.education.gouv.fr/bo/19/Hebdo31/MENE1924799C.htm" },
-          { label: "Circulaire du 24 septembre 2020 - Agenda 2030", apport: "Texte de renforcement : il systématise les mesures de 2019. À citer précisément : l'élection des éco-délégués de classe devient obligatoire au collège et au lycée ; ils deviennent des acteurs essentiels de l'EDD et reçoivent quatre missions : porter des projets, être ambassadeurs, restituer/évaluer/valoriser les actions, et transmettre informations et connaissances à leurs camarades.", url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm" },
-          { label: "Circulaire du 24 septembre 2020 - référents EDD et labellisation E3D", apport: "Le même texte précise aussi que la démarche E3D est coordonnée par le ou les référents EDD, désignés par le chef d'établissement ou le comité de pilotage EDD. Il est donc utile pour montrer le pilotage concret du développement durable dans l'établissement.", url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm" },
-          { label: "Circulaire de rentrée 2022", apport: "Elle confirme la pérennisation des projets portés notamment par les éco-délégués et demande que la transition écologique et énergétique soit placée au cœur du projet d'établissement, notamment via la labellisation E3D. C'est utile pour montrer que le sujet reste une priorité ministérielle récente.", url: "https://www.education.gouv.fr/bo/22/Hebdo26/MENE2219299C.htm" }
+          {
+            label: "Code de l'environnement, article L110-1 — Légifrance — version en vigueur",
+            apport: "Base juridique générale : les espaces, ressources et milieux naturels font partie du patrimoine commun de la Nation. C'est le texte à mobiliser pour donner du sens au respect des sites de pratique et du bien commun.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975398"
+          },
+          {
+            label: "Circulaire du 27-8-2019 (NOR : MENE1924799C), BO n°31 du 29-8-2019 — EDD 2030",
+            apport: "Texte institutionnel majeur : il généralise une nouvelle phase de l'éducation au développement durable. À citer précisément : dès 2019-2020, chaque collège et lycée doit désigner au minimum un binôme paritaire d'éco-délégués d'établissement.",
+            url: "https://www.education.gouv.fr/bo/19/Hebdo31/MENE1924799C.htm"
+          },
+          {
+            label: "Circulaire du 24-9-2020 (NOR : MENE2025449C), BO n°36 du 24-9-2020 — Agenda 2030",
+            apport: "Texte de renforcement : il rend obligatoire l'élection des éco-délégués de classe au collège et au lycée et précise leurs quatre missions essentielles : porter des projets, être ambassadeurs, valoriser les actions, transmettre des connaissances à leurs camarades.",
+            url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm"
+          },
+          {
+            label: "Circulaire du 24-9-2020 (NOR : MENE2025449C), BO n°36 du 24-9-2020 — même texte, pilotage EDD",
+            apport: "Le même texte précise que la démarche E3D est coordonnée par le ou les référents EDD, désignés par le chef d'établissement ou le comité de pilotage EDD. Il permet donc de citer le pilotage concret du développement durable dans l'établissement.",
+            url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm"
+          },
+          {
+            label: "Circulaire de rentrée 2022 (NOR : MENE2219299C), BO n°26 du 30-6-2022",
+            apport: "Texte utile pour montrer que la transition écologique et énergétique doit être placée au cœur du projet d'établissement et que la dynamique E3D doit se poursuivre. Il atteste du caractère prioritaire et durable du sujet.",
+            url: "https://www.education.gouv.fr/bo/22/Hebdo26/MENE2219299C.htm"
+          }
         ],
         notions: [
           "Le développement durable associe environnement, justice sociale et sobriété des choix ; il ne se réduit pas à des gestes symboliques.",
@@ -555,10 +799,26 @@
           "Conseil pédagogique / CESCE : instances utiles pour articuler l'EDD avec santé, citoyenneté et projets disciplinaires."
         ],
         protocoles: [
-          { label: "Référent EDD + éco-délégués", apport: "À utiliser pour passer d'une action portée par un adulte à une vraie dynamique d'établissement impliquant les élèves.", details: "Les ressources officielles précisent que les éco-délégués sont accompagnés en particulier par le référent EDD d'établissement." },
-          { label: "Démarche E3D", apport: "À mobiliser quand on veut inscrire l'EDD dans le projet d'établissement et donner de la cohérence aux actions.", details: "La labellisation E3D valorise une approche globale associant enseignements, vie scolaire, gestion et partenariats territoriaux." },
-          { label: "Conseil pédagogique", apport: "Utile pour intégrer l'EDD dans les choix pédagogiques et coordonner plusieurs disciplines.", details: "Cette instance prépare la partie pédagogique du projet d'établissement et favorise la concertation entre enseignants." },
-          { label: "CESCE", apport: "Intéressant quand le développement durable croise santé, citoyenneté, bien-être ou prévention.", details: "L'EDD peut se conjuguer avec les autres éducations transversales à l'échelle de l'établissement." }
+          {
+            label: "Référent EDD + éco-délégués",
+            apport: "À utiliser pour passer d'une action portée par un adulte à une vraie dynamique d'établissement impliquant les élèves.",
+            details: "Les textes de 2019 et 2020 permettent de citer précisément l'apparition puis la généralisation des éco-délégués."
+          },
+          {
+            label: "Démarche E3D",
+            apport: "À mobiliser quand on veut inscrire l'EDD dans le projet d'établissement et donner de la cohérence aux actions.",
+            details: "La labellisation E3D valorise une approche globale associant enseignements, vie scolaire, gestion et partenariats territoriaux."
+          },
+          {
+            label: "Conseil pédagogique",
+            apport: "Utile pour intégrer l'EDD dans les choix pédagogiques et coordonner plusieurs disciplines.",
+            details: "Cette instance prépare la partie pédagogique du projet d'établissement et favorise la concertation entre enseignants."
+          },
+          {
+            label: "Projet d'établissement / AS / UNSS",
+            apport: "Cadres pertinents pour rendre visibles des choix concrets : déplacements, équipements, éco-événements, responsabilité des élèves.",
+            details: "L'intérêt à l'oral est de montrer comment l'EPS devient un levier de transition écologique."
+          }
         ],
         court: [
           "Nommer précisément le problème : gaspillage, dégradation d'un site, transport inutile, usage excessif de matériel, déchets.",
@@ -582,14 +842,18 @@
       {
         id: "mixite",
         titre: "Mixité filles-garçons / égalité femmes-hommes",
-        subtitle: "La mixité est nécessaire mais insuffisante : il faut des dispositifs pédagogiques qui fabriquent de l'égalité réelle en EPS.",
-        colors: { hero: "linear-gradient(135deg, #e9d5ff, #faf5ff)", left: "#f0e2ff" },
-        pills: ["L121-1", "L312-17-1", "référent égalité", "label égalité", "pHARe"],
+        subtitle: "La mixité ne suffit pas : il faut montrer comment les textes officiels obligent l'École et l'EPS à construire une égalité réelle.",
+        colors: {
+          accent: "#9333ea",
+          accentSoft: "#f3e8ff",
+          hero: "linear-gradient(135deg, #e9d5ff, #faf5ff)"
+        },
+        pills: ["L121-1", "L312-17-1", "BO 2013", "BO 2015", "BO 2019 EPS"],
         valeurs: [
-          "Égalité : cœur du sujet, entre filles et garçons, femmes et hommes.",
-          "Fraternité : respect mutuel, refus du sexisme et des humiliations.",
-          "Liberté : permettre à chacun de pratiquer, choisir et s'orienter hors stéréotypes.",
-          "Laïcité : même cadre commun et même dignité pour tous les élèves."
+          { text: "ÉGALITÉ : valeur la plus centrale du sujet, entre filles et garçons, femmes et hommes.", level: "major" },
+          { text: "FRATERNITÉ : respect mutuel, refus du sexisme et des humiliations.", level: "secondary" },
+          { text: "LIBERTÉ : permettre à chacun de pratiquer, choisir et s'orienter hors stéréotypes.", level: "normal" },
+          { text: "LAÏCITÉ : même cadre commun et même dignité pour tous les élèves.", level: "normal" }
         ],
         definition: "La mixité renvoie à la présence conjointe des filles et des garçons. Mais la simple co-présence ne garantit ni l'égalité de traitement ni l'égalité d'accès aux apprentissages. En EPS, les écarts se rejouent dans les rôles, l'espace, les feedbacks, les dispenses, les choix d'APSA et les représentations du corps performant.",
         epsPoints: [
@@ -598,11 +862,31 @@
           "Les vestiaires, les regroupements, les sports collectifs et les évaluations sont des zones de vigilance majeures."
         ],
         textes: [
-          { label: "Code de l'éducation, art. L121-1", apport: "Ancre la mixité et l'égalité entre les femmes et les hommes dans les missions de l'École. Le sujet est donc pleinement scolaire.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405" },
-          { label: "Code de l'éducation, art. L312-17-1", apport: "Rappelle qu'une information sur l'égalité femmes-hommes, les préjugés sexistes et les violences faites aux femmes est dispensée à tous les stades de la scolarité. Il permet de montrer que le sujet relève d'une politique éducative durable.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022469852" },
-          { label: "Référentiel de compétences des enseignants, BO du 25 juillet 2013", apport: "Demande explicitement de promouvoir l'égalité entre les filles et les garçons. Ce texte légitime l'action quotidienne du professeur d'EPS.", url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm" },
-          { label: "Éduscol - Égalité filles-garçons et prévention des VSS", apport: "Précise le cadre juridique, les référents égalité et les ressources de prévention des violences sexistes et sexuelles.", url: "https://eduscol.education.gouv.fr/6141/egalite-filles-garcons-et-prevention-des-violences-sexistes-et-sexuelles" },
-          { label: "Label Égalité filles-garçons", apport: "Montre que l'égalité peut être pensée comme une politique globale d'établissement, pas seulement comme une réaction à un incident.", url: "https://eduscol.education.gouv.fr/6138/label-egalite-filles-garcons" }
+          {
+            label: "Code de l'éducation, article L121-1 — Légifrance — version en vigueur",
+            apport: "Ancre la mixité et l'égalité entre les femmes et les hommes dans les missions de l'École. Le sujet est donc pleinement scolaire et pas seulement sociétal.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405"
+          },
+          {
+            label: "Code de l'éducation, article L312-17-1 — Légifrance — version en vigueur",
+            apport: "Rappelle qu'une information sur l'égalité entre les femmes et les hommes, les préjugés sexistes et les violences faites aux femmes est dispensée à tous les stades de la scolarité. C'est le bon texte pour montrer que le sujet est structurel et continu.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022469852"
+          },
+          {
+            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
+            apport: "Texte professionnel clé : il demande explicitement de promouvoir l'égalité entre les filles et les garçons, les femmes et les hommes. Il légitime l'action quotidienne du professeur d'EPS.",
+            url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
+          },
+          {
+            label: "Circulaire n°2015-003 du 20-1-2015 (NOR : MENE1500237C), BO n°4 du 22-1-2015 — Mise en œuvre de la politique éducative en faveur de l'égalité entre les filles et les garçons à l'École",
+            apport: "Texte institutionnel majeur pour montrer que l'égalité filles-garçons doit irriguer enseignements, vie scolaire, orientation, projets d'école et d'établissement.",
+            url: "https://www.education.gouv.fr/bo/15/Hebdo4/MENE1500237C.htm"
+          },
+          {
+            label: "Bulletin officiel spécial n°1 du 22-1-2019 — Programmes du lycée général et technologique, enseignement commun d'EPS",
+            apport: "Texte spécifiquement utile en EPS : il rappelle que l'EPS lutte contre les stéréotypes sociaux ou sexués et s'inscrit résolument dans une école inclusive.",
+            url: "https://www.education.gouv.fr/sites/default/files/document/SP1_MEN_22_1_2019_10H40_1064060.pdf-232533.pdf"
+          }
         ],
         notions: [
           "Mixité ≠ égalité : une classe mixte peut rester profondément inégalitaire.",
@@ -618,10 +902,26 @@
           "Familles : à informer quand la situation touche la sécurité, la confiance ou l'assiduité."
         ],
         protocoles: [
-          { label: "Référent égalité", apport: "À mobiliser pour diffuser une culture commune d'établissement et ne pas limiter l'action à l'EPS.", details: "Les ressources officielles précisent que les référents égalité agissent en lien avec orientation, éducation à la sexualité, prévention du harcèlement et vie collégienne ou lycéenne." },
-          { label: "CESCE", apport: "Cadre utile pour des actions sur égalité, respect, corps, consentement, violences sexistes et sexuelles.", details: "Cette instance permet d'articuler prévention, santé, citoyenneté et coéducation avec les familles." },
-          { label: "pHARe", apport: "À mobiliser si les propos sexistes, humiliations ou mises à l'écart sont répétés et relèvent du harcèlement.", details: "Le programme permet une prise en charge structurée et collective au lieu d'une réponse isolée du professeur." },
-          { label: "Label Égalité filles-garçons", apport: "À évoquer dans une logique de long terme quand l'établissement veut structurer une politique globale d'égalité.", details: "Le label concerne les collèges et lycées et distingue une approche intégrée de l'égalité." }
+          {
+            label: "Référent égalité",
+            apport: "À mobiliser pour diffuser une culture commune d'établissement et ne pas limiter l'action à l'EPS.",
+            details: "Le sujet doit être relié à l'orientation, à l'éducation à la sexualité, au climat scolaire et à la prévention du harcèlement."
+          },
+          {
+            label: "CESCE",
+            apport: "Cadre utile pour des actions sur égalité, respect, corps, consentement, violences sexistes et sexuelles.",
+            details: "Cette instance permet d'articuler prévention, santé, citoyenneté et coéducation avec les familles."
+          },
+          {
+            label: "pHARe",
+            apport: "À mobiliser si les propos sexistes, humiliations ou mises à l'écart sont répétés et relèvent du harcèlement.",
+            details: "Le programme permet une prise en charge structurée et collective au lieu d'une réponse isolée du professeur."
+          },
+          {
+            label: "Projet d'établissement / projet EPS",
+            apport: "À utiliser pour stabiliser des choix durables : APSA diversifiées, règles sur les vestiaires, feedbacks, rôles sociaux, critères d'évaluation.",
+            details: "C'est le bon niveau pour passer de l'intention à la cohérence d'équipe."
+          }
         ],
         court: [
           "Nommer la situation devant la classe : filles et garçons ont le même droit à l'espace, au ballon, aux responsabilités et au progrès.",
@@ -639,20 +939,24 @@
           "Inscrire l'égalité filles-garçons dans le projet EPS : APSA diversifiées, barèmes interrogés, règles communes sur vestiaires et feedbacks.",
           "Construire une culture commune d'équipe : mêmes attentes envers filles et garçons, mêmes réactions face aux propos sexistes.",
           "Rendre visibles des parcours de réussite non stéréotypés via AS, instances élèves et actions d'établissement.",
-          "Faire de l'EPS un lieu d'émancipation corporelle et pas de reconduction des hiérarchies de genre."
+          "Faire de l'EPS un lieu d'émancipation corporelle et non de reconduction des hiérarchies de genre."
         ]
       },
       {
-        id: "la-sante",
+        id: "rapport-corps",
         titre: "Troubles alimentaires / rapport au corps",
-        subtitle: "Repérer sans diagnostiquer, protéger l'élève et ajuster l'EPS avec tact en mobilisant les personnels de santé.",
-        colors: { hero: "linear-gradient(135deg, #fde2e4, #fff5f5)", left: "#ffe9eb" },
-        pills: ["repérer ≠ diagnostiquer", "infirmier", "médecin scolaire", "PsyEN", "famille"],
+        subtitle: "Repérer sans diagnostiquer, protéger l'élève et ajuster l'EPS avec tact en s'appuyant sur les textes de santé scolaire et de professionnalité enseignante.",
+        colors: {
+          accent: "#db2777",
+          accentSoft: "#fce7f3",
+          hero: "linear-gradient(135deg, #fbcfe8, #fff1f7)"
+        },
+        pills: ["L541-1", "Circulaire 2016", "BO 2013", "santé scolaire", "parcours éducatif de santé"],
         valeurs: [
-          "Fraternité : protection d'un élève fragilisé et refus des jugements humiliants.",
-          "Égalité : adapter l'EPS pour que la fragilité ne devienne pas une exclusion.",
-          "Liberté : aider l'élève à reconstruire un rapport plus serein à son corps.",
-          "Laïcité : prise en charge dans un cadre professionnel commun, centré sur la personne."
+          { text: "FRATERNITÉ : protection d'un élève fragilisé et refus des jugements humiliants.", level: "major" },
+          { text: "ÉGALITÉ : adapter l'EPS pour que la fragilité ne devienne pas une exclusion.", level: "secondary" },
+          { text: "LIBERTÉ : aider l'élève à reconstruire un rapport plus serein à son corps.", level: "normal" },
+          { text: "LAÏCITÉ : prise en charge dans un cadre professionnel commun, centré sur la personne.", level: "normal" }
         ],
         definition: "En EPS, les troubles alimentaires ou les fragilités liées au rapport au corps peuvent se révéler par la fatigue, l'évitement, l'obsession de la performance ou de l'apparence, les variations corporelles, les malaises ou la peur du regard des autres. Le professeur d'EPS ne diagnostique pas : il repère, protège, transmet et adapte.",
         epsPoints: [
@@ -661,11 +965,31 @@
           "Les vestiaires, les évaluations, les prises de poids/performance ou les remarques sur le corps sont des zones très sensibles."
         ],
         textes: [
-          { label: "Code de l'éducation, art. L541-1", apport: "Rappelle que la promotion de la santé des élèves fait partie des missions de l'Éducation nationale. Le repérage et la protection relèvent donc bien de l'école.", url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524665" },
-          { label: "Circulaire n° 2016-008 - Parcours éducatif de santé", apport: "Permet de penser la situation dans une logique de prévention, de protection et de coordination autour de l'élève.", url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm" },
-          { label: "Éduscol - Promotion de la santé", apport: "Fournit le cadre global pour articuler prévention, bien-être et action éducative sans médicaliser excessivement l'école.", url: "https://eduscol.education.gouv.fr/4452/promotion-de-la-sante" },
-          { label: "Le collège - personnels médico-sociaux / CESCE", apport: "Rappelle que l'infirmier, le médecin et l'assistant de service social participent à la promotion de la santé, du bien-être et de la réussite des élèves.", url: "https://www.education.gouv.fr/le-college-4940" },
-          { label: "Référentiel de compétences des enseignants, BO du 25 juillet 2013", apport: "Confirme l'obligation d'agir avec éthique, de coopérer avec les partenaires et de protéger les élèves dans leur développement.", url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm" }
+          {
+            label: "Code de l'éducation, article L541-1 — Légifrance — version en vigueur",
+            apport: "Rappelle que les élèves bénéficient d'actions de prévention, d'information et de promotion de la santé. Ce texte fonde le repérage et la protection par l'institution scolaire.",
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042656190"
+          },
+          {
+            label: "Circulaire n°2016-008 du 28-1-2016, BO n°5 du 4-2-2016 — Parcours éducatif de santé pour tous les élèves",
+            apport: "Permet de penser la situation dans une logique de prévention, de protection et de coordination autour de l'élève.",
+            url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm"
+          },
+          {
+            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
+            apport: "Confirme l'obligation d'agir avec éthique, de coopérer avec les partenaires et de protéger les élèves dans leur développement.",
+            url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
+          },
+          {
+            label: "Code de l'éducation, titre IV : santé scolaire — Légifrance",
+            apport: "Cadre général utile pour rappeler que la santé scolaire relève d'une organisation institutionnelle comprenant prévention, dépistage, promotion de la santé et suivi.",
+            url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071191/LEGISCTA000006151362/"
+          },
+          {
+            label: "Bulletin officiel spécial n°5 du 11-4-2019 — Programmes du lycée général et technologique",
+            apport: "Texte intéressant pour rattacher la question du rapport au corps, du bien-être et de la santé à une approche éducative, notamment au lycée.",
+            url: "https://www.education.gouv.fr/sites/default/files/document/BOSPE5_MENJ_1108488.pdf-233334.pdf"
+          }
         ],
         notions: [
           "Repérer ≠ diagnostiquer : le professeur d'EPS observe des signes et transmet aux professionnels compétents.",
@@ -681,10 +1005,26 @@
           "Famille : à associer avec tact et dans le cadre institutionnel approprié."
         ],
         protocoles: [
-          { label: "Parcours éducatif de santé", apport: "Cadre de coordination le plus pertinent pour penser la réponse dans la durée.", details: "Il permet d'articuler personnels de santé, famille, équipe éducative et adaptations pédagogiques." },
-          { label: "CESCE", apport: "À mobiliser pour des actions plus larges sur image du corps, bien-être, santé et prévention des conduites à risque.", details: "L'instance permet de sortir d'une réponse purement individuelle et de travailler la prévention." },
-          { label: "PAI ou aménagements connus de l'équipe si besoin", apport: "À évoquer quand des indications médicales existent déjà et doivent être respectées dans plusieurs espaces scolaires.", details: "Ces outils sécurisent les adaptations dans le respect du secret médical." },
-          { label: "Traçabilité interne", apport: "Utile pour objectiver l'évolution des signes observés sans se substituer au diagnostic médical.", details: "On note des faits : malaise, fatigue, évitement, absence, propos, variations d'engagement." }
+          {
+            label: "Parcours éducatif de santé",
+            apport: "Cadre de coordination le plus pertinent pour penser la réponse dans la durée.",
+            details: "Il permet d'articuler personnels de santé, famille, équipe éducative et adaptations pédagogiques."
+          },
+          {
+            label: "CESCE",
+            apport: "À mobiliser pour des actions plus larges sur image du corps, bien-être, santé et prévention des conduites à risque.",
+            details: "L'instance permet de sortir d'une réponse purement individuelle et de travailler la prévention."
+          },
+          {
+            label: "PAI ou aménagements connus de l'équipe si besoin",
+            apport: "À évoquer quand des indications médicales existent déjà et doivent être respectées dans plusieurs espaces scolaires.",
+            details: "Ces outils sécurisent les adaptations dans le respect du secret médical."
+          },
+          {
+            label: "Traçabilité interne",
+            apport: "Utile pour objectiver l'évolution des signes observés sans se substituer au diagnostic médical.",
+            details: "On note des faits : malaise, fatigue, évitement, absence, propos, variations d'engagement."
+          }
         ],
         court: [
           "Sécuriser immédiatement la séance si l'élève est en difficulté physique ou psychique manifeste.",
@@ -714,12 +1054,16 @@
       return `<ul class="clean">${items.map(item => `<li>${item}</li>`).join("")}</ul>`;
     }
 
+    function renderValueList(items) {
+      return `<ul class="clean value-list">${items.map(item => `<li class="${item.level || "normal"}">${item.text}</li>`).join("")}</ul>`;
+    }
+
     function renderRefList(items) {
       return `<div class="ref-list">${items.map(item => `
         <div class="ref-item">
           <strong>${item.label}</strong>
           <div class="apport">${item.apport}</div>
-          ${item.url ? `<a href="${item.url}" target="_blank" rel="noreferrer">Consulter le texte officiel</a>` : ""}
+          <a href="${item.url}" target="_blank" rel="noreferrer">Voir le document d'origine</a>
         </div>`).join("")}</div>`;
     }
 
@@ -736,13 +1080,18 @@
       return items.map(item => `<span class="pill">${item}</span>`).join("");
     }
 
+    function applyTheme(fiche) {
+      document.documentElement.style.setProperty("--accent", fiche.colors.accent);
+      document.documentElement.style.setProperty("--accent-soft", fiche.colors.accentSoft);
+      document.documentElement.style.setProperty("--accent-hero", fiche.colors.hero);
+    }
+
     function render() {
       const fiche = fiches[index];
-      $("hero").style.background = fiche.colors.hero;
+      applyTheme(fiche);
       $("heroTitle").textContent = fiche.titre;
       $("heroSubtitle").textContent = fiche.subtitle;
       $("heroPills").innerHTML = renderPills(fiche.pills);
-      $("leftPanel").style.background = fiche.colors.left;
       $("leftPanel").innerHTML = `
         <h2>1 — Définitions précises et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
@@ -751,7 +1100,7 @@
           ${renderBulletList(fiche.epsPoints)}
         </div>`;
       $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>${renderRefList(fiche.textes)}`;
-      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderBulletList(fiche.valeurs)}`;
+      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
       $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
       $("partenairesCard").innerHTML = `<h2>5 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires)}`;
       $("protocolesCard").innerHTML = `<h2>6 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles)}`;
