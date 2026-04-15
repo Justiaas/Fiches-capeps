@@ -11,7 +11,7 @@
       --text: #1f2937;
       --muted: #475569;
       --border: #d6d3d1;
-      --shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --accent: #1d4ed8;
       --accent-soft: #dbeafe;
       --accent-hero: linear-gradient(135deg, #dbeafe, #eff6ff);
@@ -22,15 +22,15 @@
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #f8f5f0 0%, #f2eee7 100%);
+      background: linear-gradient(180deg, #f8f5f0 0%, #f3efe8 100%);
       color: var(--text);
       line-height: 1.55;
     }
 
     .container {
-      width: min(100%, 1760px);
+      width: min(100%, 1640px);
       margin: 0 auto;
-      padding: 20px 18px 48px;
+      padding: 24px 18px 56px;
     }
 
     .hero {
@@ -80,15 +80,14 @@
     }
 
     h1 {
-      font-size: clamp(34px, 5vw, 58px);
+      font-size: clamp(30px, 5vw, 54px);
       margin: 0 0 8px;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
+      line-height: 1.03;
     }
 
     .subtitle {
       margin: 0;
-      max-width: 980px;
+      max-width: 930px;
       color: #334155;
       font-size: 15px;
     }
@@ -107,7 +106,6 @@
       padding: 11px 16px;
       cursor: pointer;
       font-size: 14px;
-      font-weight: 600;
       transition: 0.18s ease;
       box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
     }
@@ -133,86 +131,40 @@
       border-color: var(--accent);
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .pill {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid color-mix(in srgb, var(--accent) 16%, rgba(15,23,42,0.12));
-      font-size: 12px;
-      color: #334155;
-    }
-
-    /* ===== Mise en page type schéma 2 ===== */
-
-    .board {
+    .layout-main {
       display: grid;
-      grid-template-columns: 1.1fr 1fr 1.05fr 1.15fr 1.15fr 0.72fr;
-      grid-template-areas:
-        "textes valeurs notions partenaires protocoles long"
-        "definition definition definition court moyen long";
+      grid-template-columns: 1fr 1.3fr;
       gap: 18px;
+      margin-bottom: 18px;
       align-items: stretch;
     }
 
-    .card,
-    .step-box,
-    .definition-panel {
+    .left-panel, .card, .step-box {
       border: 1px solid color-mix(in srgb, var(--accent) 16%, #d6d3d1);
       box-shadow: var(--shadow);
-      border-radius: 28px;
-      position: relative;
-      overflow: hidden;
+    }
+
+    .left-panel {
+      border-radius: 38px;
+      padding: 26px;
+      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
       min-height: 100%;
     }
 
-    .card,
-    .step-box {
-      background: var(--card);
-      padding: 24px;
-    }
-
-    .definition-panel {
-      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
-      padding: 24px;
-    }
-
-    .card::before,
-    .step-box::before,
-    .definition-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
-    }
-
-    .card h2,
-    .step-box h2,
-    .definition-panel h2 {
+    .left-panel h2, .card h2, .step-box h2 {
       margin: 0 0 14px;
-      font-size: 25px;
-      line-height: 1.12;
+      font-size: 26px;
+      line-height: 1.15;
       color: #0f172a;
-      letter-spacing: -0.02em;
     }
 
-    .intro {
+    .left-panel p.intro {
       font-size: 15px;
       margin: 0;
       color: #334155;
     }
 
-    .section-block + .section-block {
+    .section-block {
       margin-top: 18px;
       padding-top: 18px;
       border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
@@ -227,30 +179,39 @@
       color: #0f172a;
     }
 
-    .definition-split {
+    .card-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
       gap: 18px;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      align-items: stretch;
     }
 
-    .definition-block,
-    .explicatif-block {
-      background: rgba(255,255,255,0.68);
-      border: 1px solid color-mix(in srgb, var(--accent) 12%, rgba(15,23,42,0.08));
-      border-radius: 18px;
-      padding: 18px;
+    .card {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
     }
 
-    .card-textes      { grid-area: textes; }
-    .card-valeurs     { grid-area: valeurs; }
-    .card-notions     { grid-area: notions; }
-    .card-partenaires { grid-area: partenaires; }
-    .card-protocoles  { grid-area: protocoles; }
+    .card::before, .step-box::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
+    }
 
-    .definition-panel { grid-area: definition; }
-    .card-court       { grid-area: court; }
-    .card-moyen       { grid-area: moyen; }
-    .card-long        { grid-area: long; }
+    .double-grid, .steps-grid {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .double-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr 1fr; }
 
     ul.clean {
       margin: 0;
@@ -276,7 +237,7 @@
       position: absolute;
       left: 0;
       top: 10px;
-      opacity: 0.75;
+      opacity: 0.7;
     }
 
     .value-list li {
@@ -340,6 +301,32 @@
 
     .ref-item a:hover { text-decoration: underline; }
 
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, rgba(15,23,42,0.12));
+      font-size: 12px;
+      color: #334155;
+    }
+
+    .step-box {
+      border-radius: 34px;
+      padding: 24px;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
     .footer-note {
       margin-top: 20px;
       font-size: 13px;
@@ -347,59 +334,19 @@
       text-align: center;
     }
 
-    @media (max-width: 1500px) {
-      .board {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-areas:
-          "textes valeurs notions partenaires"
-          "protocoles protocoles long long"
-          "definition definition court moyen";
-      }
-    }
-
-    @media (max-width: 1100px) {
-      .board {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-          "textes valeurs"
-          "notions partenaires"
-          "protocoles protocoles"
-          "definition definition"
-          "court moyen"
-          "long long";
-      }
-
-      .definition-split {
+    @media (max-width: 1280px) {
+      .layout-main,
+      .card-grid,
+      .double-grid,
+      .steps-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 720px) {
-      .container {
-        padding: 14px 14px 34px;
-      }
-
-      .hero {
-        padding: 24px;
-      }
-
-      .board {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "textes"
-          "valeurs"
-          "notions"
-          "partenaires"
-          "protocoles"
-          "definition"
-          "court"
-          "moyen"
-          "long";
-      }
-
-      .left-panel, .card, .step-box, .definition-panel {
-        border-radius: 24px;
-      }
+    @media (max-width: 980px) {
+      .hero { padding: 24px; }
+      .left-panel, .card, .step-box { border-radius: 26px; }
+      .container { padding: 14px 14px 34px; }
     }
   </style>
 </head>
@@ -422,18 +369,25 @@
 
     <nav id="nav" class="nav"></nav>
 
-    <section class="board">
-      <article id="textesCard" class="card card-textes"></article>
-      <article id="valeursCard" class="card card-valeurs"></article>
-      <article id="notionsCard" class="card card-notions"></article>
-      <article id="partenairesCard" class="card card-partenaires"></article>
-      <article id="protocolesCard" class="card card-protocoles"></article>
+    <section class="layout-main">
+      <article id="leftPanel" class="left-panel"></article>
 
-      <article id="definitionPanel" class="definition-panel"></article>
+      <div class="card-grid">
+        <article id="textesCard" class="card"></article>
+        <article id="valeursCard" class="card"></article>
+        <article id="notionsCard" class="card"></article>
+      </div>
+    </section>
 
-      <article id="courtCard" class="step-box card-court"></article>
-      <article id="moyenCard" class="step-box card-moyen"></article>
-      <article id="longCard" class="step-box card-long"></article>
+    <section class="double-grid">
+      <article id="partenairesCard" class="card"></article>
+      <article id="protocolesCard" class="card"></article>
+    </section>
+
+    <section class="steps-grid">
+      <article id="courtCard" class="step-box"></article>
+      <article id="moyenCard" class="step-box"></article>
+      <article id="longCard" class="step-box"></article>
     </section>
 
     <p class="footer-note">
@@ -454,12 +408,6 @@
         },
         pills: ["Code pénal", "Code de l'éducation", "BO 2013", "pHARe", "égalité de traitement"],
         definition: "La discrimination correspond à une différence de traitement défavorable fondée sur un critère interdit par la loi. En EPS, elle peut apparaître dans l'accès aux rôles, la constitution des groupes, les feedbacks, les remarques sur le corps, la tenue, le handicap, l'origine, la religion supposée, l'orientation sexuelle ou l'identité de genre.",
-        declinaisons: [
-          "Discrimination directe : règle explicite. Exemple : refuser à une élève un rôle central parce que « ce poste est pour les garçons ».",
-          "Discrimination indirecte : organisation apparemment neutre mais inégalitaire dans ses effets. Exemple : laisser systématiquement les groupes libres et retrouver toujours les mêmes élèves exclus.",
-          "Discrimination entre pairs : refus de passe, exclusion d'un atelier, moqueries sur le corps, propos racistes, sexistes, homophobes ou validistes.",
-          "Discrimination dans l'organisation pédagogique : même sans intention hostile, des choix de barèmes, de rôles ou de groupements peuvent produire une inégalité réelle."
-        ],
         explicatifs: [
           "Stéréotypes intériorisés : certains élèves trouvent « normal » qu'une fille prenne moins de place, qu'un élève gros se montre moins, ou qu'un camarade handicapé soit mis à part.",
           "Faible empathie : les auteurs ne perçoivent pas toujours la violence produite ; il faut donc faire verbaliser les effets sur la victime.",
@@ -556,7 +504,6 @@
           "Former les élèves à distinguer conflit, violence, harcèlement et discrimination pour qu'ils sachent alerter plus tôt."
         ]
       },
-
       {
         id: "radicalite",
         titre: "Radicalité / atteintes aux valeurs de la République",
@@ -568,12 +515,6 @@
         },
         pills: ["Valeurs de la République", "BO 2023", "L141-5-1", "Charte", "voie hiérarchique"],
         definition: "Dans le cadre scolaire, on ne diagnostique pas seul une radicalisation. On décrit des comportements, propos, refus ou contestations qui portent atteinte au cadre commun, à la liberté de conscience, à la mixité, aux enseignements ou au fonctionnement du service public d'éducation. En EPS, cela peut concerner un refus de mixité, une contestation d'une activité ou un prosélytisme envers les pairs.",
-        declinaisons: [
-          "Refus d'activité ou de groupement mixte.",
-          "Contestations répétées du cadre scolaire ou du contenu d'enseignement.",
-          "Prosélytisme ou pression sur d'autres élèves.",
-          "Discours de rupture avec la règle commune, parfois relayés en ligne ou en groupe."
-        ],
         explicatifs: [
           "Quête de sens ou d'identité : l'adolescent peut rechercher un cadre fort, simple et rassurant.",
           "Besoins d'appartenance : le groupe peut offrir reconnaissance, protection ou sentiment de puissance.",
@@ -671,7 +612,6 @@
           "Construire une réponse d'équipe cohérente pour éviter les contradictions entre adultes."
         ]
       },
-
       {
         id: "laicite",
         titre: "Laïcité",
@@ -683,12 +623,6 @@
         },
         pills: ["L111-1", "L141-5-1", "Charte 2013", "BO 2023", "règlement intérieur"],
         definition: "La laïcité n'est pas l'effacement des convictions personnelles ; c'est le principe qui garantit la liberté de conscience, l'égalité de traitement et la neutralité du service public. En EPS, elle est souvent interrogée à propos des tenues, de la mixité, des refus d'activité, des absences sélectives, des contestations d'enseignement ou du prosélytisme.",
-        declinaisons: [
-          "Signes ou tenues manifestant ostensiblement une appartenance religieuse.",
-          "Refus d'activité ou de contenu : natation, danse, mixité, sorties obligatoires, présence d'un adulte homme ou femme.",
-          "Refus de cadre commun : contestation d'une consigne ou d'une règle au nom d'une conviction.",
-          "Pression entre élèves : jugement d'un camarade pour sa pratique, sa non-pratique ou sa non-croyance."
-        ],
         explicatifs: [
           "Respect du cadre : certains incidents relèvent d'abord d'une difficulté à accepter la règle commune.",
           "Besoin d'appartenance : l'élève peut chercher à affirmer une identité ou à se conformer à un groupe.",
@@ -791,7 +725,6 @@
           "Éviter deux écueils : négocier le principe ou surinterpréter chaque incident comme une attaque idéologique majeure."
         ]
       },
-
       {
         id: "sedentarite",
         titre: "Santé / sédentarité",
@@ -803,12 +736,6 @@
         },
         pills: ["L541-1", "Parcours santé", "APQ", "EPS", "CESCE"],
         definition: "La sédentarité correspond aux temps d'éveil passés assis ou allongé avec une faible dépense énergétique. Elle ne se confond pas avec l'inactivité physique. En EPS, le sujet touche la fatigue, le rapport au corps, le manque de confiance, le faible engagement, les écrans, le sommeil et les habitudes de vie.",
-        declinaisons: [
-          "Temps d'écran très élevé et mobilité quotidienne faible.",
-          "Évitement de l'effort, demandes de dispenses répétées ou engagement minimal en séance.",
-          "Fatigue, manque de sommeil, récupération insuffisante et baisse de disponibilité scolaire.",
-          "Rapport négatif au corps ou peur du regard d'autrui, notamment en vestiaires ou dans les activités très exposantes."
-        ],
         explicatifs: [
           "Habitudes de vie peu actives : écrans, transports passifs, faible pratique régulière hors école.",
           "Fatigue et sommeil : coucher tardif, récupération insuffisante, faible disponibilité pour l'effort.",
@@ -911,7 +838,6 @@
           "Repérer durablement les élèves les plus éloignés de la pratique pour éviter la spirale évitement-déconditionnement."
         ]
       },
-
       {
         id: "developpement-durable",
         titre: "Développement durable",
@@ -923,12 +849,6 @@
         },
         pills: ["Code env.", "BO 2019", "BO 2020", "éco-délégués", "E3D"],
         definition: "Le développement durable articule des dimensions environnementales, sociales et économiques. En EPS, le sujet ne se réduit pas au tri des déchets : il concerne les déplacements, l'usage du matériel, les pratiques de pleine nature, les événements sportifs et le respect des lieux de pratique.",
-        declinaisons: [
-          "Mobilités : transport vers les installations, mutualisation des trajets, déplacements actifs.",
-          "Matériel : achat, réemploi, réparation, rangement, limitation du gaspillage.",
-          "Pratiques de pleine nature : respect des sites, gestion des déchets, sensibilisation à la fragilité des milieux.",
-          "Événements et AS : goûters, bouteilles, transports, affichage, éco-organisation."
-        ],
         explicatifs: [
           "Routines peu sobres : matériel mal géré, déplacements systématiquement motorisés, gaspillage banal.",
           "Faible perception des impacts : les élèves ne voient pas toujours le lien entre leurs gestes et l'état des lieux de pratique.",
@@ -1031,7 +951,6 @@
           "Former les élèves à arbitrer des choix concrets : se déplacer, acheter, pratiquer, organiser sans dégrader."
         ]
       },
-
       {
         id: "mixite",
         titre: "Mixité filles-garçons / égalité femmes-hommes",
@@ -1043,12 +962,6 @@
         },
         pills: ["L121-1", "L312-17-1", "Code pénal", "BO 2015", "égalité"],
         definition: "La mixité renvoie à la présence conjointe des filles et des garçons. Mais la simple co-présence ne garantit ni l'égalité de traitement ni l'égalité d'accès aux apprentissages. En EPS, les écarts se rejouent dans les rôles, l'espace, les feedbacks, les dispenses, les choix d'APSA, les évaluations et les représentations du corps performant.",
-        declinaisons: [
-          "Occupation inégale de l'espace et du ballon : les garçons monopolisent le jeu, les filles restent au score ou en périphérie.",
-          "Rôles sociaux genrés : arbitre, coach, capitaine, observateur ou responsable matériel toujours confiés aux mêmes profils.",
-          "Feedbacks inégaux : conseils techniques adressés surtout aux garçons, encouragements vagues davantage donnés aux filles.",
-          "Vestiaires, regroupements, remarques sur le corps et orientation : lieux forts de reproduction des stéréotypes."
-        ],
         explicatifs: [
           "Stéréotypes de genre : les élèves ont intériorisé des attentes différentes selon qu'on est fille ou garçon sur la force, l'autorité, la technicité ou la prise de risque.",
           "Besoins d'appartenance : les regroupements entre pairs favorisent les logiques mono-genrées et la peur de sortir des normes du groupe.",
@@ -1206,37 +1119,29 @@
       $("heroSubtitle").textContent = fiche.subtitle;
       $("heroPills").innerHTML = renderPills(fiche.pills);
 
-      $("definitionPanel").innerHTML = `
+      $("leftPanel").innerHTML = `
         <h2>1 — Définitions précises et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
 
         <div class="section-block">
-          <div class="definition-split">
-            <div class="definition-block">
-              <h3 class="mini-title">Déclinaisons concrètes</h3>
-              ${renderBulletList(fiche.declinaisons)}
-            </div>
-            <div class="explicatif-block">
-              <h3 class="mini-title">Éléments explicatifs</h3>
-              ${renderBulletList(fiche.explicatifs)}
-            </div>
-          </div>
+          <h3 class="mini-title">Éléments explicatifs</h3>
+          ${renderBulletList(fiche.explicatifs || [])}
         </div>
 
         <div class="section-block">
           <h3 class="mini-title">👉 En EPS</h3>
-          ${renderBulletList(fiche.epsPoints)}
+          ${renderBulletList(fiche.epsPoints || [])}
         </div>
       `;
 
-      $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent</h2>${renderRefList(fiche.textes)}`;
-      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
-      $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
-      $("partenairesCard").innerHTML = `<h2>5 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires)}`;
-      $("protocolesCard").innerHTML = `<h2>6 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles)}`;
-      $("courtCard").innerHTML = `<h2>7 — À court terme</h2>${renderBulletList(fiche.court)}`;
-      $("moyenCard").innerHTML = `<h2>8 — À moyen terme</h2>${renderBulletList(fiche.moyen)}`;
-      $("longCard").innerHTML = `<h2>9 — À long terme</h2>${renderBulletList(fiche.long)}`;
+      $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent</h2>${renderRefList(fiche.textes || [])}`;
+      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs || [])}`;
+      $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions || [])}`;
+      $("partenairesCard").innerHTML = `<h2>5 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires || [])}`;
+      $("protocolesCard").innerHTML = `<h2>6 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles || [])}`;
+      $("courtCard").innerHTML = `<h2>7 — À court terme</h2>${renderBulletList(fiche.court || [])}`;
+      $("moyenCard").innerHTML = `<h2>8 — À moyen terme</h2>${renderBulletList(fiche.moyen || [])}`;
+      $("longCard").innerHTML = `<h2>9 — À long terme</h2>${renderBulletList(fiche.long || [])}`;
 
       document.querySelectorAll(".nav-btn").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
@@ -1252,7 +1157,6 @@
         btn.addEventListener("click", () => {
           index = Number(btn.dataset.index);
           render();
-          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
     }
@@ -1260,13 +1164,11 @@
     $("prevBtn").addEventListener("click", () => {
       index = (index - 1 + fiches.length) % fiches.length;
       render();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     $("nextBtn").addEventListener("click", () => {
       index = (index + 1) % fiches.length;
       render();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     initNav();
