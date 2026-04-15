@@ -28,7 +28,7 @@
     }
 
     .container {
-      max-width: 1320px;
+      max-width: 1360px;
       margin: 0 auto;
       padding: 28px 18px 56px;
     }
@@ -87,7 +87,7 @@
 
     .subtitle {
       margin: 0;
-      max-width: 930px;
+      max-width: 980px;
       color: #334155;
       font-size: 15px;
     }
@@ -133,9 +133,10 @@
 
     .layout-main {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 1fr 1.25fr;
       gap: 18px;
       margin-bottom: 18px;
+      align-items: start;
     }
 
     .left-panel, .card, .step-box {
@@ -162,15 +163,11 @@
       color: #334155;
     }
 
-    .side-note {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
-    }
-
     .card-grid {
       display: grid;
       gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
     }
 
     .card {
@@ -179,6 +176,7 @@
       padding: 24px;
       position: relative;
       overflow: hidden;
+      min-height: 100%;
     }
 
     .card::before, .step-box::before {
@@ -197,7 +195,35 @@
     }
 
     .double-grid { grid-template-columns: 1fr 1fr; }
-    .steps-grid { grid-template-columns: 0.9fr 1.1fr; }
+    .steps-grid { grid-template-columns: 0.95fr 1.05fr; }
+
+    .step-box {
+      border-radius: 34px;
+      padding: 24px;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
+    }
+
+    .section-block:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .mini-title {
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.01em;
+    }
 
     ul.clean {
       margin: 0;
@@ -305,14 +331,6 @@
       color: #334155;
     }
 
-    .step-box {
-      border-radius: 34px;
-      padding: 24px;
-      background: white;
-      position: relative;
-      overflow: hidden;
-    }
-
     .footer-note {
       margin-top: 20px;
       font-size: 13px;
@@ -320,8 +338,14 @@
       text-align: center;
     }
 
-    @media (max-width: 980px) {
-      .layout-main, .double-grid, .steps-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1080px) {
+      .layout-main,
+      .double-grid,
+      .steps-grid,
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
       .hero { padding: 24px; }
       .left-panel, .card, .step-box { border-radius: 26px; }
     }
@@ -348,7 +372,9 @@
 
     <section class="layout-main">
       <article id="leftPanel" class="left-panel"></article>
+
       <div class="card-grid">
+        <article id="explicationsCard" class="card"></article>
         <article id="textesCard" class="card"></article>
         <article id="valeursCard" class="card"></article>
         <article id="notionsCard" class="card"></article>
@@ -379,232 +405,270 @@
       {
         id: "discrimination",
         titre: "Discrimination",
-        subtitle: "Qualifier juridiquement les faits, rappeler le risque pénal et montrer pourquoi la lutte contre les discriminations relève aussi des missions de l'École.",
+        subtitle: "Qualifier juridiquement les faits, protéger l'élève, objectiver ce qui s'est passé et montrer que l'EPS ne peut jamais laisser s'installer une différence de traitement fondée sur un critère interdit.",
         colors: {
           accent: "#1d4ed8",
           accentSoft: "#dbeafe",
           hero: "linear-gradient(135deg, #dbeafe, #eff6ff)"
         },
         pills: ["Code pénal", "Code de l'éducation", "BO 2013", "BO 2015", "pHARe"],
-        valeurs: [
-          { text: "ÉGALITÉ : valeur la plus centrale du sujet. Aucune différence de traitement fondée sur un critère prohibé ne peut être tolérée.", level: "major" },
-          { text: "FRATERNITÉ : protéger la dignité d'autrui, refuser l'humiliation et l'exclusion.", level: "secondary" },
-          { text: "LIBERTÉ : garantir à chaque élève d'apprendre sans intimidation ni assignation identitaire.", level: "normal" },
-          { text: "LAÏCITÉ : cadre commun qui protège chacun sans hiérarchiser les appartenances.", level: "normal" }
+        definition: "La discrimination est une différence de traitement défavorable fondée sur un critère prohibé par la loi. En EPS, elle peut être explicite, par exemple refuser à une élève un rôle de capitaine parce que c'est une fille, ou plus indirecte, par exemple laisser s'installer des règles de fonctionnement qui excluent systématiquement certains élèves selon le sexe, l'origine, le handicap, l'apparence physique, l'orientation sexuelle ou la religion supposée.",
+        declinaisons: [
+          "Discrimination directe : consigne ou décision explicite. Exemple : « toi, tu ne peux pas arbitrer parce que tu ne parles pas bien français ».",
+          "Discrimination indirecte : règle apparemment neutre mais qui produit des effets inégalitaires. Exemple : groupes libres qui conduisent toujours à isoler les mêmes élèves.",
+          "Discrimination entre pairs : moqueries sur le corps, refus de passer la balle, exclusion du jeu, propos racistes, validistes, sexistes ou homophobes.",
+          "Discrimination institutionnelle à prévenir : barèmes, feedbacks, accès aux responsabilités, organisation des vestiaires, choix d'APSA ou d'évaluation qui avantagent toujours les mêmes profils."
         ],
-        definition: "La discrimination est une différence de traitement fondée sur un critère interdit par la loi. En EPS, elle peut apparaître dans les groupements, les rôles sociaux, l'évaluation, les remarques sur le corps, le sexe, l'origine, le handicap, la religion supposée, l'orientation sexuelle ou l'identité de genre.",
         epsPoints: [
-          "Une situation d'EPS peut être discriminatoire même sans intention explicite : groupes libres, rôles laissés aux habitudes, attentes différentes selon les élèves.",
-          "Le professeur d'EPS doit passer d'une lecture morale du problème à une lecture professionnelle : qualifier, protéger, tracer, transmettre, ajuster.",
-          "La réponse vise à la fois la protection immédiate de l'élève et le rétablissement d'une égalité réelle d'accès aux apprentissages."
+          "En EPS, le risque est élevé car les corps sont exposés, comparés, évalués et visibles : cela peut toucher l'apparence, la performance, la tenue, le genre, le handicap ou l'origine supposée.",
+          "L'enseignant ne se contente pas de dire « ce n'est pas gentil » : il qualifie professionnellement les faits, fait cesser, protège, trace et transmet.",
+          "Exemple concret : si un groupe refuse systématiquement qu'une élève voilée participe à l'observation, ou si un élève en situation de handicap n'a jamais accès à une tâche centrale, on est déjà sur une inégalité de traitement à objectiver."
+        ],
+        explicatifs: [
+          "Stéréotypes intériorisés : certains élèves considèrent comme « normales » des places inégales. Exemple : penser qu'une fille doit rester au score, qu'un élève en surpoids doit éviter de se montrer, ou qu'un élève allophone ne peut pas arbitrer.",
+          "Faible empathie : l'élève auteur ne mesure pas toujours la violence produite. Il faut donc travailler la prise de perspective, les effets concrets sur l'autre et la dignité.",
+          "Effet de groupe : la classe peut rire, suivre ou banaliser. Réduire le problème suppose donc d'agir sur le collectif et pas seulement sur l'auteur.",
+          "Organisation pédagogique peu régulée : groupes libres, rôles non tournants, absence de règles claires sur les vestiaires ou les feedbacks techniques."
         ],
         textes: [
           {
             label: "Code pénal, article 225-1 — Légifrance — version en vigueur",
-            apport: "Base juridique centrale : il définit les critères prohibés de discrimination. À citer si besoin : origine, sexe, situation de famille, grossesse, apparence physique, particulière vulnérabilité résultant de la situation économique, patronyme, lieu de résidence, état de santé, perte d'autonomie, handicap, caractéristiques génétiques, mœurs, orientation sexuelle, identité de genre, âge, opinions politiques, activités syndicales, qualité de lanceur d'alerte / facilitateur / personne en lien avec un lanceur d'alerte, capacité à s'exprimer dans une langue autre que le français, appartenance ou non-appartenance, vraie ou supposée, à une ethnie, une Nation, une prétendue race ou une religion déterminée.",
+            apport: "Base juridique centrale : il définit les critères prohibés de discrimination. À l'oral, ce texte permet de passer d'une lecture morale à une lecture juridique des faits.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
           },
           {
             label: "Code pénal, article 225-2 — Légifrance — version en vigueur",
-            apport: "Texte pénal à citer pour le risque encouru : certaines discriminations sont punies de 3 ans d'emprisonnement et de 45 000 € d'amende. Cela montre que l'enjeu dépasse la simple faute scolaire.",
+            apport: "Texte important pour rappeler les conséquences pénales : certaines discriminations sont punies de 3 ans d'emprisonnement et de 45 000 € d'amende. Cela montre que le problème dépasse largement la simple incivilité scolaire.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033975382"
           },
           {
             label: "Code de l'éducation, article L121-1 — Légifrance — version en vigueur",
-            apport: "Ancrage scolaire du sujet : l'École assure une formation à la connaissance et au respect des droits de la personne et à la lutte contre les discriminations. Cela fonde la légitimité de l'action éducative de l'enseignant.",
+            apport: "Ancrage scolaire du sujet : l'École assure une formation à la connaissance et au respect des droits de la personne et à la lutte contre les discriminations. L'action éducative de l'enseignant est donc pleinement légitime.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405"
           },
           {
-            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
-            apport: "Texte professionnel de référence : il impose de se mobiliser contre les stéréotypes et les discriminations de tout ordre. Il justifie une intervention active du professeur d'EPS.",
+            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles",
+            apport: "Texte professionnel de référence : l'enseignant doit se mobiliser contre les stéréotypes et les discriminations. Cela justifie une intervention explicite, pas seulement implicite.",
             url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
           },
           {
-            label: "Arrêté du 9-11-2015, JO du 24-11-2015, BO spécial n°11 du 26-11-2015 — Programme d'enseignement du cycle 4, annexe 3",
-            apport: "Texte de programme utile pour l'oral : le domaine 3, « formation de la personne et du citoyen », ancre le refus des discriminations dans la culture commune de tous les élèves.",
+            label: "Arrêté du 9-11-2015, JO du 24-11-2015, BO spécial n°11 du 26-11-2015 — Programme du cycle 4, annexe 3",
+            apport: "Le domaine 3 « formation de la personne et du citoyen » permet d'ancrer le refus des discriminations dans la culture commune et dans les apprentissages de tous les élèves.",
             url: "https://www.education.gouv.fr/bo/15/Special11/MENE1526483Aannexe3.htm"
           }
         ],
+        valeurs: [
+          { text: "ÉGALITÉ : valeur la plus centrale. Aucune différence de traitement fondée sur un critère prohibé ne peut être tolérée.", level: "major" },
+          { text: "FRATERNITÉ : protéger la dignité d'autrui, refuser l'humiliation, reconstruire un collectif qui n'exclut pas.", level: "secondary" },
+          { text: "LIBERTÉ : garantir à chacun le droit d'apprendre, de pratiquer et de progresser sans assignation identitaire.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun qui protège chacun sans hiérarchiser les appartenances.", level: "normal" }
+        ],
         notions: [
-          "Stéréotype ≠ préjugé ≠ discrimination : le stéréotype nourrit souvent le problème, mais la discrimination correspond à un traitement défavorable objectivable.",
-          "Discrimination directe : règle explicite. Discrimination indirecte : organisation apparemment neutre mais inégalitaire dans ses effets.",
-          "En EPS, les zones de vigilance sont les groupes, les rôles, les feedbacks, les barèmes, les vestiaires et les interactions entre pairs."
+          "Stéréotype ≠ préjugé ≠ discrimination : le stéréotype nourrit le problème, mais la discrimination renvoie à un traitement défavorable objectivable.",
+          "Discrimination directe / indirecte : utile pour montrer qu'un dispositif EPS peut être injuste même sans intention ouvertement hostile.",
+          "Vigilances EPS : constitution des groupes, rôles sociaux, feedbacks, barèmes, espace de jeu, circulation dans les vestiaires, prise de parole.",
+          "Phrase mobilisable face aux parents : « Mon rôle est d'assurer la sécurité, l'égalité de traitement et l'accès aux apprentissages de tous les élèves. »"
         ],
         partenaires: [
-          "Chef d'établissement : sécurise la réponse institutionnelle et les suites disciplinaires.",
-          "CPE : traçabilité, suivi éducatif, observation de la répétition des faits hors EPS.",
-          "Référent harcèlement / équipe pHARe : à mobiliser si les faits sont répétés ou relèvent du harcèlement.",
-          "Référent égalité : pertinent si la discrimination touche le sexe, le genre ou les violences sexistes.",
-          "Référent numérique : utile si les faits se prolongent en ligne, par diffusion d'images, messages ou cyberharcèlement.",
-          "Infirmier, médecin scolaire, PsyEN et famille : à mobiliser si la situation touche la santé, l'estime de soi ou l'assiduité."
+          "Chef d'établissement : sécurise la réponse institutionnelle, le rappel au règlement et les suites disciplinaires éventuelles.",
+          "CPE : utile pour la traçabilité, l'identification d'une répétition hors EPS et le lien éducatif avec la famille.",
+          "Référent harcèlement / équipe pHARe : à mobiliser si les faits sont répétés ou s'inscrivent dans un rapport de domination.",
+          "Référent égalité : pertinent si la discrimination touche le sexe, le genre, l'orientation sexuelle ou des violences sexistes.",
+          "Infirmier, médecin scolaire, PsyEN : nécessaires si la situation a un impact sur la santé, l'estime de soi, le rapport au corps ou l'assiduité.",
+          "Famille : à informer avec des faits précis, datés et contextualisés, jamais avec des interprétations hâtives."
         ],
         protocoles: [
           {
             label: "Programme pHARe",
-            apport: "À utiliser quand les faits sont répétés, qu'il existe un déséquilibre de pouvoir ou qu'un élève se trouve durablement ciblé.",
-            details: "Le programme est obligatoire dans chaque école, collège et lycée. Il repose sur des équipes ressources d'au moins cinq personnels et sur un protocole national de détection et de prise en charge."
+            apport: "À activer si les faits sont répétés, si un élève est durablement ciblé ou si le collectif entretient la situation.",
+            details: "Exemple : plusieurs séances de suite, un élève est humilié dans les vestiaires et exclu du jeu. On ne reste plus sur une simple régulation de séance."
           },
           {
             label: "3018",
-            apport: "À mobiliser si la situation se prolonge en ligne ou si un contenu doit être signalé ou retiré rapidement.",
-            details: "Numéro national gratuit et confidentiel de lutte contre le harcèlement et le cyberharcèlement."
+            apport: "À mobiliser si les faits se prolongent en ligne, avec diffusion de messages, photos ou insultes sur un groupe de classe.",
+            details: "Exemple : capture d'écran d'une photo prise dans les vestiaires, commentaires humiliants partagés le soir."
+          },
+          {
+            label: "Voie hiérarchique / faits graves",
+            apport: "À utiliser pour tout fait susceptible de constituer une infraction pénale ou une atteinte grave aux droits d'un élève.",
+            details: "Le professeur transmet des faits datés, lieu, témoins, formulation entendue, conséquences sur la séance."
           },
           {
             label: "CESCE",
-            apport: "À utiliser pour porter une prévention d'établissement sur les discriminations, le respect, les violences et le climat scolaire.",
-            details: "Le CESCE est présidé par le chef d'établissement et peut réunir personnels, élèves, parents, santé-social et partenaires institutionnels ou associatifs."
-          },
-          {
-            label: "Voie hiérarchique / suites pénales si faits graves",
-            apport: "À évoquer pour les faits susceptibles de constituer une infraction pénale.",
-            details: "Le professeur alerte immédiatement la direction et transmet des faits datés, contextualisés, objectivés."
+            apport: "Instance utile pour installer une prévention d'établissement sur le respect, les discriminations, l'usage du numérique et le climat scolaire.",
+            details: "Exemple : campagne sur les insultes racistes, homophobes ou validistes, travail sur les vestiaires et l'usage du téléphone."
           }
         ],
         court: [
-          "Faire cesser immédiatement les propos ou actes et ne jamais banaliser sous couvert d'humour.",
-          "Protéger l'élève : le sortir si nécessaire de la pression du groupe, recueillir sa parole, noter faits, témoins, lieu, heure, fréquence.",
-          "Informer rapidement le chef d'établissement et le CPE pour qualifier la situation : fait isolé, discrimination, harcèlement, cyberharcèlement.",
-          "Conserver les preuves numériques si elles existent et informer la famille."
+          "Faire cesser immédiatement les propos ou les actes : on ne banalise jamais sous couvert d'humour ou de « chamaillerie ».",
+          "Protéger l'élève : le sortir si nécessaire de la pression du groupe, recueillir sa parole à part, vérifier son état émotionnel, noter les faits précis.",
+          "Nommer professionnellement la situation devant la classe si besoin : « Ici, personne n'est exclu d'un rôle, d'un espace ou d'une tâche pour ce qu'il est. »",
+          "Tracer : date, lieu, témoins, mots exacts, fréquence, support numérique éventuel.",
+          "Informer rapidement le chef d'établissement et le CPE, puis la famille selon le protocole de l'établissement."
         ],
         moyen: [
-          "Activer pHARe si les faits sont répétés : entretiens, protection de la victime, suivi et coordination d'équipe.",
-          "Retravailler la pédagogie : groupes pilotés, rôles tournants, critères de réussite plus équitables.",
-          "Mobiliser le référent égalité, le référent numérique ou les personnels de santé selon la nature de l'atteinte.",
-          "Faire un point d'équipe si le problème traverse plusieurs cours ou espaces de l'établissement."
+          "Retravailler la pédagogie : groupes constitués, rôles tournants, critères de réussite explicites, régulation de la parole et des feedbacks.",
+          "Exemple EPS : en volley, imposer une rotation des responsabilités et des zones de réception pour éviter l'exclusion répétée d'une élève ou d'un élève ciblé.",
+          "Faire un point d'équipe si le problème traverse plusieurs cours, plusieurs espaces ou plusieurs adultes.",
+          "Si besoin, articuler avec EMC ou heure de vie de classe pour travailler stéréotypes, empathie, dignité, conséquences juridiques et devoirs d'élève.",
+          "Préparer un échange avec les parents à partir de faits objectivés : ce qui s'est passé, ce qui a été fait, ce qui va être modifié."
         ],
         long: [
-          "Inscrire la lutte contre les discriminations dans le projet EPS, le règlement des vestiaires et les règles de circulation des rôles et responsabilités.",
-          "Utiliser le CESCE et pHARe pour des actions de prévention sur racisme, sexisme, LGBTphobies, handicap et cyberviolences.",
-          "Stabiliser une culture d'équipe : mêmes procédures de traçabilité, même seuil d'intervention, mêmes repères d'évaluation.",
-          "Former les élèves à distinguer conflit, violence, harcèlement et discrimination."
+          "Inscrire dans le projet EPS des règles explicites sur les groupes, les rôles sociaux, les vestiaires, l'usage du téléphone et la réaction immédiate face à toute humiliation.",
+          "Stabiliser une culture d'équipe : même seuil d'intervention, mêmes procédures de traçabilité, mêmes exigences de respect.",
+          "Mettre en place avec le CESCE ou pHARe des actions de prévention sur racisme, sexisme, homophobie, validisme et cyberviolences.",
+          "Monter une action partenariale avec une association comme la LICRA pour travailler la lutte contre les discriminations et donner des exemples concrets aux élèves.",
+          "Former les élèves à distinguer conflit, violence, harcèlement et discrimination, afin qu'ils sachent alerter plus tôt."
         ]
       },
 
       {
         id: "radicalite",
         titre: "Radicalité / atteintes aux valeurs de la République",
-        subtitle: "Décrire des faits, protéger le cadre scolaire et signaler immédiatement par la voie hiérarchique sans jamais rester seul face à une situation sensible.",
+        subtitle: "Décrire des faits observables, maintenir le cadre scolaire, transmettre immédiatement par la voie hiérarchique et ne jamais rester seul face à une situation sensible.",
         colors: {
           accent: "#b45309",
           accentSoft: "#fef3c7",
           hero: "linear-gradient(135deg, #fde68a, #fff7ed)"
         },
         pills: ["L111-1", "BO 2023", "Charte 2013", "voie hiérarchique", "EAVR"],
-        valeurs: [
-          { text: "LAÏCITÉ : valeur la plus structurante ici, parce qu'elle garantit un cadre commun dans le service public d'éducation.", level: "major" },
-          { text: "LIBERTÉ : protection de la liberté de conscience des élèves.", level: "secondary" },
-          { text: "ÉGALITÉ : même cadre scolaire pour tous, sans pression idéologique.", level: "normal" },
-          { text: "FRATERNITÉ : cohésion du collectif et refus des logiques de rupture.", level: "normal" }
+        definition: "Dans le cadre scolaire, on parle de radicalité ou d'atteintes aux valeurs de la République lorsqu'apparaissent des comportements, propos, refus ou contestations qui mettent en cause la règle commune, la liberté de conscience, la mixité, les enseignements ou le fonctionnement du service public d'éducation. En EPS, cela peut se traduire par un refus de pratiquer avec certains élèves, une contestation d'une tenue ou d'une activité au nom d'une conviction, du prosélytisme ou des discours de rupture.",
+        declinaisons: [
+          "Refus d'activité ou de mixité : refus de pratiquer avec des filles, de travailler avec certains camarades, ou rejet d'un contenu d'enseignement.",
+          "Contestations répétées du cadre : refus d'enlever une tenue non autorisée, refus de participer à une sortie obligatoire, opposition au règlement intérieur.",
+          "Prosélytisme ou pression sur les pairs : tentative d'imposer une conviction, d'intimider ou de juger un camarade sur sa pratique religieuse ou son mode de vie.",
+          "Discours de rupture : remise en cause de la loi commune, diffusion de contenus complotistes ou anti-institutionnels, propos de rejet de certaines valeurs républicaines."
         ],
-        definition: "Dans le cadre scolaire, le sujet renvoie à des comportements, refus, propos ou contestations pouvant heurter les valeurs de la République, la liberté de conscience ou le fonctionnement du service public d'éducation. En EPS, cela peut apparaître autour de la mixité, des tenues, du refus d'activité, du prosélytisme ou de discours de rupture avec la règle commune.",
         epsPoints: [
-          "Un signe isolé ne suffit pas : l'enseignant décrit des faits observables, datés et contextualisés, sans conclure seul à une radicalisation.",
-          "Le premier objectif est de protéger le cadre de la séance, l'autorité pédagogique et la liberté des autres élèves.",
-          "La bonne posture professionnelle est de ne ni banaliser ni improviser un débat idéologique seul."
+          "Un signe isolé ne suffit jamais : l'enseignant décrit des faits datés, contextualisés et observables, sans conclure seul à une radicalisation.",
+          "Le premier objectif est de protéger la séance, l'autorité pédagogique et la liberté des autres élèves à apprendre dans un cadre sécurisé.",
+          "Exemple EPS : un élève refuse à répétition de se mettre dans un groupe mixte, dit que certaines consignes ne s'appliquent pas à lui et cherche à entraîner d'autres élèves dans ce refus."
+        ],
+        explicatifs: [
+          "Quête de sens ou d'identité : certains adolescents cherchent des repères forts et peuvent adhérer à des discours simplificateurs ou de rupture.",
+          "Besoins d'appartenance : le groupe, réel ou en ligne, peut offrir un sentiment de protection ou de valorisation. Il faut donc travailler le collectif scolaire et l'inclusion.",
+          "Besoin d'esprit critique : l'élève peut manquer d'outils pour analyser des discours complotistes, rigides ou manipulateurs.",
+          "Fragilités relationnelles : isolement, conflit avec l'institution, sentiment d'injustice ou volonté de provocation peuvent nourrir les comportements observés."
         ],
         textes: [
           {
             label: "Code de l'éducation, article L111-1 — Légifrance — version en vigueur",
-            apport: "Texte socle : l'École transmet les valeurs de la République, le respect de la liberté de conscience et de la laïcité. C'est le premier texte à citer pour justifier l'intervention éducative.",
+            apport: "Texte socle : l'École transmet les valeurs de la République, le respect de la liberté de conscience et de la laïcité. C'est le premier ancrage à citer.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043982767"
           },
           {
             label: "Note de service du 31-8-2023 (NOR : MENG2323654N), BO n°32 du 31-8-2023 — Respect des valeurs de la République",
-            apport: "Texte central pour la conduite à tenir : il rappelle que les chefs d'établissement, IEN et directeurs d'école sont les premiers responsables de la mise en œuvre de ces principes et que chaque personnel doit contribuer à les faire vivre.",
+            apport: "Texte central pour la conduite à tenir : il rappelle la responsabilité de la hiérarchie et la contribution de chaque personnel à la transmission et à la protection des valeurs de la République.",
             url: "https://www.education.gouv.fr/bo/2023/Hebdo32/MENG2323654N"
           },
           {
-            label: "Circulaire n°2013-144 du 6-9-2013 (NOR : MENE1322761C), BO n°33 du 12-9-2013 — Valeurs et symboles de la République / Charte de la laïcité à l'École",
-            apport: "Texte utile pour montrer que la diffusion des valeurs de la République et de la charte relève d'une pédagogie explicite et d'un affichage visible dans l'établissement.",
+            label: "Circulaire n°2013-144 du 6-9-2013, BO n°33 du 12-9-2013 — Charte de la laïcité à l'École",
+            apport: "Permet d'ancrer la pédagogie explicite des valeurs de la République et l'usage de la charte comme support visible et partagé.",
             url: "https://www.education.gouv.fr/bo/13/Hebdo33/MENE1322761C.htm"
           },
           {
             label: "Charte de la laïcité à l'École — annexe officielle à la circulaire du 6-9-2013",
-            apport: "Support institutionnel à mobiliser avec les élèves et les familles. Elle articule directement la laïcité aux valeurs de liberté, d'égalité et de fraternité.",
+            apport: "Support utile face aux élèves et aux familles pour rappeler que nul ne peut se soustraire aux règles communes au nom d'une appartenance particulière.",
             url: "https://www.education.gouv.fr/sites/default/files/document/475513.pdf"
           },
           {
             label: "Code de l'éducation, article L141-5-1 — Légifrance — version en vigueur",
-            apport: "À citer si la situation touche aux signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics ; il rappelle aussi qu'un dialogue avec l'élève précède toute procédure disciplinaire.",
+            apport: "À citer si la situation porte sur des signes ou tenues manifestant ostensiblement une appartenance religieuse. Il rappelle qu'un dialogue précède toute procédure disciplinaire.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524456"
           }
         ],
+        valeurs: [
+          { text: "LAÏCITÉ : valeur la plus structurante ici, car elle garantit un cadre commun dans le service public d'éducation.", level: "major" },
+          { text: "LIBERTÉ : protection de la liberté de conscience de tous les élèves, sans pression idéologique.", level: "secondary" },
+          { text: "ÉGALITÉ : même règle scolaire pour tous, même accès aux apprentissages, même exigence de respect du cadre.", level: "normal" },
+          { text: "FRATERNITÉ : refus des logiques de rupture, de séparation et de désignation d'ennemis au sein du collectif scolaire.", level: "normal" }
+        ],
         notions: [
-          "Repérer ≠ accuser : on reste sur les faits et leurs effets sur le cadre scolaire.",
-          "Une contestation d'enseignement, un refus d'activité ou une revendication communautaire n'ont pas automatiquement la même signification ; il faut analyser finement.",
-          "Le professeur n'enquête pas seul : il alerte, transmet et participe à la réponse collective."
+          "Repérer ≠ accuser : on reste sur les faits, leurs répétitions et leurs effets sur le cadre scolaire.",
+          "Refus ponctuel ≠ adhésion idéologique structurée : la prudence professionnelle est essentielle.",
+          "Le professeur n'enquête pas seul : il alerte, transmet, participe à la réponse collective et ne se met jamais en face-à-face argumentatif prolongé.",
+          "Phrase utile : « Dans le service public d'éducation, la règle commune s'applique à tous les élèves ; je rappelle le cadre et je transmets les faits à la hiérarchie. »"
         ],
         partenaires: [
-          "Chef d'établissement : premier responsable du traitement dans le second degré.",
-          "CPE : utile pour la récurrence des faits, le suivi éducatif et le lien avec la famille.",
+          "Chef d'établissement : premier responsable du traitement de la situation dans le second degré.",
+          "CPE : utile pour repérer une récurrence, faire le lien avec la vie scolaire et travailler la relation éducative.",
           "Professeur principal : intéressant si la situation touche plusieurs disciplines ou la scolarité globale.",
-          "Équipe académique Valeurs de la République (EAVR) : expertise pédagogique, éducative et juridique.",
-          "Coordonnateur académique laïcité : ressource d'appui au sein du dispositif académique.",
-          "PsyEN ou infirmier : utiles si la situation révèle emprise, rupture, mal-être ou isolement."
+          "Équipe académique Valeurs de la République (EAVR) : ressource d'expertise pédagogique, éducative et juridique.",
+          "Coordonnateur académique laïcité : appui sur les cas sensibles ou ambigus.",
+          "PsyEN, infirmier, assistante sociale : pertinents si la situation révèle isolement, rupture, emprise, mal-être ou besoin d'accompagnement."
         ],
         protocoles: [
           {
             label: "Voie hiérarchique immédiate",
-            apport: "Réflexe central : l'enseignant ne reste jamais seul avec une situation sensible et ne traite pas seul un cas potentiellement grave.",
-            details: "On alerte la direction avec des faits précis, datés, contextualisés et sans interprétation excessive."
+            apport: "Réflexe central : l'enseignant ne traite pas seul une situation potentiellement grave ou sensible.",
+            details: "Exemple : refus répété de mixité accompagné de propos contestant la règle commune. On transmet rapidement des faits précis, sans interprétation excessive."
           },
           {
             label: "Équipe académique Valeurs de la République",
-            apport: "Elle est mobilisée pour analyser juridiquement la situation, soutenir les personnels et proposer une stratégie de réponse.",
-            details: "Dans chaque académie, elle associe des expertises juridiques, éducatives et pédagogiques autour du coordonnateur académique laïcité."
+            apport: "À mobiliser pour analyser la situation, sécuriser juridiquement la réponse et accompagner les personnels.",
+            details: "L'EAVR permet d'éviter les erreurs d'appréciation, les réactions isolées ou les discours improvisés."
           },
           {
             label: "Faits établissement",
-            apport: "À utiliser par la direction pour les situations préoccupantes ou graves qui doivent être formalisées à l'échelle institutionnelle.",
-            details: "À l'oral, il faut montrer que le professeur alerte sans se substituer à la hiérarchie."
+            apport: "Outil de formalisation pour les situations préoccupantes ou graves à l'échelle institutionnelle.",
+            details: "À l'oral, il faut montrer que l'enseignant alerte et transmet, sans se substituer à la direction."
           },
           {
             label: "Parcours citoyen / CESCE",
-            apport: "À mobiliser pour prévenir en amont : esprit critique, débat argumenté, transmission des valeurs de la République.",
-            details: "Ces cadres permettent de sortir du seul traitement d'incident pour installer une prévention d'établissement."
+            apport: "Cadres utiles pour prévenir : esprit critique, liberté de conscience, débat argumenté, connaissance des règles communes.",
+            details: "On ne réduit pas la réponse à l'incident ; on installe une prévention d'établissement."
           }
         ],
         court: [
-          "Maintenir le cadre : rappeler la règle scolaire, éviter le débat de conviction en pleine séance, protéger le groupe.",
-          "Noter les faits précis : mots prononcés, refus observés, contexte, fréquence, témoins.",
-          "Alerter immédiatement la hiérarchie ; ne pas gérer seul dans le gymnase ou les vestiaires.",
-          "Demander un appui académique si les faits touchent clairement aux valeurs de la République ou à la laïcité."
+          "Maintenir le cadre sans entrer seul dans un débat idéologique interminable en pleine séance.",
+          "Rappeler la règle scolaire : tenue, mixité, obligation de participation, respect des consignes et du règlement intérieur.",
+          "Noter les faits précis : mots prononcés, refus observés, fréquence, contexte, réactions du groupe, témoins éventuels.",
+          "Alerter immédiatement la hiérarchie et demander un appui si les faits touchent clairement aux valeurs de la République ou à la laïcité.",
+          "Si besoin, dire à la famille : « Nous traitons des faits de cadre scolaire et de respect de la règle commune, pas des convictions privées. »"
         ],
         moyen: [
-          "Organiser, sous l'autorité du chef d'établissement, un entretien avec l'élève et si besoin la famille pour rappeler le cadre et objectiver les faits.",
-          "Mobiliser l'EAVR pour ajuster la réponse : pédagogique, éducative, disciplinaire ou partenariale.",
-          "Suivre la situation avec la vie scolaire et le professeur principal si plusieurs espaces ou disciplines sont touchés.",
-          "Articuler avec l'EMC, le parcours citoyen et l'EPS pour retravailler liberté de conscience, règle commune et esprit critique."
+          "Sous l'autorité du chef d'établissement, organiser un entretien avec l'élève et, si nécessaire, avec la famille pour rappeler le cadre sans négocier le principe.",
+          "Mobiliser l'EAVR pour distinguer ce qui relève d'un rappel à la règle, d'une réponse éducative, disciplinaire ou d'une vigilance plus forte.",
+          "Suivre la situation avec la vie scolaire, le professeur principal et l'équipe pédagogique si plusieurs espaces sont concernés.",
+          "Travailler l'esprit critique avec l'EMC, le parcours citoyen et, en EPS, le sens de la règle commune, de l'arbitrage et du respect de l'autre.",
+          "Réguler le groupe classe pour éviter fascination, imitation ou polarisation."
         ],
         long: [
-          "Former l'équipe EPS aux procédures : qui alerte, comment tracer, quand demander l'appui académique.",
-          "Intégrer explicitement valeurs de la République, mixité et respect du cadre commun dans les règles d'EPS.",
-          "Utiliser parcours citoyen, CESCE et instances élèves pour une prévention régulière.",
-          "Préserver une réponse d'équipe cohérente pour éviter les contradictions éducatives."
+          "Former l'équipe EPS aux procédures : qui alerte, comment tracer, à quel moment demander un appui académique.",
+          "Intégrer explicitement dans les règles d'EPS le respect de la mixité, des enseignements obligatoires et des espaces communs comme les vestiaires.",
+          "Prévenir en amont via le parcours citoyen, le CESCE, la vie de classe et les instances élèves.",
+          "Monter des actions avec une association comme la Ligue de l'enseignement sur l'esprit critique, les valeurs républicaines et la vie démocratique.",
+          "Construire une réponse d'équipe cohérente pour éviter les contradictions entre adultes et les zones de flou."
         ]
       },
 
       {
         id: "laicite",
         titre: "Laïcité",
-        subtitle: "Principe protecteur et émancipateur : garantir liberté de conscience, neutralité du service public et cadre commun pour tous les élèves.",
+        subtitle: "Principe protecteur et émancipateur : garantir la liberté de conscience, la neutralité du service public et un cadre commun clair pour tous les élèves.",
         colors: {
           accent: "#7c3aed",
           accentSoft: "#ede9fe",
           hero: "linear-gradient(135deg, #ede9fe, #faf5ff)"
         },
         pills: ["L111-1", "L141-5-1", "Charte 2013", "BO 2023", "règlement intérieur"],
-        valeurs: [
-          { text: "LAÏCITÉ : valeur et principe central de la fiche.", level: "major" },
-          { text: "LIBERTÉ : garantie de la liberté de conscience, croire ou ne pas croire.", level: "secondary" },
-          { text: "ÉGALITÉ : même règle commune pour tous les élèves dans le service public.", level: "normal" },
-          { text: "FRATERNITÉ : possibilité de vivre ensemble sans qu'une conviction s'impose aux autres.", level: "normal" }
+        definition: "La laïcité n'est pas l'effacement des convictions personnelles ; c'est le principe qui garantit la liberté de conscience, l'égalité de traitement et la neutralité du service public. En EPS, elle apparaît souvent à travers des situations très concrètes : tenue, mixité, refus d'activité, absences sélectives, contestation d'un enseignement ou prosélytisme.",
+        declinaisons: [
+          "Tenue ou signe ostensible : la question porte alors sur le respect de L141-5-1 et du règlement intérieur.",
+          "Refus d'activité ou de contenu : danse, natation, pratique mixte, sortie scolaire obligatoire, présence d'un adulte homme ou femme.",
+          "Refus de cadre commun : opposition à une consigne au nom d'une appartenance religieuse ou communautaire.",
+          "Pression entre élèves : jugement d'un camarade pour sa pratique, sa tenue, sa non-croyance ou sa participation normale au cours."
         ],
-        definition: "La laïcité n'est pas l'effacement des convictions personnelles ; c'est le principe qui garantit la liberté de conscience, l'égalité de traitement et la neutralité du service public. En EPS, elle peut être interrogée à propos des tenues, de la mixité, des refus d'activité, des contestations d'enseignement ou du prosélytisme.",
         epsPoints: [
-          "La laïcité protège tous les élèves : elle évite qu'une conviction particulière s'impose au cadre scolaire commun.",
-          "En EPS, les situations sont souvent concrètes : tenue, assiduité, refus d'activité, contestation d'une consigne, revendication sur les vestiaires ou la mixité.",
-          "À l'oral, il faut montrer que l'on distingue principe de laïcité, liberté religieuse, neutralité du service public et règlement intérieur."
+          "La laïcité protège tous les élèves : elle évite qu'une conviction particulière s'impose à la règle commune de l'École.",
+          "En EPS, les cas sont souvent visibles immédiatement : vestiaires, tenue, binômes mixtes, sortie obligatoire, consigne liée à une APSA.",
+          "Exemple : une élève refuse d'entrer dans l'eau en natation au nom d'une conviction. L'enseignant rappelle le cadre, ne négocie pas le principe seul et transmet si nécessaire."
+        ],
+        explicatifs: [
+          "Respect du cadre : certains incidents relèvent d'abord d'une difficulté à accepter la règle commune plus que d'une opposition théologique structurée.",
+          "Besoin d'appartenance : l'élève peut chercher à affirmer son identité ou à se conformer à un groupe de pairs ou familial.",
+          "Besoin de confrontation : certains adolescents testent l'institution, provoquent ou cherchent un rapport de force avec l'adulte.",
+          "Manque de clarté des adultes : si les règles sur les tenues, vestiaires, absences ou sorties sont floues, les tensions augmentent."
         ],
         textes: [
           {
@@ -614,180 +678,206 @@
           },
           {
             label: "Code de l'éducation, article L141-5-1 — Légifrance — version en vigueur",
-            apport: "Texte juridique central sur les signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics. Il précise qu'avant toute procédure disciplinaire, un dialogue avec l'élève doit être engagé.",
+            apport: "Texte juridique central sur les signes ou tenues manifestant ostensiblement une appartenance religieuse dans les établissements publics. Il prévoit un dialogue avec l'élève avant toute procédure disciplinaire.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006524456"
           },
           {
-            label: "Circulaire n°2013-144 du 6-9-2013 (NOR : MENE1322761C), BO n°33 du 12-9-2013 — Valeurs et symboles de la République",
-            apport: "Texte de référence pour la diffusion et l'usage pédagogique de la Charte de la laïcité à l'École. Il précise notamment l'obligation d'affichage visible.",
+            label: "Circulaire n°2013-144 du 6-9-2013, BO n°33 du 12-9-2013 — Valeurs et symboles de la République",
+            apport: "Texte de référence pour la diffusion et l'usage pédagogique de la Charte de la laïcité à l'École.",
             url: "https://www.education.gouv.fr/bo/13/Hebdo33/MENE1322761C.htm"
           },
           {
             label: "Charte de la laïcité à l'École — annexe officielle à la circulaire du 6-9-2013",
-            apport: "Support institutionnel majeur pour les élèves et les familles. Elle explicite simplement le lien entre laïcité, liberté, égalité et fraternité.",
+            apport: "Support institutionnel majeur pour les élèves et les familles. Elle rappelle que nul ne peut se prévaloir de son appartenance religieuse pour refuser les règles applicables à l'École.",
             url: "https://www.education.gouv.fr/sites/default/files/document/475513.pdf"
           },
           {
             label: "Note de service du 31-8-2023 (NOR : MENG2323654N), BO n°32 du 31-8-2023 — Respect des valeurs de la République",
-            apport: "Texte récent à citer pour montrer que la transmission de la laïcité et des valeurs de la République doit être intégrée dans chaque projet d'école ou d'établissement.",
+            apport: "Texte récent utile pour montrer que la transmission de la laïcité et des valeurs de la République doit être intégrée au projet d'établissement.",
             url: "https://www.education.gouv.fr/bo/2023/Hebdo32/MENG2323654N"
           }
         ],
+        valeurs: [
+          { text: "LAÏCITÉ : principe central de la fiche, protecteur et structurant pour le cadre scolaire.", level: "major" },
+          { text: "LIBERTÉ : la liberté de conscience est garantie, croire ou ne pas croire relève de la sphère individuelle.", level: "secondary" },
+          { text: "ÉGALITÉ : même règle commune pour tous les élèves dans le service public d'éducation.", level: "normal" },
+          { text: "FRATERNITÉ : vivre ensemble sans qu'une conviction s'impose aux autres.", level: "normal" }
+        ],
         notions: [
-          "Laïcité ≠ hostilité au religieux : elle garantit au contraire la liberté de conscience dans un cadre commun neutre.",
-          "L'élève n'est pas soumis à une obligation de neutralité identique à celle des agents, mais il doit respecter le cadre fixé par la loi et le règlement intérieur.",
-          "Dialogue ne veut pas dire négociation du principe : on explique, on rappelle la règle, puis on applique les procédures si nécessaire."
+          "Laïcité ≠ hostilité au religieux : elle garantit au contraire la liberté de conscience dans un cadre neutre.",
+          "Dialogue ≠ négociation du principe : on explique la règle, on écoute, puis on applique les procédures si nécessaire.",
+          "L'élève n'a pas la même obligation de neutralité qu'un agent, mais il doit respecter la loi et le règlement intérieur.",
+          "Phrase utile aux parents : « À l'école publique, les convictions personnelles sont respectées, mais elles ne permettent pas de déroger aux règles scolaires communes. »"
         ],
         partenaires: [
           "Chef d'établissement : pilote le dialogue avec la famille et les suites éventuelles.",
-          "CPE : utile pour l'assiduité, les absences sélectives, les rappels au règlement et le suivi éducatif.",
+          "CPE : utile pour les absences sélectives, les rappels au règlement et le suivi éducatif.",
           "Professeur principal : relais si la situation concerne plusieurs cours ou fragilise la scolarité globale.",
           "EAVR / coordonnateur académique laïcité : expertise sur les cas sensibles ou ambigus.",
-          "Équipe EPS : nécessaire pour une réponse cohérente sur tenues, vestiaires, mixité et refus d'activité.",
-          "Famille : à associer dans un cadre institutionnel posé, piloté par la direction."
+          "Équipe EPS : indispensable pour une réponse cohérente sur tenues, vestiaires, mixité et refus d'activité.",
+          "Famille : à associer dans un cadre institutionnel posé et piloté, sans improvisation solitaire."
         ],
         protocoles: [
           {
             label: "Dialogue préalable prévu par L141-5-1",
             apport: "À utiliser avant une éventuelle procédure disciplinaire en cas de signes ou tenues ostensibles.",
-            details: "Le texte prévoit explicitement un dialogue avec l'élève ; c'est un point important à citer à l'oral."
+            details: "Point clé à citer : le texte prévoit explicitement un dialogue avec l'élève, ce qui permet de rappeler que l'École explique le cadre avant de sanctionner."
           },
           {
             label: "Règlement intérieur",
-            apport: "Il permet de relier les principes nationaux à des règles concrètes connues des élèves et des familles.",
-            details: "À l'oral, le bon réflexe est de montrer la cohérence entre loi, charte et règlement intérieur."
+            apport: "Il relie les grands principes nationaux à des règles concrètes connues des élèves et des familles.",
+            details: "Exemple : règles de tenue en EPS, sécurité, accès aux vestiaires, présence obligatoire en sortie scolaire ou en natation."
           },
           {
             label: "EAVR",
-            apport: "À mobiliser quand la situation est sensible, complexe ou répétée, et que l'établissement a besoin d'un appui expert.",
-            details: "L'équipe analyse, conseille, forme et peut accompagner l'établissement dans la durée."
+            apport: "À mobiliser quand la situation est sensible, répétée ou juridiquement délicate.",
+            details: "L'équipe peut sécuriser la réponse de l'établissement et aider à distinguer un rappel à la règle d'un cas plus complexe."
           },
           {
             label: "Projet d'établissement / EMC / parcours citoyen",
-            apport: "Ces cadres servent à prévenir en amont, afin que la laïcité ne soit pas seulement évoquée au moment d'un incident.",
-            details: "Ils permettent une pédagogie explicite, régulière et partagée."
+            apport: "Ces cadres servent à prévenir en amont, pour que la laïcité ne soit pas seulement évoquée au moment d'un incident.",
+            details: "Exemple : travail explicite avec les élèves sur la charte, le sens des règles, la liberté de conscience et le vivre-ensemble."
           }
         ],
         court: [
-          "Rappeler calmement la règle commune sans entrer dans un débat de conviction personnelle.",
-          "Décrire précisément la situation : refus d'activité, tenue, propos, absence sélective, contestation.",
+          "Rappeler calmement la règle commune sans entrer dans un débat de conviction personnelle en pleine séance.",
+          "Décrire précisément la situation : refus d'activité, tenue, absence sélective, propos, contestation d'une consigne ou d'un groupement.",
+          "S'appuyer sur la charte de la laïcité et le règlement intérieur pour objectiver la réponse.",
           "Alerter le chef d'établissement si le problème dépasse le simple rappel de règle ou se répète.",
-          "S'appuyer sur la charte de la laïcité et le règlement intérieur dans le dialogue."
+          "Dans les vestiaires, rappeler que l'élève a un devoir de respect du cadre, de sécurité et d'intimité d'autrui."
         ],
         moyen: [
-          "Organiser un échange institutionnel avec la famille sous l'autorité du chef d'établissement.",
-          "Solliciter l'EAVR si le cas est sensible, ambigu ou juridiquement délicat.",
-          "Mettre en cohérence l'équipe EPS sur les tenues, la mixité, les vestiaires et les refus d'activité pour éviter les messages contradictoires.",
-          "Articuler avec EMC et parcours citoyen pour retravailler liberté de conscience et cadre commun."
+          "Organiser un échange institutionnel avec la famille sous l'autorité du chef d'établissement, à partir de faits précis.",
+          "Mettre en cohérence l'équipe EPS sur les tenues, la mixité, les vestiaires et les refus d'activité afin d'éviter les messages contradictoires.",
+          "Solliciter l'EAVR si le cas est ambigu ou sensible.",
+          "Articuler avec EMC et le parcours citoyen pour retravailler liberté de conscience, cadre commun et respect des règles.",
+          "Prévoir une explicitation plus forte des obligations scolaires en début de cycle ou avant une activité sensible comme la natation."
         ],
         long: [
-          "Faire vivre la laïcité comme principe protecteur dans le projet d'établissement et les règles d'EPS.",
-          "Former régulièrement les personnels aux cas concrets les plus fréquents.",
+          "Faire vivre la laïcité comme principe protecteur dans le projet d'établissement et dans les règles d'EPS, pas seulement comme rappel punitif.",
+          "Former régulièrement les personnels aux cas concrets les plus fréquents : signes, tenues, sorties, mixité, refus d'activité.",
           "Prévenir plutôt que subir : affichage, explicitation, cohérence des adultes, travail avec les instances élèves.",
-          "Éviter deux écueils : négocier le principe ou surinterpréter chaque incident comme une attaque grave."
+          "Construire une action pédagogique avec une association comme Enquête pour travailler le fait religieux, la laïcité et les représentations des élèves.",
+          "Éviter deux écueils : négocier le principe ou surinterpréter chaque incident comme une atteinte idéologique majeure."
         ]
       },
 
       {
         id: "sedentarite",
         titre: "Santé / sédentarité",
-        subtitle: "Agir sur les habitudes de vie, sans stigmatiser, avec des réponses graduées et des textes de santé scolaire explicitement cités.",
+        subtitle: "Agir sur les habitudes de vie sans stigmatiser, avec des réponses graduées, des aménagements pédagogiques concrets et un appui clair sur les textes de santé scolaire.",
         colors: {
           accent: "#e11d48",
           accentSoft: "#ffe4ea",
           hero: "linear-gradient(135deg, #fecdd3, #fff1f2)"
         },
         pills: ["L541-1", "Circulaire 2016", "BO 2022 APQ", "santé scolaire", "CESCE"],
-        valeurs: [
-          { text: "FRATERNITÉ : attention portée aux élèves fragiles, solidarité éducative et refus de la stigmatisation.", level: "major" },
-          { text: "ÉGALITÉ : permettre à chacun d'accéder à la pratique sans double peine ni exclusion.", level: "secondary" },
-          { text: "LIBERTÉ : construire l'autonomie et des habitudes de vie plus actives.", level: "normal" },
-          { text: "LAÏCITÉ : cadre commun de santé scolaire indépendant des croyances ou appartenances.", level: "normal" }
+        definition: "La sédentarité correspond aux temps d'éveil passés assis ou allongé avec une faible dépense énergétique. Elle ne se confond pas avec l'inactivité physique. Un élève peut faire un peu de sport le mercredi et rester très sédentaire le reste du temps. En EPS, le sujet touche la santé, le rapport au corps, l'engagement, la fatigue, le sommeil, les écrans et le sentiment de compétence.",
+        declinaisons: [
+          "Temps d'écran très élevé, faible mobilité quotidienne, déplacements quasi exclusivement passifs.",
+          "Évitement de l'effort, peur du regard des autres, demandes de dispense répétées ou engagement minimal en séance.",
+          "Fatigue, manque de sommeil, difficultés à récupérer, baisse de vigilance et de disponibilité scolaire.",
+          "Rapport négatif au corps et à la performance, qui peut accentuer le retrait en EPS."
         ],
-        definition: "La sédentarité correspond aux temps d'éveil passés assis ou allongé avec une faible dépense énergétique. Elle ne se confond pas avec l'inactivité physique. En EPS, le sujet touche la santé, le rapport au corps, l'engagement en pratique et les habitudes de vie.",
         epsPoints: [
-          "Un élève peut faire un peu de sport et rester très sédentaire ; l'enjeu est donc d'éduquer aux habitudes de vie actives.",
           "La réponse pédagogique doit éviter la double peine : difficulté physique + exposition publique de l'échec.",
-          "Le professeur d'EPS adapte et alerte ; il ne médicalise pas seul la situation."
+          "L'enseignant adapte, encourage, repère et oriente ; il ne médicalise pas seul la situation.",
+          "Exemple : plutôt que de mettre d'emblée un élève très déconditionné sur une course collective comparée, on propose des objectifs progressifs, des temps de récupération et des indicateurs de progrès réalistes."
+        ],
+        explicatifs: [
+          "Habitudes de vie peu actives : écrans, transports passifs, faible pratique régulière hors école.",
+          "Fatigue / sommeil : coucher tardif, mauvaise récupération, faible disponibilité pour l'effort.",
+          "Faible sentiment de compétence : l'élève évite parce qu'il anticipe l'échec, la moquerie ou la comparaison défavorable.",
+          "Rapport social au corps : peur du vestiaire, gêne, honte, surpoids vécu comme exposition publique."
         ],
         textes: [
           {
             label: "Code de l'éducation, article L541-1 — Légifrance — version en vigueur",
-            apport: "Texte socle de santé scolaire : les élèves bénéficient d'actions de promotion de la santé constituant un parcours éducatif de santé. Il permet de montrer que le sujet relève pleinement des missions de l'École.",
+            apport: "Texte socle de santé scolaire : les élèves bénéficient d'actions de promotion de la santé constituant un parcours éducatif de santé. Le sujet relève pleinement des missions de l'École.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042656190"
           },
           {
             label: "Circulaire n°2016-008 du 28-1-2016, BO n°5 du 4-2-2016 — Parcours éducatif de santé pour tous les élèves",
-            apport: "Texte de référence pour articuler prévention, protection et éducation à la santé. Il légitime une réponse coordonnée autour de l'élève, au-delà du seul cours d'EPS.",
+            apport: "Texte de référence pour articuler prévention, protection et éducation à la santé autour de l'élève.",
             url: "https://www.education.gouv.fr/bo/16/Hebdo5/MENE1601852C.htm"
           },
           {
-            label: "Note de service du 27-7-2022 (NOR : MENE2220806N), BO n°30 du 28-7-2022 — Généralisation des 30 minutes d'activité physique quotidienne à l'école primaire",
-            apport: "Texte à citer explicitement si tu parles des 30 minutes d'activité physique quotidienne. Il montre que la lutte contre la sédentarité dépasse le seul cours d'EPS et concerne l'ensemble des temps scolaires dans le premier degré.",
+            label: "Note de service du 27-7-2022 (NOR : MENE2220806N), BO n°30 du 28-7-2022 — 30 minutes d'activité physique quotidienne",
+            apport: "Texte utile pour montrer que la lutte contre la sédentarité dépasse le seul cours d'EPS, notamment dans le premier degré.",
             url: "https://www.education.gouv.fr/bo/22/Hebdo30/MENE2220806N.htm"
           },
           {
             label: "BO n°39 du 20-10-2022 — Pilotage et mise en œuvre au niveau territorial pour l'année scolaire 2022-2023",
-            apport: "Texte utile pour montrer que l'APQ fait l'objet d'un pilotage territorial et d'une mise en œuvre organisée. Il confirme que chaque élève doit bénéficier d'au moins 30 minutes d'activité physique quotidienne à l'école élémentaire.",
+            apport: "Confirme le pilotage organisé de l'activité physique quotidienne et la volonté de développer des habitudes de vie plus actives.",
             url: "https://www.education.gouv.fr/bo/22/Hebdo39/MENG2228933X.htm"
           },
           {
-            label: "BO spécial n°5 du 11-4-2019 — Programmes d'enseignement de la voie générale et technologique du lycée",
-            apport: "Texte intéressant pour rattacher le sujet au lycée : les programmes abordent explicitement les questions de santé, d'activité physique, de sédentarité et de bien-être dans une approche éducative.",
+            label: "BO spécial n°5 du 11-4-2019 — Programmes du lycée général et technologique",
+            apport: "Permet de rattacher le sujet au lycée : santé, bien-être, activité physique et sédentarité sont abordés dans une approche éducative.",
             url: "https://www.education.gouv.fr/sites/default/files/document/BOSPE5_MENJ_1108488.pdf-233334.pdf"
           }
         ],
+        valeurs: [
+          { text: "FRATERNITÉ : attention portée aux élèves fragiles, refus de la stigmatisation et solidarité éducative.", level: "major" },
+          { text: "ÉGALITÉ : permettre à chacun d'accéder à la pratique sans double peine ni exclusion.", level: "secondary" },
+          { text: "LIBERTÉ : construire l'autonomie et des habitudes de vie plus actives.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun de santé scolaire indépendant des croyances ou appartenances.", level: "normal" }
+        ],
         notions: [
           "Sédentarité ≠ inactivité physique ; activité physique ≠ sport ≠ EPS.",
-          "Le sujet engage aussi le sommeil, les écrans, la motivation, l'estime de soi et les habitudes familiales.",
-          "La différenciation pédagogique est centrale pour éviter le décrochage de pratique."
+          "Le problème engage aussi le sommeil, les écrans, l'alimentation, le climat relationnel et l'estime de soi.",
+          "Différenciation pédagogique : intensité adaptée, valorisation des progrès, rôles actifs, climat de sécurité.",
+          "Phrase utile aux parents : « Nous cherchons à remettre votre enfant dans une dynamique de réussite et d'engagement progressif, pas à le mettre en échec. »"
         ],
         partenaires: [
-          "Infirmier scolaire : premier relais en cas de fatigue, malaise, plaintes somatiques, évitement ou inquiétude médicale.",
-          "Médecin scolaire : utile si les dispenses, limitations ou besoins d'aménagement se répètent.",
-          "Professeur principal : pertinent pour relier les constats EPS à l'assiduité, au sommeil et au quotidien scolaire.",
-          "CPE : utile pour l'absentéisme, les rythmes de vie et le lien avec la famille.",
-          "CESCE : cadre de pilotage pour des actions santé d'établissement.",
-          "Famille et AS : indispensables pour agir sur les routines de vie et proposer des passerelles de pratique."
+          "Infirmier scolaire : premier relais en cas de fatigue anormale, malaise, plaintes somatiques ou inquiétude médicale.",
+          "Médecin scolaire : utile si les dispenses, limitations ou aménagements se répètent.",
+          "Professeur principal : permet de relier EPS, assiduité, sommeil, concentration et habitudes de vie.",
+          "CPE : intéressant pour l'absentéisme, les retards, les rythmes de vie et le lien avec la famille.",
+          "Famille : indispensable pour agir sur les routines de vie, les écrans, le sommeil et les déplacements.",
+          "Association sportive scolaire : passerelle concrète vers une pratique plus régulière et moins anxiogène."
         ],
         protocoles: [
           {
             label: "Parcours éducatif de santé",
-            apport: "Il est utilisé pour coordonner les actions de prévention, d'éducation et de protection autour de la santé de l'élève.",
-            details: "Il permet d'articuler EPS, personnels de santé, vie scolaire, familles et partenaires extérieurs."
+            apport: "Il coordonne les actions de prévention, d'éducation et de protection autour de la santé de l'élève.",
+            details: "Exemple : croiser les observations EPS, vie scolaire, infirmier et famille pour éviter que l'élève ne disparaisse dans le silence."
           },
           {
             label: "CESCE",
             apport: "À mobiliser pour penser des actions collectives sur écrans, sommeil, activité physique, alimentation et bien-être.",
-            details: "Le CESCE est présidé par le chef d'établissement et peut associer personnels, parents, élèves, santé-social et partenaires institutionnels."
+            details: "Exemple : semaine du sommeil, affichage sur les temps d'écran, défi mobilité active."
           },
           {
             label: "PAI si besoin",
             apport: "À évoquer quand une situation de santé durable nécessite des aménagements connus de tous les adultes concernés.",
-            details: "Le PAI sécurise les adaptations dans le respect du secret médical ; il ne remplace pas l'analyse pédagogique quotidienne."
+            details: "Le PAI sécurise les adaptations mais ne remplace pas l'analyse pédagogique quotidienne."
           },
           {
             label: "École promotrice de santé",
-            apport: "Cadre utile quand on veut sortir d'une réponse ponctuelle pour agir sur les déterminants de santé de l'établissement.",
-            details: "Cette logique aide à inscrire l'action dans la durée et à mobiliser plusieurs adultes et espaces de vie scolaire."
+            apport: "Cadre utile pour agir sur les déterminants de santé à l'échelle de l'établissement.",
+            details: "On sort d'une réponse ponctuelle pour construire une culture plus active, plus régulière et plus inclusive."
           }
         ],
         court: [
-          "Adapter immédiatement la séance : effort progressif, temps morts réduits, objectifs atteignables, valorisation des progrès proches.",
-          "Repérer sans exposer publiquement les élèves les plus en difficulté ; proposer des rôles actifs en cas d'aménagement ponctuel.",
+          "Adapter immédiatement la séance : effort progressif, temps morts réduits, objectifs atteignables et valorisation des progrès proches.",
+          "Repérer sans exposer publiquement les élèves les plus en difficulté ; éviter les comparaisons humiliantes et les tests trop brutaux.",
+          "Proposer des rôles actifs en cas d'aménagement ponctuel pour éviter la mise à l'écart pure et simple.",
           "Orienter vers l'infirmier si fatigue anormale, malaise ou plaintes répétées ; informer la famille selon la procédure de l'établissement.",
           "Garder une trace des adaptations mises en place pour objectiver la situation."
         ],
         moyen: [
-          "Construire avec l'équipe EPS une progression moins excluante : coopération, régularité, intensité adaptée et plaisir d'agir.",
+          "Construire avec l'équipe EPS une progression moins excluante : coopération, régularité, intensité adaptée, plaisir d'agir et sentiment de compétence.",
           "Associer professeur principal, CPE, infirmier et famille si les dispenses, l'absentéisme ou le repli se répètent.",
-          "Mobiliser le CESCE ou le parcours éducatif de santé pour des actions coordonnées sur écrans, sommeil, activité physique et bien-être.",
-          "Créer des passerelles vers l'AS ou des formes de pratique plus sécurisantes."
+          "Créer des passerelles vers l'AS ou des formes de pratique plus sécurisantes : marche active, renforcement progressif, atelier bien-être.",
+          "Mettre en place des repères concrets pour l'élève : carnet de progression, objectifs réalistes, auto-évaluation du ressenti.",
+          "Articuler avec le parcours éducatif de santé des messages simples sur sommeil, hydratation, écrans et récupération."
         ],
         long: [
           "Inscrire la lutte contre la sédentarité dans le projet d'établissement : temps actifs, continuité EPS-AS-vie scolaire, diagnostics partagés.",
-          "Développer une logique d'École promotrice de santé avec indicateurs simples et actions visibles.",
+          "Développer une logique d'École promotrice de santé avec des indicateurs simples et des actions visibles.",
           "Stabiliser une culture d'équipe où la santé n'est ni morale ni performance pure, mais un levier d'émancipation.",
+          "Monter un partenariat avec une association comme Siel Bleu pour des actions autour de l'activité physique adaptée, du bien-être et du plaisir d'agir.",
           "Repérer durablement les élèves les plus éloignés de la pratique pour éviter la spirale évitement-déconditionnement."
         ]
       },
@@ -795,103 +885,119 @@
       {
         id: "developpement-durable",
         titre: "Développement durable",
-        subtitle: "S'appuyer sur des textes de Code, de circulaire et de BO pour montrer que l'EDD est une politique d'établissement structurée, avec les éco-délégués et la démarche E3D.",
+        subtitle: "Montrer que l'EDD n'est pas une morale abstraite mais une politique d'établissement concrète, structurée, avec des choix visibles en EPS, à l'AS et dans les mobilités.",
         colors: {
           accent: "#15803d",
           accentSoft: "#dcfce7",
           hero: "linear-gradient(135deg, #bbf7d0, #ecfdf5)"
         },
-        pills: ["Code de l'environnement", "BO 2019", "BO 2020", "éco-délégués", "E3D"],
-        valeurs: [
-          { text: "FRATERNITÉ : solidarité intergénérationnelle et responsabilité envers les autres.", level: "major" },
-          { text: "LIBERTÉ : former des citoyens capables de choix éclairés et responsables.", level: "secondary" },
-          { text: "ÉGALITÉ : accès partagé à des ressources communes et à un environnement préservé.", level: "normal" },
-          { text: "LAÏCITÉ : cadre commun de l'action publique et du bien commun.", level: "normal" }
+        pills: ["Code env.", "BO 2019", "BO 2020", "éco-délégués", "E3D"],
+        definition: "Le développement durable articule des dimensions environnementales, sociales et économiques. En EPS, le sujet ne se réduit pas au tri des déchets : il concerne aussi les déplacements, l'usage du matériel, les événements sportifs, les APPN, la sobriété des organisations et le respect des lieux de pratique.",
+        declinaisons: [
+          "Mobilités : transport vers les installations, mutualisation des trajets, déplacements actifs.",
+          "Matériel : achat, réemploi, réparation, rangement, limitation du gaspillage et seconde vie des équipements.",
+          "Pratiques de pleine nature : respect des sites, gestion des déchets, sensibilisation à la fragilité des milieux.",
+          "Événements et AS : bouteilles, goûters, affichage, déplacements, consommation, valorisation des rôles d'éco-délégués."
         ],
-        definition: "Le développement durable articule des dimensions environnementales, sociales et économiques. En EPS, cela concerne les déplacements, l'usage du matériel, les événements sportifs, les pratiques de pleine nature et le respect des lieux de pratique.",
         epsPoints: [
-          "Le sujet ne se réduit pas au tri des déchets : il touche les mobilités, les achats, la sobriété matérielle, l'impact des événements et la relation aux milieux naturels.",
-          "L'EPS est un bon terrain de mise en projet : course d'orientation, AS, APPN, déplacements, usage des installations.",
-          "L'intérêt à l'oral est de montrer des choix concrets d'organisation et pas seulement un discours de sensibilisation."
+          "L'intérêt à l'oral est de montrer des choix d'organisation concrets et pas seulement un discours général sur l'écologie.",
+          "L'EPS est un terrain pertinent : APPN, course d'orientation, cross, déplacements, gestion du matériel, rencontres UNSS.",
+          "Exemple : avant une sortie APPN, on explicite les règles de respect du site, on répartit les responsabilités élèves et on prévoit un retour réflexif sur les comportements observés."
+        ],
+        explicatifs: [
+          "Routines peu sobres : matériel laissé dehors, bouteilles jetables, déplacements systématiquement motorisés, absence de tri ou de réparation.",
+          "Faible perception des impacts : les élèves ne voient pas toujours le lien entre leurs gestes ordinaires et l'état des lieux de pratique.",
+          "Manque de responsabilisation : sans rôles confiés aux élèves, l'EDD reste un discours d'adulte.",
+          "Projet ponctuel non structuré : si rien n'est inscrit dans l'organisation, l'effet reste symbolique et retombe vite."
         ],
         textes: [
           {
             label: "Code de l'environnement, article L110-1 — Légifrance — version en vigueur",
-            apport: "Base juridique générale : les espaces, ressources et milieux naturels font partie du patrimoine commun de la Nation. C'est le texte à mobiliser pour donner du sens au respect des sites de pratique et du bien commun.",
+            apport: "Base juridique générale : les espaces, ressources et milieux naturels font partie du patrimoine commun de la Nation. C'est utile pour donner du sens au respect des sites de pratique.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043975398"
           },
           {
             label: "Circulaire du 27-8-2019 (NOR : MENE1924799C), BO n°31 du 29-8-2019 — EDD 2030",
-            apport: "Texte institutionnel majeur : il généralise une nouvelle phase de l'éducation au développement durable. À citer précisément : dès 2019-2020, chaque collège et lycée doit désigner au minimum un binôme paritaire d'éco-délégués d'établissement.",
+            apport: "Texte institutionnel majeur : il généralise une nouvelle phase de l'EDD et prévoit notamment un binôme d'éco-délégués dans chaque collège et lycée.",
             url: "https://www.education.gouv.fr/bo/19/Hebdo31/MENE1924799C.htm"
           },
           {
             label: "Circulaire du 24-9-2020 (NOR : MENE2025449C), BO n°36 du 24-9-2020 — Agenda 2030",
-            apport: "Texte de renforcement : il rend obligatoire l'élection des éco-délégués de classe au collège et au lycée et précise leurs quatre missions essentielles : porter des projets, être ambassadeurs, valoriser les actions, transmettre des connaissances à leurs camarades.",
+            apport: "Rend obligatoire l'élection des éco-délégués de classe au collège et au lycée et précise leurs missions.",
             url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm"
           },
           {
-            label: "Circulaire du 24-9-2020 (NOR : MENE2025449C), BO n°36 du 24-9-2020 — même texte, pilotage EDD",
-            apport: "Le même texte précise que la démarche E3D est coordonnée par le ou les référents EDD, désignés par le chef d'établissement ou le comité de pilotage EDD. Il permet donc de citer le pilotage concret du développement durable dans l'établissement.",
+            label: "Circulaire du 24-9-2020 — même texte, pilotage EDD et démarche E3D",
+            apport: "Utile pour citer le référent EDD, le pilotage d'établissement et la cohérence entre projets, enseignements, vie scolaire et partenaires.",
             url: "https://www.education.gouv.fr/bo/20/Hebdo36/MENE2025449C.htm"
           },
           {
             label: "Circulaire de rentrée 2022 (NOR : MENE2219299C), BO n°26 du 30-6-2022",
-            apport: "Texte utile pour montrer que la transition écologique et énergétique doit être placée au cœur du projet d'établissement et que la dynamique E3D doit se poursuivre. Il atteste du caractère prioritaire et durable du sujet.",
+            apport: "Texte utile pour montrer que la transition écologique doit être placée au cœur du projet d'établissement.",
             url: "https://www.education.gouv.fr/bo/22/Hebdo26/MENE2219299C.htm"
           }
         ],
+        valeurs: [
+          { text: "FRATERNITÉ : solidarité intergénérationnelle et responsabilité envers les autres.", level: "major" },
+          { text: "LIBERTÉ : former des citoyens capables de choix éclairés, concrets et responsables.", level: "secondary" },
+          { text: "ÉGALITÉ : accès partagé à des ressources communes et à un environnement préservé.", level: "normal" },
+          { text: "LAÏCITÉ : cadre commun de l'action publique au service du bien commun.", level: "normal" }
+        ],
         notions: [
-          "Le développement durable associe environnement, justice sociale et sobriété des choix ; il ne se réduit pas à des gestes symboliques.",
+          "Le développement durable associe environnement, justice sociale et sobriété ; il ne se réduit pas à quelques éco-gestes symboliques.",
           "En EPS, la contradiction est éducative : faire pratiquer davantage tout en limitant les impacts inutiles.",
-          "Le bon niveau d'action est souvent collectif : équipe EPS, AS, établissement, territoire."
+          "Le bon niveau d'action est souvent collectif : équipe EPS, AS, établissement, territoire, éco-délégués.",
+          "Phrase utile : « Le durable se voit dans l'organisation concrète de nos pratiques, pas seulement dans le discours. »"
         ],
         partenaires: [
-          "Référent EDD d'établissement : accompagne les éco-délégués et aide à structurer les projets sur la durée.",
-          "Éco-délégués : apportent une dynamique d'élèves et rendent les actions visibles.",
+          "Référent EDD d'établissement : accompagne les éco-délégués et aide à structurer les projets.",
+          "Éco-délégués : rendent les actions visibles et permettent une appropriation par les élèves.",
           "Chef d'établissement et gestionnaire : arbitrent transports, achats, équipements et cohérence de la démarche.",
           "AS / UNSS : levier concret pour des événements plus sobres et des rôles d'élèves responsables.",
-          "Collectivités et associations environnementales : utiles pour les transports, les espaces et les APPN.",
-          "Conseil pédagogique / CESCE : instances utiles pour articuler l'EDD avec santé, citoyenneté et projets disciplinaires."
+          "Collectivités territoriales : utiles pour les transports, équipements, mobilité active et rénovation des installations.",
+          "Partenaires associatifs environnementaux : permettent des interventions concrètes et locales."
         ],
         protocoles: [
           {
             label: "Référent EDD + éco-délégués",
-            apport: "À utiliser pour passer d'une action portée par un adulte à une vraie dynamique d'établissement impliquant les élèves.",
-            details: "Les textes de 2019 et 2020 permettent de citer précisément l'apparition puis la généralisation des éco-délégués."
+            apport: "À utiliser pour passer d'une action portée par un seul adulte à une vraie dynamique d'établissement.",
+            details: "Exemple : défi mobilité douce à l'AS, affichage des trajets, relevé des déchets sur site, rôle d'ambassadeurs."
           },
           {
             label: "Démarche E3D",
-            apport: "À mobiliser quand on veut inscrire l'EDD dans le projet d'établissement et donner de la cohérence aux actions.",
-            details: "La labellisation E3D valorise une approche globale associant enseignements, vie scolaire, gestion et partenariats territoriaux."
+            apport: "À mobiliser pour inscrire l'EDD dans le projet d'établissement et donner de la cohérence aux actions.",
+            details: "La labellisation valorise une approche globale associant enseignements, vie scolaire, gestion et partenariats."
           },
           {
             label: "Conseil pédagogique",
             apport: "Utile pour intégrer l'EDD dans les choix pédagogiques et coordonner plusieurs disciplines.",
-            details: "Cette instance prépare la partie pédagogique du projet d'établissement et favorise la concertation entre enseignants."
+            details: "Exemple : projet EPS-SVT autour de l'orientation, des milieux naturels et de la lecture de paysage."
           },
           {
             label: "Projet d'établissement / AS / UNSS",
             apport: "Cadres pertinents pour rendre visibles des choix concrets : déplacements, équipements, éco-événements, responsabilité des élèves.",
-            details: "L'intérêt à l'oral est de montrer comment l'EPS devient un levier de transition écologique."
+            details: "C'est là que l'EPS devient un levier réel de transition écologique."
           }
         ],
         court: [
-          "Nommer précisément le problème : gaspillage, dégradation d'un site, transport inutile, usage excessif de matériel, déchets.",
-          "Transformer immédiatement l'incident en situation éducative : constat, réparation si possible, rappel des règles de pratique.",
-          "Faire consigner l'événement si une dégradation matérielle ou environnementale importante impose une information à la direction ou au gestionnaire.",
-          "Donner des responsabilités concrètes aux élèves dès la séance : matériel, tri, vérification, respect du site."
+          "Nommer précisément le problème observé : gaspillage, dégradation d'un site, transport évitable, usage excessif de matériel, déchets laissés sur place.",
+          "Transformer immédiatement l'incident en situation éducative : constat, rappel des règles, réparation si possible.",
+          "Donner des responsabilités concrètes aux élèves dès la séance : gestion du matériel, vérification des lieux, tri, fermeture des robinets, ramassage.",
+          "Faire consigner l'événement si une dégradation importante impose une information à la direction ou au gestionnaire.",
+          "Exemple : après une CO, vérifier le site avec les élèves au lieu de partir sans retour réflexif."
         ],
         moyen: [
           "Construire avec le référent EDD, les éco-délégués et l'AS un projet mesurable : mobilité active, réduction des déchets, sobriété matérielle.",
-          "Réviser l'organisation EPS : matériel mutualisé, itinéraires, rotation des sites, protocoles de fin de séance, sensibilisation avant APPN.",
+          "Réviser l'organisation EPS : matériel mutualisé, protocoles de fin de séance, seconde vie du matériel, affichage de gestes attendus.",
           "Porter un point EDD au conseil pédagogique pour sortir du projet ponctuel.",
-          "Associer collectivités et partenaires si le sujet touche transports ou équipements."
+          "Associer les collectivités et partenaires si le sujet touche les transports ou les équipements.",
+          "Prévoir un bilan visible pour les élèves : ce qui a changé, ce qui reste à améliorer, ce qui dépend d'eux."
         ],
         long: [
           "Intégrer l'EDD au projet EPS et viser une démarche E3D cohérente.",
-          "Faire de l'AS un laboratoire de transition : éco-événements, arbitrage des ressources, déplacements plus sobres.",
-          "Stabiliser des routines d'équipe pour que la sobriété ne dépende pas seulement de la sensibilité individuelle des enseignants.",
+          "Faire de l'AS un laboratoire de transition : éco-événements, arbitrage des ressources, déplacements plus sobres, rôles d'éco-organisateurs.",
+          "Stabiliser des routines d'équipe pour que la sobriété ne dépende pas uniquement de la sensibilité individuelle des enseignants.",
+          "Monter des actions avec une association comme Surfrider Foundation ou une structure locale de protection de l'environnement.",
           "Former les élèves à arbitrer des choix concrets : se déplacer, acheter, pratiquer, organiser sans dégrader."
         ]
       },
@@ -899,103 +1005,119 @@
       {
         id: "mixite",
         titre: "Mixité filles-garçons / égalité femmes-hommes",
-        subtitle: "La mixité ne suffit pas : il faut montrer comment les textes officiels obligent l'École et l'EPS à construire une égalité réelle.",
+        subtitle: "La mixité ne suffit pas : il faut montrer comment les textes officiels obligent l'École et l'EPS à construire une égalité réelle dans les apprentissages, les rôles, les espaces et la parole.",
         colors: {
           accent: "#9333ea",
           accentSoft: "#f3e8ff",
           hero: "linear-gradient(135deg, #e9d5ff, #faf5ff)"
         },
         pills: ["L121-1", "L312-17-1", "BO 2013", "BO 2015", "BO 2019 EPS"],
-        valeurs: [
-          { text: "ÉGALITÉ : valeur la plus centrale du sujet, entre filles et garçons, femmes et hommes.", level: "major" },
-          { text: "FRATERNITÉ : respect mutuel, refus du sexisme et des humiliations.", level: "secondary" },
-          { text: "LIBERTÉ : permettre à chacun de pratiquer, choisir et s'orienter hors stéréotypes.", level: "normal" },
-          { text: "LAÏCITÉ : même cadre commun et même dignité pour tous les élèves.", level: "normal" }
+        definition: "La mixité renvoie à la présence conjointe des filles et des garçons. Mais la simple co-présence ne garantit ni l'égalité de traitement ni l'égalité d'accès aux apprentissages. En EPS, les écarts se rejouent dans l'occupation de l'espace, les rôles, les feedbacks, les dispenses, les choix d'APSA, les évaluations et les représentations du corps performant.",
+        declinaisons: [
+          "Occupation de l'espace et du ballon : les garçons monopolisent le jeu, les filles restent en périphérie ou au score.",
+          "Rôles sociaux genrés : arbitre, coach, capitaine, observateur ou responsable matériel accaparés toujours par les mêmes.",
+          "Feedbacks inégaux : conseils techniques donnés surtout aux garçons, encouragements vagues adressés surtout aux filles.",
+          "Vestiaires, regroupements, remarques sur le corps et orientation : zones majeures de reproduction des stéréotypes."
         ],
-        definition: "La mixité renvoie à la présence conjointe des filles et des garçons. Mais la simple co-présence ne garantit ni l'égalité de traitement ni l'égalité d'accès aux apprentissages. En EPS, les écarts se rejouent dans les rôles, l'espace, les feedbacks, les dispenses, les choix d'APSA et les représentations du corps performant.",
         epsPoints: [
-          "Le point clé à l'oral : ne jamais confondre mixité et égalité.",
+          "Point clé à l'oral : ne jamais confondre mixité et égalité.",
           "L'EPS peut autant reproduire qu'émanciper : groupes pilotés, règles aménagées, rôles tournants, critères d'évaluation explicites.",
-          "Les vestiaires, les regroupements, les sports collectifs et les évaluations sont des zones de vigilance majeures."
+          "Exemple : en volley ou en hand, si les garçons monopolisent la relance et les attaques, les filles finissent au score ; il faut alors modifier la tâche et non seulement rappeler une intention générale."
+        ],
+        explicatifs: [
+          "Stéréotypes de genre : les élèves ont intériorisé des attentes différentes selon qu'on est fille ou garçon, sur la force, la prise de risque, l'autorité ou la technicité.",
+          "Besoins d'appartenance : les regroupements entre pairs peuvent conduire à des logiques mono-genrées et à la peur de déroger aux normes du groupe.",
+          "Lecture professorale inégale : l'enseignant peut, sans le vouloir, donner plus d'espace, de ballons ou de feedbacks techniques à certains profils.",
+          "Cadre insuffisamment structuré : si les rôles ne tournent pas et si les groupes sont libres, les hiérarchies se rejouent automatiquement."
         ],
         textes: [
           {
             label: "Code de l'éducation, article L121-1 — Légifrance — version en vigueur",
-            apport: "Ancre la mixité et l'égalité entre les femmes et les hommes dans les missions de l'École. Le sujet est donc pleinement scolaire et pas seulement sociétal.",
+            apport: "Ancre la mixité et l'égalité entre les femmes et les hommes dans les missions de l'École. Le sujet est pleinement scolaire et institutionnel.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052026405"
           },
           {
             label: "Code de l'éducation, article L312-17-1 — Légifrance — version en vigueur",
-            apport: "Rappelle qu'une information sur l'égalité entre les femmes et les hommes, les préjugés sexistes et les violences faites aux femmes est dispensée à tous les stades de la scolarité. C'est le bon texte pour montrer que le sujet est structurel et continu.",
+            apport: "Rappelle qu'une information sur l'égalité entre les femmes et les hommes, les préjugés sexistes et les violences faites aux femmes est dispensée à tous les stades de la scolarité.",
             url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022469852"
           },
           {
-            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles des métiers du professorat et de l'éducation",
-            apport: "Texte professionnel clé : il demande explicitement de promouvoir l'égalité entre les filles et les garçons. Il légitime l'action quotidienne du professeur d'EPS.",
+            label: "Arrêté du 1-7-2013, JO du 18-7-2013, BO n°30 du 25-7-2013 — Référentiel des compétences professionnelles",
+            apport: "Texte professionnel clé : il demande explicitement de promouvoir l'égalité entre les filles et les garçons.",
             url: "https://www.education.gouv.fr/bo/13/Hebdo30/MENE1315928A.htm"
           },
           {
-            label: "Circulaire n°2015-003 du 20-1-2015 (NOR : MENE1500237C), BO n°4 du 22-1-2015 — Mise en œuvre de la politique éducative en faveur de l'égalité entre les filles et les garçons à l'École",
-            apport: "Texte institutionnel majeur pour montrer que l'égalité filles-garçons doit irriguer enseignements, vie scolaire, orientation, projets d'école et d'établissement.",
+            label: "Circulaire n°2015-003 du 20-1-2015, BO n°4 du 22-1-2015 — Politique éducative en faveur de l'égalité",
+            apport: "Texte majeur pour montrer que l'égalité filles-garçons doit irriguer enseignements, vie scolaire, orientation et projets d'établissement.",
             url: "https://www.education.gouv.fr/bo/15/Hebdo4/MENE1500237C.htm"
           },
           {
-            label: "BO spécial n°1 du 22-1-2019 — Programmes du lycée général et technologique, enseignement commun d'EPS",
-            apport: "Texte spécifiquement utile en EPS : il rappelle que l'EPS lutte contre les stéréotypes sociaux ou sexués et s'inscrit résolument dans une école inclusive.",
+            label: "BO spécial n°1 du 22-1-2019 — Programmes du lycée général et technologique, EPS",
+            apport: "Texte spécifiquement utile en EPS : il rappelle que l'EPS lutte contre les stéréotypes sociaux ou sexués et s'inscrit dans une école inclusive.",
             url: "https://www.education.gouv.fr/sites/default/files/document/SP1_MEN_22_1_2019_10H40_1064060.pdf-232533.pdf"
           }
         ],
+        valeurs: [
+          { text: "ÉGALITÉ : valeur la plus centrale du sujet, entre filles et garçons, femmes et hommes.", level: "major" },
+          { text: "FRATERNITÉ : respect mutuel, refus du sexisme, des humiliations et des mises à l'écart.", level: "secondary" },
+          { text: "LIBERTÉ : permettre à chacun de pratiquer, choisir et s'orienter hors stéréotypes.", level: "normal" },
+          { text: "LAÏCITÉ : même cadre commun et même dignité pour tous les élèves.", level: "normal" }
+        ],
         notions: [
           "Mixité ≠ égalité : une classe mixte peut rester profondément inégalitaire.",
-          "Les stéréotypes ne viennent pas seulement des élèves : ils peuvent traverser les dispositifs, les APSA, les attentes et la lecture professorale des performances.",
-          "L'objectif n'est pas d'effacer les différences, mais d'empêcher qu'elles deviennent des hiérarchies installées."
+          "Les stéréotypes ne viennent pas seulement des élèves ; ils traversent aussi les dispositifs, les APSA, les attentes et les évaluations.",
+          "Vestiaires : lieu sensible où s'articulent intimité, sécurité, respect du corps, moqueries et harcèlement.",
+          "Phrase utile : « Filles et garçons ont le même droit à l'espace, au ballon, aux responsabilités et au progrès. »"
         ],
         partenaires: [
-          "Référent égalité : diffuse la culture de l'égalité et agit en lien avec orientation, éducation à la sexualité, prévention du harcèlement et vie collégienne ou lycéenne.",
+          "Référent égalité : diffuse la culture de l'égalité dans l'établissement.",
           "CPE : utile pour les faits récurrents, la vie scolaire, les vestiaires et le suivi éducatif.",
-          "Responsable de l'éducation à la sexualité / CESCE : appui précieux pour la prévention des violences sexistes et sexuelles.",
+          "Responsable de l'éducation à la sexualité / CESCE : appui pour les violences sexistes et sexuelles, le consentement et le respect.",
           "PsyEN : intéressant pour l'estime de soi, l'autocensure et l'orientation.",
           "Équipe pHARe : à mobiliser si les moqueries sexistes ou humiliations sont répétées.",
-          "Familles : à informer quand la situation touche la sécurité, la confiance ou l'assiduité."
+          "Familles : à informer lorsque la situation touche la sécurité, la confiance ou l'assiduité."
         ],
         protocoles: [
           {
             label: "Référent égalité",
-            apport: "À mobiliser pour diffuser une culture commune d'établissement et ne pas limiter l'action à l'EPS.",
+            apport: "À mobiliser pour diffuser une culture commune d'établissement et ne pas limiter l'action à la seule EPS.",
             details: "Le sujet doit être relié à l'orientation, à l'éducation à la sexualité, au climat scolaire et à la prévention du harcèlement."
           },
           {
             label: "CESCE",
-            apport: "Cadre utile pour des actions sur égalité, respect, corps, consentement, violences sexistes et sexuelles.",
-            details: "Cette instance permet d'articuler prévention, santé, citoyenneté et coéducation avec les familles."
+            apport: "Cadre utile pour des actions sur égalité, respect, corps, consentement et violences sexistes.",
+            details: "Permet d'articuler prévention, santé, citoyenneté et coéducation avec les familles."
           },
           {
             label: "pHARe",
-            apport: "À mobiliser si les propos sexistes, humiliations ou mises à l'écart sont répétés et relèvent du harcèlement.",
-            details: "Le programme permet une prise en charge structurée et collective au lieu d'une réponse isolée du professeur."
+            apport: "À mobiliser si les propos sexistes, humiliations ou exclusions répétées relèvent du harcèlement.",
+            details: "Exemple : moqueries récurrentes dans les vestiaires ou mise à l'écart organisée d'une élève."
           },
           {
             label: "Projet d'établissement / projet EPS",
-            apport: "À utiliser pour stabiliser des choix durables : APSA diversifiées, règles sur les vestiaires, feedbacks, rôles sociaux, critères d'évaluation.",
+            apport: "Niveau pertinent pour stabiliser des choix durables : APSA diversifiées, feedbacks, rôles sociaux, critères d'évaluation, règles de vestiaires.",
             details: "C'est le bon niveau pour passer de l'intention à la cohérence d'équipe."
           }
         ],
         court: [
-          "Nommer la situation devant la classe : filles et garçons ont le même droit à l'espace, au ballon, aux responsabilités et au progrès.",
-          "Aménager immédiatement la tâche : rotation obligatoire des postes, groupes construits, rôles imposés puis tournants.",
-          "Intervenir systématiquement sur toute remarque sexiste ou humiliation liée au corps.",
+          "Nommer la situation devant la classe : filles et garçons ont le même droit à l'espace, au ballon, aux responsabilités et à la progression.",
+          "Aménager immédiatement la tâche : rotation obligatoire des postes, groupes construits, règles limitant la monopolisation du jeu.",
+          "Intervenir systématiquement sur toute remarque sexiste, humiliation liée au corps ou exclusion d'un espace de pratique.",
+          "Sécuriser les vestiaires : rappeler les règles d'intimité, d'usage du téléphone, de respect du corps d'autrui et du temps de changement.",
           "Rassurer les élèves en retrait et recréer dès la séance suivante des conditions de réussite."
         ],
         moyen: [
-          "Revoir les critères d'évaluation pour mieux valoriser coopération, lecture du jeu, prise d'information, arbitrage et progrès.",
+          "Revoir les critères d'évaluation pour mieux valoriser coopération, lecture du jeu, prise d'information, arbitrage et progrès, pas seulement la performance brute.",
           "Stabiliser une rotation des rôles sociaux dans chaque cycle : arbitre, observateur, coach, capitaine, responsable matériel.",
-          "Mobiliser référent égalité, CESCE, PsyEN et pHARe selon la nature de la situation.",
-          "Articuler EPS, EMC, parcours Avenir et éducation à la sexualité pour travailler stéréotypes, orientation et respect."
+          "Construire les groupes de façon intentionnelle pour casser les regroupements genrés automatiques.",
+          "Articuler EPS, EMC, parcours Avenir et éducation à la sexualité pour travailler stéréotypes, orientation, respect et consentement.",
+          "Échanger avec les familles si les représentations de genre ou certaines inquiétudes freinent la participation."
         ],
         long: [
-          "Inscrire l'égalité filles-garçons dans le projet EPS : APSA diversifiées, barèmes interrogés, règles communes sur vestiaires et feedbacks.",
+          "Inscrire l'égalité filles-garçons dans le projet EPS : APSA diversifiées, barèmes interrogés, règles communes sur vestiaires, feedbacks et rôles.",
           "Construire une culture commune d'équipe : mêmes attentes envers filles et garçons, mêmes réactions face aux propos sexistes.",
-          "Rendre visibles des parcours de réussite non stéréotypés via AS, instances élèves et actions d'établissement.",
+          "Rendre visibles des parcours de réussite non stéréotypés via l'AS, les instances élèves et les projets d'établissement.",
+          "Monter une action avec une association comme le Centre Hubertine Auclert pour travailler les stéréotypes, le sexisme et l'égalité réelle.",
           "Faire de l'EPS un lieu d'émancipation corporelle et non de reconduction des hiérarchies de genre."
         ]
       }
@@ -1055,22 +1177,36 @@
       $("heroPills").innerHTML = renderPills(fiche.pills);
 
       $("leftPanel").innerHTML = `
-        <h2>1 — Définitions précises et liens avec l'EPS</h2>
+        <h2>1 — Définition, déclinaisons et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
-        <div class="side-note">
-          <h3>👉 En EPS</h3>
+
+        <div class="section-block">
+          <h3 class="mini-title">Déclinaisons concrètes</h3>
+          ${renderBulletList(fiche.declinaisons)}
+        </div>
+
+        <div class="section-block">
+          <h3 class="mini-title">👉 En EPS</h3>
           ${renderBulletList(fiche.epsPoints)}
         </div>
       `;
 
-      $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>${renderRefList(fiche.textes)}`;
-      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
-      $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
-      $("partenairesCard").innerHTML = `<h2>5 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires)}`;
-      $("protocolesCard").innerHTML = `<h2>6 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles)}`;
-      $("courtCard").innerHTML = `<h2>7 — À court terme</h2>${renderBulletList(fiche.court)}`;
-      $("moyenCard").innerHTML = `<h2>8 — À moyen terme</h2>${renderBulletList(fiche.moyen)}`;
-      $("longCard").innerHTML = `<h2>9 — À long terme</h2>${renderBulletList(fiche.long)}`;
+      $("explicationsCard").innerHTML = `
+        <h2>2 — Éléments explicatifs</h2>
+        <div class="section-block">
+          <h3 class="mini-title">Éléments à traiter pour réduire le problème</h3>
+          ${renderBulletList(fiche.explicatifs)}
+        </div>
+      `;
+
+      $("textesCard").innerHTML = `<h2>3 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>${renderRefList(fiche.textes)}`;
+      $("valeursCard").innerHTML = `<h2>4 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
+      $("notionsCard").innerHTML = `<h2>5 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
+      $("partenairesCard").innerHTML = `<h2>6 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires)}`;
+      $("protocolesCard").innerHTML = `<h2>7 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles)}`;
+      $("courtCard").innerHTML = `<h2>8 — À court terme</h2>${renderBulletList(fiche.court)}`;
+      $("moyenCard").innerHTML = `<h2>9 — À moyen terme</h2>${renderBulletList(fiche.moyen)}`;
+      $("longCard").innerHTML = `<h2>10 — À long terme</h2>${renderBulletList(fiche.long)}`;
 
       document.querySelectorAll(".nav-btn").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
