@@ -28,7 +28,7 @@
     }
 
     .container {
-      width: min(100%, 1680px);
+      width: min(100%, 1760px);
       margin: 0 auto;
       padding: 20px 18px 48px;
     }
@@ -133,37 +133,82 @@
       border-color: var(--accent);
     }
 
-    .layout-main {
-      display: grid;
-      grid-template-columns: minmax(420px, 1.02fr) minmax(0, 1.48fr);
-      gap: 18px;
-      margin-bottom: 18px;
-      align-items: start;
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      position: relative;
+      z-index: 1;
     }
 
-    .left-panel, .card, .step-box {
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, rgba(15,23,42,0.12));
+      font-size: 12px;
+      color: #334155;
+    }
+
+    /* ===== Mise en page type schéma 2 ===== */
+
+    .board {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1.05fr 1.15fr 1.15fr 0.72fr;
+      grid-template-areas:
+        "textes valeurs notions partenaires protocoles long"
+        "definition definition definition court moyen long";
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card,
+    .step-box,
+    .definition-panel {
       border: 1px solid color-mix(in srgb, var(--accent) 16%, #d6d3d1);
       box-shadow: var(--shadow);
-    }
-
-    .left-panel {
-      border-radius: 38px;
-      padding: 28px;
-      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
       min-height: 100%;
     }
 
-    .left-panel h2, .card h2, .step-box h2 {
+    .card,
+    .step-box {
+      background: var(--card);
+      padding: 24px;
+    }
+
+    .definition-panel {
+      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
+      padding: 24px;
+    }
+
+    .card::before,
+    .step-box::before,
+    .definition-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
+    }
+
+    .card h2,
+    .step-box h2,
+    .definition-panel h2 {
       margin: 0 0 14px;
-      font-size: 26px;
+      font-size: 25px;
       line-height: 1.12;
       color: #0f172a;
       letter-spacing: -0.02em;
     }
 
-    .left-panel p.intro {
+    .intro {
       font-size: 15px;
-      margin: 0 0 18px;
+      margin: 0;
       color: #334155;
     }
 
@@ -182,39 +227,30 @@
       color: #0f172a;
     }
 
-    .card-grid {
+    .definition-split {
       display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
       gap: 18px;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      align-items: start;
     }
 
-    .card {
-      background: var(--card);
-      border-radius: 28px;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-      min-height: 100%;
+    .definition-block,
+    .explicatif-block {
+      background: rgba(255,255,255,0.68);
+      border: 1px solid color-mix(in srgb, var(--accent) 12%, rgba(15,23,42,0.08));
+      border-radius: 18px;
+      padding: 18px;
     }
 
-    .card::before, .step-box::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
-    }
+    .card-textes      { grid-area: textes; }
+    .card-valeurs     { grid-area: valeurs; }
+    .card-notions     { grid-area: notions; }
+    .card-partenaires { grid-area: partenaires; }
+    .card-protocoles  { grid-area: protocoles; }
 
-    .double-grid, .steps-grid {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .double-grid { grid-template-columns: 1fr 1fr; }
-    .steps-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .definition-panel { grid-area: definition; }
+    .card-court       { grid-area: court; }
+    .card-moyen       { grid-area: moyen; }
+    .card-long        { grid-area: long; }
 
     ul.clean {
       margin: 0;
@@ -304,32 +340,6 @@
 
     .ref-item a:hover { text-decoration: underline; }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .pill {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid color-mix(in srgb, var(--accent) 16%, rgba(15,23,42,0.12));
-      font-size: 12px;
-      color: #334155;
-    }
-
-    .step-box {
-      border-radius: 34px;
-      padding: 24px;
-      background: white;
-      position: relative;
-      overflow: hidden;
-    }
-
     .footer-note {
       margin-top: 20px;
       font-size: 13px;
@@ -337,17 +347,59 @@
       text-align: center;
     }
 
-    @media (max-width: 1320px) {
-      .layout-main { grid-template-columns: 1fr; }
-      .card-grid { grid-template-columns: 1fr 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1500px) {
+      .board {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "textes valeurs notions partenaires"
+          "protocoles protocoles long long"
+          "definition definition court moyen";
+      }
     }
 
-    @media (max-width: 980px) {
-      .double-grid, .card-grid { grid-template-columns: 1fr; }
-      .hero { padding: 24px; }
-      .left-panel, .card, .step-box { border-radius: 26px; }
-      .container { padding: 14px 14px 34px; }
+    @media (max-width: 1100px) {
+      .board {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "textes valeurs"
+          "notions partenaires"
+          "protocoles protocoles"
+          "definition definition"
+          "court moyen"
+          "long long";
+      }
+
+      .definition-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 14px 14px 34px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .board {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "textes"
+          "valeurs"
+          "notions"
+          "partenaires"
+          "protocoles"
+          "definition"
+          "court"
+          "moyen"
+          "long";
+      }
+
+      .left-panel, .card, .step-box, .definition-panel {
+        border-radius: 24px;
+      }
     }
   </style>
 </head>
@@ -370,25 +422,18 @@
 
     <nav id="nav" class="nav"></nav>
 
-    <section class="layout-main">
-      <article id="leftPanel" class="left-panel"></article>
+    <section class="board">
+      <article id="textesCard" class="card card-textes"></article>
+      <article id="valeursCard" class="card card-valeurs"></article>
+      <article id="notionsCard" class="card card-notions"></article>
+      <article id="partenairesCard" class="card card-partenaires"></article>
+      <article id="protocolesCard" class="card card-protocoles"></article>
 
-      <div class="card-grid">
-        <article id="textesCard" class="card"></article>
-        <article id="valeursCard" class="card"></article>
-        <article id="notionsCard" class="card"></article>
-      </div>
-    </section>
+      <article id="definitionPanel" class="definition-panel"></article>
 
-    <section class="double-grid">
-      <article id="partenairesCard" class="card"></article>
-      <article id="protocolesCard" class="card"></article>
-    </section>
-
-    <section class="steps-grid">
-      <article id="courtCard" class="step-box"></article>
-      <article id="moyenCard" class="step-box"></article>
-      <article id="longCard" class="step-box"></article>
+      <article id="courtCard" class="step-box card-court"></article>
+      <article id="moyenCard" class="step-box card-moyen"></article>
+      <article id="longCard" class="step-box card-long"></article>
     </section>
 
     <p class="footer-note">
@@ -435,7 +480,7 @@
           {
             label: "Code pénal, article 225-2 — Légifrance — version en vigueur",
             apport: "Texte très utile pour montrer le risque juridique : certaines discriminations sont punies de 3 ans d'emprisonnement et de 45 000 € d'amende. Cela justifie que l'enseignant ne banalise jamais.",
-            url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006165298/"
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033975382"
           },
           {
             label: "Code de l'éducation, article L121-1 — Légifrance — version en vigueur",
@@ -1034,7 +1079,7 @@
           {
             label: "Code pénal, article 225-2 — Légifrance — version en vigueur",
             apport: "Texte à citer pour le risque juridique : certaines discriminations sont punies de 3 ans d'emprisonnement et de 45 000 € d'amende. Cela montre que les humiliations ou exclusions liées au sexe ne relèvent pas d'un simple “manque de tact”.",
-            url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006165298/"
+            url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033975382"
           },
           {
             label: "Circulaire n°2015-003 du 20-1-2015, BO n°4 du 22-1-2015 — Politique éducative en faveur de l'égalité entre les filles et les garçons",
@@ -1161,18 +1206,21 @@
       $("heroSubtitle").textContent = fiche.subtitle;
       $("heroPills").innerHTML = renderPills(fiche.pills);
 
-      $("leftPanel").innerHTML = `
+      $("definitionPanel").innerHTML = `
         <h2>1 — Définitions précises et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
 
         <div class="section-block">
-          <h3 class="mini-title">Déclinaisons concrètes</h3>
-          ${renderBulletList(fiche.declinaisons)}
-        </div>
-
-        <div class="section-block">
-          <h3 class="mini-title">Éléments explicatifs</h3>
-          ${renderBulletList(fiche.explicatifs)}
+          <div class="definition-split">
+            <div class="definition-block">
+              <h3 class="mini-title">Déclinaisons concrètes</h3>
+              ${renderBulletList(fiche.declinaisons)}
+            </div>
+            <div class="explicatif-block">
+              <h3 class="mini-title">Éléments explicatifs</h3>
+              ${renderBulletList(fiche.explicatifs)}
+            </div>
+          </div>
         </div>
 
         <div class="section-block">
@@ -1204,6 +1252,7 @@
         btn.addEventListener("click", () => {
           index = Number(btn.dataset.index);
           render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
     }
@@ -1211,11 +1260,13 @@
     $("prevBtn").addEventListener("click", () => {
       index = (index - 1 + fiches.length) % fiches.length;
       render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     $("nextBtn").addEventListener("click", () => {
       index = (index + 1) % fiches.length;
       render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     initNav();
