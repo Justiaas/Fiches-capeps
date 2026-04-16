@@ -17,9 +17,9 @@
       --accent-hero: linear-gradient(135deg, #dbeafe, #eff6ff);
     }
 
-
-    * { box-sizing: border-box; }
-
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -29,13 +29,11 @@
       line-height: 1.55;
     }
 
-
     .container {
       max-width: 1320px;
       margin: 0 auto;
       padding: 28px 18px 56px;
     }
-
 
     .hero {
       border-radius: 36px;
@@ -49,7 +47,6 @@
       overflow: hidden;
     }
 
-
     .hero::after {
       content: "";
       position: absolute;
@@ -61,7 +58,6 @@
       background: color-mix(in srgb, var(--accent) 14%, white);
       opacity: 0.8;
     }
-
 
     .badge {
       display: inline-block;
@@ -75,7 +71,6 @@
       z-index: 1;
     }
 
-
     .hero-top {
       display: flex;
       justify-content: space-between;
@@ -86,13 +81,11 @@
       z-index: 1;
     }
 
-
     h1 {
       font-size: clamp(30px, 5vw, 54px);
       margin: 0 0 8px;
       line-height: 1.03;
     }
-
 
     .subtitle {
       margin: 0;
@@ -101,13 +94,11 @@
       font-size: 15px;
     }
 
-
     .hero-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-
 
     button {
       border: 1px solid color-mix(in srgb, var(--accent) 20%, #cbd5e1);
@@ -121,16 +112,15 @@
       box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
     }
 
-
-    button:hover { transform: translateY(-1px); }
-
+    button:hover {
+      transform: translateY(-1px);
+    }
 
     .btn-solid {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
-
 
     .nav {
       display: flex;
@@ -139,13 +129,11 @@
       margin-bottom: 22px;
     }
 
-
     .nav-btn.active {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
-
 
     .layout-main {
       display: grid;
@@ -154,12 +142,12 @@
       margin-bottom: 18px;
     }
 
-
-    .left-panel, .card, .step-box {
+    .left-panel,
+    .card,
+    .step-box {
       border: 1px solid color-mix(in srgb, var(--accent) 16%, #d6d3d1);
       box-shadow: var(--shadow);
     }
-
 
     .left-panel {
       border-radius: 38px;
@@ -167,14 +155,14 @@
       background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 100%);
     }
 
-
-    .left-panel h2, .card h2, .step-box h2 {
+    .left-panel h2,
+    .card h2,
+    .step-box h2 {
       margin: 0 0 14px;
       font-size: 26px;
       line-height: 1.15;
       color: #0f172a;
     }
-
 
     .left-panel p.intro {
       font-size: 15px;
@@ -182,19 +170,16 @@
       color: #334155;
     }
 
-
     .side-note {
       margin-top: 18px;
       padding-top: 18px;
       border-top: 1px solid color-mix(in srgb, var(--accent) 20%, rgba(15,23,42,0.12));
     }
 
-
     .card-grid {
       display: grid;
       gap: 18px;
     }
-
 
     .card {
       background: var(--card);
@@ -204,8 +189,8 @@
       overflow: hidden;
     }
 
-
-    .card::before, .step-box::before {
+    .card::before,
+    .step-box::before {
       content: "";
       position: absolute;
       inset: 0 auto auto 0;
@@ -214,17 +199,20 @@
       background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, white));
     }
 
-
-    .double-grid, .steps-grid {
+    .double-grid,
+    .steps-grid {
       display: grid;
       gap: 18px;
       margin-bottom: 18px;
     }
 
+    .double-grid {
+      grid-template-columns: 1fr 1fr;
+    }
 
-    .double-grid { grid-template-columns: 1fr 1fr; }
-    .steps-grid { grid-template-columns: 0.9fr 1.1fr; }
-
+    .steps-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
 
     ul.clean {
       margin: 0;
@@ -234,14 +222,12 @@
       gap: 12px;
     }
 
-
     ul.clean li {
       position: relative;
       padding: 0 0 0 18px;
       color: #334155;
       font-size: 15px;
     }
-
 
     ul.clean li::before {
       content: "";
@@ -255,14 +241,12 @@
       opacity: 0.7;
     }
 
-
     .value-list li {
       padding: 10px 12px 10px 18px;
       border-radius: 14px;
       background: #fafafa;
       border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
     }
-
 
     .value-list li.major {
       background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 22%, white), #fff);
@@ -272,48 +256,46 @@
       box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, white);
     }
 
-
     .value-list li.secondary {
       background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, white), #fff);
       font-weight: 600;
     }
-
 
     .value-list li strong {
       font-weight: 800;
       color: #0f172a;
     }
 
-
-    .ref-list, .proto-list {
+    .ref-list,
+    .proto-list {
       display: grid;
       gap: 12px;
     }
 
-
-    .ref-item, .proto-item {
+    .ref-item,
+    .proto-item {
       border: 1px solid color-mix(in srgb, var(--accent) 12%, #e2e8f0);
       border-radius: 16px;
       padding: 12px 14px;
       background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
     }
 
-
-    .ref-item strong, .proto-item strong {
+    .ref-item strong,
+    .proto-item strong {
       display: block;
       margin-bottom: 6px;
       font-size: 14px;
       color: #0f172a;
     }
 
-
-    .ref-item .apport, .proto-item .apport,
-    .ref-item .details, .proto-item .details {
+    .ref-item .apport,
+    .proto-item .apport,
+    .ref-item .details,
+    .proto-item .details {
       font-size: 14px;
       color: #334155;
       margin-bottom: 8px;
     }
-
 
     .ref-item a {
       color: var(--accent);
@@ -323,9 +305,9 @@
       font-weight: 600;
     }
 
-
-    .ref-item a:hover { text-decoration: underline; }
-
+    .ref-item a:hover {
+      text-decoration: underline;
+    }
 
     .pill-row {
       display: flex;
@@ -336,7 +318,6 @@
       z-index: 1;
     }
 
-
     .pill {
       padding: 7px 10px;
       border-radius: 999px;
@@ -346,7 +327,6 @@
       color: #334155;
     }
 
-
     .step-box {
       border-radius: 34px;
       padding: 24px;
@@ -355,7 +335,6 @@
       overflow: hidden;
     }
 
-
     .footer-note {
       margin-top: 20px;
       font-size: 13px;
@@ -363,11 +342,22 @@
       text-align: center;
     }
 
-
     @media (max-width: 980px) {
-      .layout-main, .double-grid, .steps-grid { grid-template-columns: 1fr; }
-      .hero { padding: 24px; }
-      .left-panel, .card, .step-box { border-radius: 26px; }
+      .layout-main,
+      .double-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .left-panel,
+      .card,
+      .step-box {
+        border-radius: 26px;
+      }
     }
   </style>
 </head>
@@ -388,9 +378,7 @@
       <div id="heroPills" class="pill-row"></div>
     </section>
 
-
     <nav id="nav" class="nav"></nav>
-
 
     <section class="layout-main">
       <article id="leftPanel" class="left-panel"></article>
@@ -401,29 +389,24 @@
       </div>
     </section>
 
-
     <section class="double-grid">
       <article id="partenairesCard" class="card"></article>
       <article id="protocolesCard" class="card"></article>
     </section>
-
 
     <section class="steps-grid">
       <article id="courtCard" class="step-box"></article>
       <article id="moyenCard" class="step-box"></article>
     </section>
 
-
     <section>
       <article id="longCard" class="step-box"></article>
     </section>
-
 
     <p class="footer-note">
       Règle de construction : 5 textes maximum par fiche, uniquement Code / BO / circulaire / note de service / charte officielle, avec date et document d'origine.
     </p>
   </div>
-
 
   <script>
     const fiches = [
@@ -437,6 +420,10 @@
           hero: "linear-gradient(135deg, #dbeafe, #eff6ff)"
         },
         pills: ["Code pénal", "Code de l'éducation", "BO 2013", "BO 2015", "pHARe"],
+        elementExplicatif: [
+          "Stéréotypes intériorisés",
+          "Faible empathie"
+        ],
         valeurs: [
           { text: "ÉGALITÉ : valeur la plus centrale du sujet. Aucune différence de traitement fondée sur un critère prohibé ne peut être tolérée.", level: "major" },
           { text: "FRATERNITÉ : protéger la dignité d'autrui, refuser l'humiliation et l'exclusion.", level: "secondary" },
@@ -531,7 +518,6 @@
         ]
       },
 
-
       {
         id: "radicalite",
         titre: "Radicalité / atteintes aux valeurs de la République",
@@ -542,6 +528,11 @@
           hero: "linear-gradient(135deg, #fde68a, #fff7ed)"
         },
         pills: ["L111-1", "BO 2023", "Charte 2013", "voie hiérarchique", "EAVR"],
+        elementExplicatif: [
+          "Quête de sens ou d'identité",
+          "Besoin d'appartenance",
+          "Esprit critique fragile"
+        ],
         valeurs: [
           { text: "LAÏCITÉ : valeur la plus structurante ici, parce qu'elle garantit un cadre commun dans le service public d'éducation.", level: "major" },
           { text: "LIBERTÉ : protection de la liberté de conscience des élèves.", level: "secondary" },
@@ -636,7 +627,6 @@
         ]
       },
 
-
       {
         id: "laicite",
         titre: "Laïcité",
@@ -647,6 +637,10 @@
           hero: "linear-gradient(135deg, #ede9fe, #faf5ff)"
         },
         pills: ["L111-1", "L141-5-1", "Charte 2013", "BO 2023", "règlement intérieur"],
+        elementExplicatif: [
+          "Respect du cadre",
+          "Besoin d'appartenance ou de confrontation"
+        ],
         valeurs: [
           { text: "LAÏCITÉ : valeur et principe central de la fiche.", level: "major" },
           { text: "LIBERTÉ : garantie de la liberté de conscience, croire ou ne pas croire.", level: "secondary" },
@@ -740,7 +734,6 @@
           "Éviter deux écueils : négocier le principe ou surinterpréter chaque incident comme une attaque grave."
         ]
       },
-
 
       {
         id: "sedentarite",
@@ -846,7 +839,6 @@
         ]
       },
 
-
       {
         id: "developpement-durable",
         titre: "Développement durable",
@@ -951,7 +943,6 @@
         ]
       },
 
-
       {
         id: "mixite",
         titre: "Mixité filles-garçons / égalité femmes-hommes",
@@ -962,6 +953,10 @@
           hero: "linear-gradient(135deg, #e9d5ff, #faf5ff)"
         },
         pills: ["L121-1", "L312-17-1", "BO 2013", "BO 2015", "BO 2019 EPS"],
+        elementExplicatif: [
+          "Stéréotypes de genre",
+          "Besoin d'appartenance"
+        ],
         valeurs: [
           { text: "ÉGALITÉ : valeur la plus centrale du sujet, entre filles et garçons, femmes et hommes.", level: "major" },
           { text: "FRATERNITÉ : respect mutuel, refus du sexisme et des humiliations.", level: "secondary" },
@@ -1057,52 +1052,58 @@
       }
     ];
 
-
     let index = 0;
 
-
     const $ = (id) => document.getElementById(id);
-
 
     function renderBulletList(items) {
       return `<ul class="clean">${items.map(item => `<li>${item}</li>`).join("")}</ul>`;
     }
 
-
     function renderValueList(items) {
-      return `<ul class="clean value-list">${items.map(item => {
-        const parts = item.text.split(" : ");
-        const head = parts.shift() || "";
-        const tail = parts.join(" : ");
-        return `<li class="${item.level || "normal"}"><strong>${head}${tail ? " :" : ""}</strong>${tail ? ` ${tail}` : ""}</li>`;
-      }).join("")}</ul>`;
+      return `
+        <ul class="clean value-list">
+          ${items.map(item => {
+            const parts = item.text.split(" : ");
+            const head = parts.shift() || "";
+            const tail = parts.join(" : ");
+            return `<li class="${item.level || "normal"}"><strong>${head}${tail ? " :" : ""}</strong>${tail ? ` ${tail}` : ""}</li>`;
+          }).join("")}
+        </ul>
+      `;
     }
-
 
     function renderRefList(items) {
-      return `<div class="ref-list">${items.map(item => `
-        <div class="ref-item">
-          <strong>${item.label}</strong>
-          <div class="apport">${item.apport}</div>
-          <a href="${item.url}" target="_blank" rel="noreferrer">Voir le document d'origine</a>
-        </div>`).join("")}</div>`;
+      return `
+        <div class="ref-list">
+          ${items.map(item => `
+            <div class="ref-item">
+              <strong>${item.label}</strong>
+              <div class="apport">${item.apport}</div>
+              <a href="${item.url}" target="_blank" rel="noreferrer">Voir le document d'origine</a>
+            </div>
+          `).join("")}
+        </div>
+      `;
     }
-
 
     function renderProtoList(items) {
-      return `<div class="proto-list">${items.map(item => `
-        <div class="proto-item">
-          <strong>${item.label}</strong>
-          <div class="apport">${item.apport}</div>
-          <div class="details">${item.details}</div>
-        </div>`).join("")}</div>`;
+      return `
+        <div class="proto-list">
+          ${items.map(item => `
+            <div class="proto-item">
+              <strong>${item.label}</strong>
+              <div class="apport">${item.apport}</div>
+              <div class="details">${item.details}</div>
+            </div>
+          `).join("")}
+        </div>
+      `;
     }
-
 
     function renderPills(items) {
       return items.map(item => `<span class="pill">${item}</span>`).join("");
     }
-
 
     function applyTheme(fiche) {
       document.documentElement.style.setProperty("--accent", fiche.colors.accent);
@@ -1110,48 +1111,80 @@
       document.documentElement.style.setProperty("--accent-hero", fiche.colors.hero);
     }
 
-
     function render() {
       const fiche = fiches[index];
       applyTheme(fiche);
-
 
       $("heroTitle").textContent = fiche.titre;
       $("heroSubtitle").textContent = fiche.subtitle;
       $("heroPills").innerHTML = renderPills(fiche.pills);
 
-
       $("leftPanel").innerHTML = `
         <h2>1 — Définitions précises et liens avec l'EPS</h2>
         <p class="intro">${fiche.definition}</p>
+
+        ${fiche.elementExplicatif && fiche.elementExplicatif.length ? `
+          <div class="side-note">
+            <h3>👉 Élément explicatif</h3>
+            ${renderBulletList(fiche.elementExplicatif)}
+          </div>
+        ` : ""}
+
         <div class="side-note">
           <h3>👉 En EPS</h3>
           ${renderBulletList(fiche.epsPoints)}
         </div>
       `;
 
+      $("textesCard").innerHTML = `
+        <h2>2 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>
+        ${renderRefList(fiche.textes)}
+      `;
 
-      $("textesCard").innerHTML = `<h2>2 — Textes institutionnels et ce qu'ils apportent (5 max)</h2>${renderRefList(fiche.textes)}`;
-      $("valeursCard").innerHTML = `<h2>3 — Valeurs de la République associées</h2>${renderValueList(fiche.valeurs)}`;
-      $("notionsCard").innerHTML = `<h2>4 — Notions incontournables</h2>${renderBulletList(fiche.notions)}`;
-      $("partenairesCard").innerHTML = `<h2>5 — Partenaires, référents et personnels ressources</h2>${renderBulletList(fiche.partenaires)}`;
-      $("protocolesCard").innerHTML = `<h2>6 — Protocoles, instances et dispositifs</h2>${renderProtoList(fiche.protocoles)}`;
-      $("courtCard").innerHTML = `<h2>7 — À court terme</h2>${renderBulletList(fiche.court)}`;
-      $("moyenCard").innerHTML = `<h2>8 — À moyen terme</h2>${renderBulletList(fiche.moyen)}`;
-      $("longCard").innerHTML = `<h2>9 — À long terme</h2>${renderBulletList(fiche.long)}`;
+      $("valeursCard").innerHTML = `
+        <h2>3 — Valeurs de la République associées</h2>
+        ${renderValueList(fiche.valeurs)}
+      `;
 
+      $("notionsCard").innerHTML = `
+        <h2>4 — Notions incontournables</h2>
+        ${renderBulletList(fiche.notions)}
+      `;
+
+      $("partenairesCard").innerHTML = `
+        <h2>5 — Partenaires, référents et personnels ressources</h2>
+        ${renderBulletList(fiche.partenaires)}
+      `;
+
+      $("protocolesCard").innerHTML = `
+        <h2>6 — Protocoles, instances et dispositifs</h2>
+        ${renderProtoList(fiche.protocoles)}
+      `;
+
+      $("courtCard").innerHTML = `
+        <h2>7 — À court terme</h2>
+        ${renderBulletList(fiche.court)}
+      `;
+
+      $("moyenCard").innerHTML = `
+        <h2>8 — À moyen terme</h2>
+        ${renderBulletList(fiche.moyen)}
+      `;
+
+      $("longCard").innerHTML = `
+        <h2>9 — À long terme</h2>
+        ${renderBulletList(fiche.long)}
+      `;
 
       document.querySelectorAll(".nav-btn").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
       });
     }
 
-
     function initNav() {
-      $("nav").innerHTML = fiches.map((fiche, i) =>
-        `<button class="nav-btn ${i === 0 ? "active" : ""}" data-index="${i}">${fiche.titre}</button>`
-      ).join("");
-
+      $("nav").innerHTML = fiches.map((fiche, i) => `
+        <button class="nav-btn ${i === 0 ? "active" : ""}" data-index="${i}">${fiche.titre}</button>
+      `).join("");
 
       document.querySelectorAll(".nav-btn").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -1161,18 +1194,15 @@
       });
     }
 
-
     $("prevBtn").addEventListener("click", () => {
       index = (index - 1 + fiches.length) % fiches.length;
       render();
     });
 
-
     $("nextBtn").addEventListener("click", () => {
       index = (index + 1) % fiches.length;
       render();
     });
-
 
     initNav();
     render();
